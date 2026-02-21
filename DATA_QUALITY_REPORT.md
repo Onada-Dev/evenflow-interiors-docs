@@ -1,8 +1,27 @@
-# LuxeScout v2 — Data Quality & Search Report
+# Evenflow Interiors v2 — Data Quality & Search Report
 
 **Date:** February 21, 2026
-**Database:** 136,916 products across 58 vendors (v2_ tables)
+**Database:** 136,916 products across 58 vendors
 **Embeddings:** 100% coverage (Cohere embed-v4, 1024 dimensions)
+
+---
+
+## TLDR — The Plan to Make the Database as Rich as Possible
+
+Search is live and already working well. Here's the 3-phase plan to make it even better:
+
+**Phase 1: Fix Missing Data** — Re-scrape vendors with gaps:
+- Theodore Alexander (Top 5, 2,507 products) — no descriptions
+- Chelsea House (1,944 products) — no descriptions
+- Precedent Furniture (Top 5, 406 products) — no images
+- Essentials for Living (Top 10, 408 products) — no images
+- A&B Home (219 products) — no descriptions
+
+**Phase 2: AI Enrichment** — Use AI to generate rich descriptions for products that only have a name. The AI reads the product name, category, and vendor context to write a detailed description covering style, materials, and use cases. This means searches like "entryway console" will find products that don't literally say "entryway" but are a perfect fit.
+
+**Phase 3: Re-embed & Reindex** — After enrichment, every product gets re-embedded so the search engine fully understands the new descriptions. Better data = better search results.
+
+**Start using the app now!** Search results are already much better than the old version. Use the feedback buttons (thumbs up/down on product cards) — every vote teaches the system what good and bad results look like. Thumbs-down lets you say *why* a result was bad, which is incredibly valuable for tuning.
 
 ---
 
