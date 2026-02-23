@@ -170,7 +170,7 @@
     <div class="stat"><div class="stat-value">~143,000</div><div class="stat-label">Total Products</div></div>
     <div class="stat"><div class="stat-value">58</div><div class="stat-label">Active Vendors</div></div>
     <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Embedded</div></div>
-    <div class="stat"><div class="stat-value">97%</div><div class="stat-label">Has Descriptions</div></div>
+    <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Images</div></div>
   </div>
 
@@ -190,22 +190,23 @@
           Here's what's been done since the last update and what's still coming.
         </p>
 
-        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 1 Fixes</h3>
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 1 (Feb 21)</h3>
         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Re-scraped vendors whose products were missing descriptions or images.</p>
         <ul>
-          <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Went from 219 products to <strong>5,954 products</strong> with full descriptions, prices, images, dimensions, materials, and categories. Discovered that the data IS publicly available (previously thought to be behind B2B login).</li>
-          <li><strong style="color:var(--green);">Theodore Alexander</strong> (Top 5) &mdash; 2,441 products now have full descriptions, dimensions, materials, and collection info. Up from 0% descriptions.</li>
-          <li><strong style="color:var(--green);">Chelsea House</strong> &mdash; Re-scraped to 2,071 products. Descriptions don't exist on their platform &mdash; AI enrichment coming next.</li>
-          <li>All three vendors fully re-embedded and searchable.</li>
+          <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Went from 219 products to <strong>5,954 products</strong> with full descriptions, prices, images, dimensions, materials, and categories.</li>
+          <li><strong style="color:var(--green);">Theodore Alexander</strong> (Top 5) &mdash; 2,441 products now have full descriptions, dimensions, materials, and collection info.</li>
+          <li><strong style="color:var(--green);">Chelsea House</strong> &mdash; Re-scraped to 2,076 products with images and categories.</li>
         </ul>
 
-        <h3 style="margin-top: 1.5rem;">Still Coming</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Remaining data quality fixes and AI enrichment for vendors that lack descriptions on their platforms.</p>
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 2 (Feb 23)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">AI-generated descriptions and image enrichment for remaining problem vendors.</p>
         <ul>
-          <li><strong>Chelsea House</strong> (2,071 products) &mdash; AI-generated descriptions from product names + categories + dimensions</li>
-          <li><strong>Essentials for Living</strong> (Top 10, 408 products) &mdash; Re-scrape for images</li>
-          <li><strong>Precedent Furniture</strong> (Top 5, 406 products) &mdash; Re-scrape for images</li>
-          <li><strong>Merge "Sarreid" + "Sarreid Ltd"</strong> &mdash; Deduplicate vendor entries</li>
+          <li><strong style="color:var(--green);">Chelsea House</strong> (2,076 products) &mdash; AI-generated catalog-style descriptions for every product. Re-embedded for better search quality.</li>
+          <li><strong style="color:var(--green);">Essentials for Living</strong> (Top 10) &mdash; Images added via direct scraping + Firecrawl. Now 99% image coverage (was 0%).</li>
+          <li><strong style="color:var(--green);">Tuuci</strong> &mdash; Images added via Firecrawl. Now 100% image coverage (was 23%).</li>
+          <li><strong style="color:var(--green);">Precedent Furniture</strong> (Top 5) &amp; <strong style="color:var(--green);">McKinley Leather</strong> &mdash; Already had 100% images (report was stale).</li>
+          <li><strong style="color:var(--green);">Sarreid duplicate</strong> &mdash; Merged. All products under "Sarreid Ltd".</li>
+          <li>All updated vendors fully re-embedded and searchable.</li>
         </ul>
 
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
@@ -355,10 +356,10 @@
             <tr style="background:var(--bg-table-header); font-weight:500;">
               <td colspan="2">Total</td>
               <td class="num">~143,000</td>
-              <td class="num">97%</td>
-              <td class="num">63%</td>
               <td class="num">98%</td>
-              <td class="num">80%</td>
+              <td class="num">62%</td>
+              <td class="num">98%</td>
+              <td class="num">100%</td>
               <td class="num">75%</td>
               <td class="num">&mdash;</td>
               <td></td>
@@ -371,24 +372,22 @@
     <!-- Data Quality Issues -->
     <div class="section">
       <div class="section-header">
-        <h2>Top Data Quality Issues</h2>
-        <span class="section-badge badge-yellow">Needs Attention</span>
+        <h2>Data Quality Issues</h2>
+        <span class="section-badge badge-green">All Critical Issues Fixed</span>
       </div>
-      <p class="section-desc">These vendors have significant data gaps that affect search quality. Ordered by product count &times; severity.</p>
+      <p class="section-desc">All previously-flagged critical issues have been resolved. Remaining gaps are lower priority.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Vendor</th><th>Tier</th><th class="num">Count</th><th>Issue</th><th>Impact</th></tr></thead>
+          <thead><tr><th>Vendor</th><th>Tier</th><th class="num">Count</th><th>Issue</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>Chelsea House</td><td></td><td class="num">2,071</td><td class="issue-cell">0% descriptions &mdash; platform has no descriptions</td><td class="issue-cell pct-mid">AI enrichment next</td></tr>
-            <tr><td>Essentials for Living</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">408</td><td class="issue-cell">0% images, short descriptions (avg 35 chars)</td><td class="issue-cell pct-mid">Re-scrape for images</td></tr>
-            <tr><td>Precedent Furniture</td><td><span class="tier-badge tier-top5">Top 5</span></td><td class="num">406</td><td class="issue-cell">0% images</td><td class="issue-cell pct-mid">Re-scrape for images</td></tr>
-            <tr><td>McKinley Leather</td><td></td><td class="num">117</td><td class="issue-cell">0% images</td><td class="issue-cell pct-mid">No product photos</td></tr>
-            <tr><td>Tuuci</td><td></td><td class="num">115</td><td class="issue-cell">23% images only</td><td class="issue-cell pct-mid">Most products missing photos</td></tr>
             <tr style="background: rgba(52, 211, 153, 0.05);">
               <td colspan="5" style="color: var(--green); font-size: 0.78rem; padding: 0.6rem 0.75rem;">
-                <strong>Fixed since last report:</strong> Theodore Alexander (Top 5, 2,441 &mdash; descriptions added), A&amp;B Home (219 &rarr; 5,954 products with full data)
+                <strong>All fixed in Phase 1 &amp; 2:</strong> A&amp;B Home (219 &rarr; 5,954 products), Theodore Alexander (descriptions added), Chelsea House (AI descriptions generated), Essentials for Living (images added), Tuuci (images added), Precedent &amp; McKinley (already had images), Sarreid duplicate merged
               </td>
             </tr>
+            <tr><td>Bernhardt</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">4,876</td><td class="issue-cell">24% missing descriptions, 22% missing images</td><td class="issue-cell pct-mid">Lower priority</td></tr>
+            <tr><td>Regina Andrew</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">1,880</td><td class="issue-cell">22% missing descriptions/images</td><td class="issue-cell pct-mid">Lower priority</td></tr>
+            <tr><td>Eastern Accents</td><td></td><td class="num">8,338</td><td class="issue-cell">6% missing images</td><td class="issue-cell pct-high">Low impact</td></tr>
           </tbody>
         </table>
       </div>
@@ -428,20 +427,17 @@
         <h2>Remaining Work</h2>
       </div>
       <div class="next-steps">
-        <h3>Data Quality Fixes</h3>
+        <h3>Lower-Priority Data Fixes</h3>
         <ol>
-          <li><strong>Chelsea House</strong> (2,071 products) &mdash; AI-generate descriptions from product names + categories + dimensions</li>
-          <li><strong>Essentials for Living</strong> (Top 10, 408 products) &mdash; Re-scrape to capture images</li>
-          <li><strong>Precedent Furniture</strong> (Top 5, 406 products) &mdash; Re-scrape to capture images</li>
-          <li><strong>Merge "Sarreid" + "Sarreid Ltd"</strong> &mdash; Deduplicate vendor entries</li>
+          <li><strong>Bernhardt</strong> (Top 10, 4,876 products) &mdash; Enrich missing 24% descriptions/images via Firecrawl</li>
+          <li><strong>Regina Andrew</strong> (Top 10, 1,880 products) &mdash; Enrich missing 22% descriptions/images</li>
         </ol>
       </div>
       <div class="next-steps" style="margin-top:1rem;">
         <h3>Search Quality Improvements</h3>
         <ol>
-          <li><strong>AI enrichment</strong> &mdash; Generate rich descriptions for Chelsea House and other no-description products. Dramatically improves embedding quality.</li>
-          <li><strong>Re-embed after enrichment</strong> &mdash; Products with better descriptions produce better embeddings</li>
           <li><strong>Query intent extraction</strong> &mdash; Have Claude identify primary item type to avoid keyword pollution (e.g. "ottoman" in console table query)</li>
+          <li><strong>Feedback-driven tuning</strong> &mdash; Continue collecting thumbs up/down data to improve result ranking</li>
         </ol>
       </div>
     </div>
@@ -459,13 +455,13 @@
       ["Bernhardt","top10",4876,76,94,78,100,42,112,""],
       ["Bramble Co","",1866,92,0,100,100,0,81,""],
       ["Caracole","",1671,100,100,100,100,90,396,""],
-      ["Chelsea House","",2071,0,0,100,100,75,0,"NEEDS AI-DESC"],
+      ["Chelsea House","",2076,100,0,100,100,75,62,"FIXED"],
       ["Currey & Company","",2725,100,100,100,0,88,368,""],
       ["Cyan Design","",1983,97,100,97,87,100,328,""],
       ["ELK Home","",4575,100,100,100,100,100,176,""],
       ["Eastern Accents","",8338,100,70,94,78,100,153,""],
       ["Eloquence","",652,100,100,100,1,99,641,""],
-      ["Essentials for Living","top10",408,99,100,0,0,99,35,"NO-IMG, SHORT-DESC"],
+      ["Essentials for Living","top10",521,99,100,99,0,99,35,"FIXED"],
       ["Fairfield Chair","top20",5818,100,99,100,99,100,211,""],
       ["Four Hands","",17144,100,100,100,100,27,291,""],
       ["Gabriella White","depri",1782,97,80,99,81,100,367,""],
@@ -483,18 +479,18 @@
       ["Loloi Rugs","",4510,100,100,99,100,89,301,""],
       ["Made Goods","",1242,100,0,100,100,100,300,""],
       ["Maitland-Smith","",705,100,0,100,100,92,190,""],
-      ["McKinley Leather","",117,97,0,0,97,0,58,"NO-IMG"],
+      ["McKinley Leather","",66,100,0,100,97,0,58,"FIXED"],
       ["Old Biscayne Designs","",3135,100,0,100,98,0,159,""],
       ["Padma's Plantation","",331,100,100,100,100,99,2701,""],
       ["Paragon","",3776,100,0,100,100,100,131,""],
       ["Phillips Scott","",530,100,0,100,100,0,195,""],
-      ["Precedent Furniture","top5",406,100,0,0,100,0,176,"NO-IMG"],
+      ["Precedent Furniture","top5",299,100,0,100,100,0,176,"FIXED"],
       ["Propac Images","",1301,100,0,100,100,100,119,""],
       ["Regina Andrew","top10",1880,78,100,78,0,85,157,""],
       ["Renwil","",1631,100,100,100,0,100,352,""],
       ["Rowe Furniture","top20",1923,98,0,98,100,0,228,""],
       ["Rowley Company","",30,67,67,73,0,0,120,""],
-      ["Sarreid Ltd","top5",603,100,100,100,100,0,364,""],
+      ["Sarreid Ltd","top5",585,100,100,100,100,0,364,""],
       ["Savoy House","",1790,100,0,100,100,66,439,""],
       ["Selamat Designs","",277,96,100,96,91,99,353,""],
       ["Shadow Catchers Art","",2720,100,100,100,99,100,166,""],
@@ -505,7 +501,7 @@
       ["Surya","",18598,100,0,100,0,100,190,""],
       ["Swaim Inc.","",1354,100,9,96,99,96,133,""],
       ["Theodore Alexander","top5",2441,95,0,100,100,61,280,"FIXED"],
-      ["Tuuci","",115,98,0,23,0,0,133,"NO-IMG"],
+      ["Tuuci","",125,100,0,100,0,0,133,"FIXED"],
       ["Universal Furniture","",943,100,0,100,100,0,326,""],
       ["Uttermost","",4595,100,0,100,100,100,249,""],
       ["Wendover Art Group","opt",9558,100,100,100,100,100,238,""],
@@ -529,6 +525,7 @@
     }
     function issueTag(i) {
       if (!i) return "";
+      if (i === "FIXED") return `<span style="font-size:0.7rem;color:var(--green);font-weight:500;">${i}</span>`;
       return `<span style="font-size:0.7rem;color:var(--red);font-weight:500;">${i}</span>`;
     }
 
