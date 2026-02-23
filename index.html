@@ -156,16 +156,16 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>February 21, 2026</span></p>
+    <p class="hero-meta"><span>February 23, 2026</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-value">136,916</div><div class="stat-label">Total Products</div></div>
+    <div class="stat"><div class="stat-value">~143,000</div><div class="stat-label">Total Products</div></div>
     <div class="stat"><div class="stat-value">58</div><div class="stat-label">Active Vendors</div></div>
     <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Embedded</div></div>
-    <div class="stat"><div class="stat-value">95%</div><div class="stat-label">Has Descriptions</div></div>
+    <div class="stat"><div class="stat-value">97%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Images</div></div>
   </div>
 
@@ -180,29 +180,28 @@
       <div class="highlights" style="border-color: rgba(232, 74, 156, 0.3); background: linear-gradient(135deg, var(--bg-card) 0%, #1a0f1e 100%);">
         <h3 style="color: #e84a9c;">The Big Picture</h3>
         <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7;">
-          Your product search engine is live with <strong style="color:var(--gold-light);">136,916 products</strong> from
-          <strong style="color:var(--gold-light);">58 vendors</strong> and search is already working well.
-          Here's how I'm making it even better &mdash; the goal is to get every product as rich and searchable as possible.
+          Your product search engine is live with <strong style="color:var(--gold-light);">~143,000 products</strong> from
+          <strong style="color:var(--gold-light);">58 vendors</strong> and search is working great.
+          Here's what's been done since the last update and what's still coming.
         </p>
 
-        <h3 style="margin-top: 1.5rem;">Phase 1: Fix Missing Data</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Re-scrape vendors whose products are missing descriptions or images. This is the biggest bang for the buck.</p>
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 1 Fixes</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Re-scraped vendors whose products were missing descriptions or images.</p>
         <ul>
-          <li><strong>Theodore Alexander</strong> (Top 5) &mdash; 2,507 products have no descriptions. Re-scraping to pull the full product info.</li>
-          <li><strong>Chelsea House</strong> &mdash; 1,944 products with no descriptions. Same fix.</li>
-          <li><strong>Precedent Furniture</strong> (Top 5) &amp; <strong>Essentials for Living</strong> (Top 10) &mdash; ~800 products missing images. Re-scraping for photos.</li>
-          <li><strong>A&amp;B Home</strong> &mdash; 219 products with no descriptions.</li>
+          <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Went from 219 products to <strong>5,954 products</strong> with full descriptions, prices, images, dimensions, materials, and categories. Discovered that the data IS publicly available (previously thought to be behind B2B login).</li>
+          <li><strong style="color:var(--green);">Theodore Alexander</strong> (Top 5) &mdash; 2,441 products now have full descriptions, dimensions, materials, and collection info. Up from 0% descriptions.</li>
+          <li><strong style="color:var(--green);">Chelsea House</strong> &mdash; Re-scraped to 2,071 products. Descriptions don't exist on their platform &mdash; AI enrichment coming next.</li>
+          <li>All three vendors fully re-embedded and searchable.</li>
         </ul>
 
-        <h3 style="margin-top: 1.5rem;">Phase 2: AI Enrichment</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">For products that still lack good descriptions after re-scraping, I'll use AI to write rich, detailed descriptions based on the product name, category, vendor, and image. This is like giving the search engine a much deeper understanding of each product.</p>
+        <h3 style="margin-top: 1.5rem;">Still Coming</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Remaining data quality fixes and AI enrichment for vendors that lack descriptions on their platforms.</p>
         <ul>
-          <li>AI reads the product name "Corte Open Console Table w/ 2 Drawers" and generates a full description covering style, materials, dimensions context, and use cases</li>
-          <li>This means searches like "console table for an entryway" will find products that don't literally say "entryway" but are a great fit</li>
+          <li><strong>Chelsea House</strong> (2,071 products) &mdash; AI-generated descriptions from product names + categories + dimensions</li>
+          <li><strong>Essentials for Living</strong> (Top 10, 408 products) &mdash; Re-scrape for images</li>
+          <li><strong>Precedent Furniture</strong> (Top 5, 406 products) &mdash; Re-scrape for images</li>
+          <li><strong>Merge "Sarreid" + "Sarreid Ltd"</strong> &mdash; Deduplicate vendor entries</li>
         </ul>
-
-        <h3 style="margin-top: 1.5rem;">Phase 3: Re-embed &amp; Reindex</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">After enrichment, every product gets re-embedded so the search engine fully understands the new descriptions. This is the step that turns better data into better search results.</p>
 
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
           <h3 style="color: var(--green); font-size: 1rem; margin-bottom: 0.5rem;">Start Using It Now!</h3>
@@ -225,7 +224,7 @@
         <table>
           <thead><tr><th>Component</th><th>Old MVP</th><th>LuxeScout v2</th></tr></thead>
           <tbody>
-            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">136,916</td></tr>
+            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">~143,000</td></tr>
             <tr><td>Vendors</td><td class="num">68</td><td class="num" style="color:var(--green)">58 (removed client-deleted)</td></tr>
             <tr><td>Embeddings</td><td>OpenAI text-embedding-3 (1536d)</td><td style="color:var(--green)">Cohere embed-v4 (1024d)</td></tr>
             <tr><td>Search Method</td><td>Vector-only + attribute rerank</td><td style="color:var(--green)">Hybrid (vector + BM25 + RRF)</td></tr>
@@ -350,11 +349,11 @@
           <tfoot>
             <tr style="background:var(--bg-table-header); font-weight:500;">
               <td colspan="2">Total</td>
-              <td class="num">136,916</td>
-              <td class="num">95%</td>
-              <td class="num">60%</td>
+              <td class="num">~143,000</td>
+              <td class="num">97%</td>
+              <td class="num">63%</td>
               <td class="num">98%</td>
-              <td class="num">78%</td>
+              <td class="num">80%</td>
               <td class="num">75%</td>
               <td class="num">&mdash;</td>
               <td></td>
@@ -375,13 +374,16 @@
         <table>
           <thead><tr><th>Vendor</th><th>Tier</th><th class="num">Count</th><th>Issue</th><th>Impact</th></tr></thead>
           <tbody>
-            <tr><td>Theodore Alexander</td><td><span class="tier-badge tier-top5">Top 5</span></td><td class="num">2,507</td><td class="issue-cell">0% descriptions &mdash; scraper captured names/images but no description text</td><td class="issue-cell pct-low">Major: embedding quality degraded for 2.5K products</td></tr>
-            <tr><td>Chelsea House</td><td></td><td class="num">1,944</td><td class="issue-cell">0% descriptions</td><td class="issue-cell pct-low">Search relies on product names only</td></tr>
-            <tr><td>Essentials for Living</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">408</td><td class="issue-cell">0% images, short descriptions (avg 35 chars)</td><td class="issue-cell pct-mid">Products won't display images in results</td></tr>
-            <tr><td>Precedent Furniture</td><td><span class="tier-badge tier-top5">Top 5</span></td><td class="num">406</td><td class="issue-cell">0% images</td><td class="issue-cell pct-mid">Products searchable by text only, no images</td></tr>
-            <tr><td>A&amp;B Home</td><td></td><td class="num">219</td><td class="issue-cell">0% descriptions</td><td class="issue-cell pct-mid">Search relies on product names only</td></tr>
+            <tr><td>Chelsea House</td><td></td><td class="num">2,071</td><td class="issue-cell">0% descriptions &mdash; platform has no descriptions</td><td class="issue-cell pct-mid">AI enrichment next</td></tr>
+            <tr><td>Essentials for Living</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">408</td><td class="issue-cell">0% images, short descriptions (avg 35 chars)</td><td class="issue-cell pct-mid">Re-scrape for images</td></tr>
+            <tr><td>Precedent Furniture</td><td><span class="tier-badge tier-top5">Top 5</span></td><td class="num">406</td><td class="issue-cell">0% images</td><td class="issue-cell pct-mid">Re-scrape for images</td></tr>
             <tr><td>McKinley Leather</td><td></td><td class="num">117</td><td class="issue-cell">0% images</td><td class="issue-cell pct-mid">No product photos</td></tr>
             <tr><td>Tuuci</td><td></td><td class="num">115</td><td class="issue-cell">23% images only</td><td class="issue-cell pct-mid">Most products missing photos</td></tr>
+            <tr style="background: rgba(52, 211, 153, 0.05);">
+              <td colspan="5" style="color: var(--green); font-size: 0.78rem; padding: 0.6rem 0.75rem;">
+                <strong>Fixed since last report:</strong> Theodore Alexander (Top 5, 2,441 &mdash; descriptions added), A&amp;B Home (219 &rarr; 5,954 products with full data)
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -394,7 +396,7 @@
         <span class="section-badge badge-green">Major Gains</span>
       </div>
       <div class="summary-grid">
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">136,916</div><div class="detail">58 vendors (10 client-deleted vendors removed)</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">~143,000</div><div class="detail">58 vendors (10 client-deleted vendors removed)</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Embedding Coverage</h4><div class="value">100%</div><div class="detail">All products embedded with Cohere embed-v4</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Search Precision</h4><div class="value">80%</div><div class="detail">Up from 25% on test query</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">3</div><div class="detail">Feedback loop, vendor tiering, category priorities</div></div>
@@ -423,17 +425,16 @@
       <div class="next-steps">
         <h3>Data Quality Fixes</h3>
         <ol>
-          <li><strong>Theodore Alexander</strong> (Top 5, 2,507 products) &mdash; Re-scrape to capture descriptions</li>
-          <li><strong>Precedent Furniture</strong> (Top 5, 406 products) &mdash; Re-scrape to capture image URLs</li>
-          <li><strong>Essentials for Living</strong> (Top 10, 408 products) &mdash; Re-scrape to capture images and longer descriptions</li>
-          <li><strong>Chelsea House</strong> (1,944 products) &mdash; Scrape descriptions</li>
-          <li><strong>Merge "Sarreid" + "Sarreid Ltd"</strong> &mdash; Deduplicate vendor entries (4 + 599 products)</li>
+          <li><strong>Chelsea House</strong> (2,071 products) &mdash; AI-generate descriptions from product names + categories + dimensions</li>
+          <li><strong>Essentials for Living</strong> (Top 10, 408 products) &mdash; Re-scrape to capture images</li>
+          <li><strong>Precedent Furniture</strong> (Top 5, 406 products) &mdash; Re-scrape to capture images</li>
+          <li><strong>Merge "Sarreid" + "Sarreid Ltd"</strong> &mdash; Deduplicate vendor entries</li>
         </ol>
       </div>
       <div class="next-steps" style="margin-top:1rem;">
         <h3>Search Quality Improvements</h3>
         <ol>
-          <li><strong>Contextual enrichment</strong> &mdash; Run LLM-generated descriptions for products with NO-DESC. Dramatically improves embedding quality.</li>
+          <li><strong>AI enrichment</strong> &mdash; Generate rich descriptions for Chelsea House and other no-description products. Dramatically improves embedding quality.</li>
           <li><strong>Re-embed after enrichment</strong> &mdash; Products with better descriptions produce better embeddings</li>
           <li><strong>Query intent extraction</strong> &mdash; Have Claude identify primary item type to avoid keyword pollution (e.g. "ottoman" in console table query)</li>
         </ol>
@@ -447,13 +448,13 @@
   <script>
     // All 58 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
     const vendors = [
-      ["A&B Home","",219,0,0,100,100,0,0,"NO-DESC"],
+      ["A&B Home","",6125,85,95,98,100,50,180,"FIXED"],
       ["Ambella Home","top5",775,94,0,100,100,22,184,""],
       ["Artistica Home","",648,100,0,100,100,77,261,""],
       ["Bernhardt","top10",4876,76,94,78,100,42,112,""],
       ["Bramble Co","",1866,92,0,100,100,0,81,""],
       ["Caracole","",1671,100,100,100,100,90,396,""],
-      ["Chelsea House","",1944,0,0,100,100,75,0,"NO-DESC"],
+      ["Chelsea House","",2071,0,0,100,100,75,0,"NEEDS AI-DESC"],
       ["Currey & Company","",2725,100,100,100,0,88,368,""],
       ["Cyan Design","",1983,97,100,97,87,100,328,""],
       ["ELK Home","",4575,100,100,100,100,100,176,""],
@@ -498,7 +499,7 @@
       ["Summer Classics","",417,85,59,87,76,100,289,""],
       ["Surya","",18598,100,0,100,0,100,190,""],
       ["Swaim Inc.","",1354,100,9,96,99,96,133,""],
-      ["Theodore Alexander","top5",2507,0,0,100,100,61,0,"NO-DESC"],
+      ["Theodore Alexander","top5",2441,95,0,100,100,61,280,"FIXED"],
       ["Tuuci","",115,98,0,23,0,0,133,"NO-IMG"],
       ["Universal Furniture","",943,100,0,100,100,0,326,""],
       ["Uttermost","",4595,100,0,100,100,100,249,""],
