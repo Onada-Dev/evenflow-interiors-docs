@@ -71,6 +71,11 @@
     .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
     table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
     thead th { background: var(--bg-table-header); color: var(--gold-light); font-weight: 500; text-align: left; padding: 0.6rem 0.75rem; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; border-bottom: 1px solid var(--border-gold); }
+    thead th.sortable { cursor: pointer; user-select: none; position: relative; padding-right: 1.25rem; transition: color 0.15s; }
+    thead th.sortable:hover { color: var(--gold); }
+    thead th.sortable::after { content: '\2195'; position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); font-size: 0.65rem; opacity: 0.35; }
+    thead th.sortable.asc::after { content: '\2191'; opacity: 0.9; }
+    thead th.sortable.desc::after { content: '\2193'; opacity: 0.9; }
     tbody tr { border-bottom: 1px solid var(--border); }
     tbody tr:nth-child(odd) { background: var(--bg-table-row); }
     tbody tr:nth-child(even) { background: var(--bg-table-row-alt); }
@@ -344,7 +349,7 @@
       <p class="section-desc">Every product across all 58 vendors has been embedded with Cohere embed-v4 (1024 dimensions) for semantic search.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Vendor</th><th>Tier</th><th class="num">Count</th><th class="num">Desc%</th><th class="num">Price%</th><th class="num">Image%</th><th class="num">Cat%</th><th class="num">Stock%</th><th class="num">Avg Desc</th><th>Issues</th></tr></thead>
+          <thead><tr><th class="sortable" data-col="0">Vendor</th><th class="sortable" data-col="1">Tier</th><th class="num sortable" data-col="2">Count</th><th class="num sortable" data-col="3">Desc%</th><th class="num sortable" data-col="4">Price%</th><th class="num sortable" data-col="5">Image%</th><th class="num sortable" data-col="6">Cat%</th><th class="num sortable" data-col="7">Stock%</th><th class="num sortable" data-col="8">Avg Desc</th><th class="sortable" data-col="9">Issues</th></tr></thead>
           <tbody id="vendor-table"></tbody>
           <tfoot>
             <tr style="background:var(--bg-table-header); font-weight:500;">
@@ -527,21 +532,46 @@
       return `<span style="font-size:0.7rem;color:var(--red);font-weight:500;">${i}</span>`;
     }
 
-    document.getElementById("vendor-table").innerHTML = vendors.map(r => {
-      const [name,tier,count,desc,price,img,cat,stock,avgDesc,issues] = r;
-      return `<tr>
-        <td>${name}</td>
-        <td>${tierBadge(tier)}</td>
-        <td class="num">${fmtNum(count)}</td>
-        <td class="num ${pctClass(desc)}">${desc}%</td>
-        <td class="num ${pctClass(price)}">${price}%</td>
-        <td class="num ${pctClass(img)}">${img}%</td>
-        <td class="num ${pctClass(cat)}">${cat}%</td>
-        <td class="num ${pctClass(stock)}">${stock}%</td>
-        <td class="num">${fmtNum(avgDesc)}</td>
-        <td class="issue-cell">${issueTag(issues)}</td>
-      </tr>`;
-    }).join("");
+    const tierOrder = {top5:0, top10:1, top20:2, "":3, opt:4, depri:5};
+    let sortCol = null, sortDir = "asc";
+
+    function renderTable(data) {
+      document.getElementById("vendor-table").innerHTML = data.map(r => {
+        const [name,tier,count,desc,price,img,cat,stock,avgDesc,issues] = r;
+        return `<tr>
+          <td>${name}</td>
+          <td>${tierBadge(tier)}</td>
+          <td class="num">${fmtNum(count)}</td>
+          <td class="num ${pctClass(desc)}">${desc}%</td>
+          <td class="num ${pctClass(price)}">${price}%</td>
+          <td class="num ${pctClass(img)}">${img}%</td>
+          <td class="num ${pctClass(cat)}">${cat}%</td>
+          <td class="num ${pctClass(stock)}">${stock}%</td>
+          <td class="num">${fmtNum(avgDesc)}</td>
+          <td class="issue-cell">${issueTag(issues)}</td>
+        </tr>`;
+      }).join("");
+    }
+
+    function sortTable(col) {
+      if (sortCol === col) { sortDir = sortDir === "asc" ? "desc" : "asc"; }
+      else { sortCol = col; sortDir = col === 0 || col === 1 || col === 9 ? "asc" : "desc"; }
+      document.querySelectorAll("th.sortable").forEach(th => th.classList.remove("asc","desc"));
+      document.querySelector(`th[data-col="${col}"]`).classList.add(sortDir);
+      const sorted = [...vendors].sort((a,b) => {
+        let va = a[col], vb = b[col];
+        if (col === 1) { va = tierOrder[va] ?? 3; vb = tierOrder[vb] ?? 3; }
+        if (typeof va === "string") return sortDir === "asc" ? va.localeCompare(vb) : vb.localeCompare(va);
+        return sortDir === "asc" ? va - vb : vb - va;
+      });
+      renderTable(sorted);
+    }
+
+    document.querySelectorAll("th.sortable").forEach(th => {
+      th.addEventListener("click", () => sortTable(parseInt(th.dataset.col)));
+    });
+
+    renderTable(vendors);
   </script>
 
 </body>
