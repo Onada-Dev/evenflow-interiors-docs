@@ -161,16 +161,16 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: February 24, 2026 at 5:00 AM EST</span></p>
+    <p class="hero-meta"><span>Last updated: February 24, 2026 at 3:30 PM EST</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-value">143,832</div><div class="stat-label">Total Products</div></div>
+    <div class="stat"><div class="stat-value">144,921</div><div class="stat-label">Total Products</div></div>
     <div class="stat"><div class="stat-value">62</div><div class="stat-label">Active Vendors</div></div>
     <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Embedded</div></div>
-    <div class="stat"><div class="stat-value">99.5%</div><div class="stat-label">Has Descriptions</div></div>
+    <div class="stat"><div class="stat-value">99.8%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Images</div></div>
   </div>
 
@@ -185,7 +185,7 @@
       <div class="highlights" style="border-color: rgba(232, 74, 156, 0.3); background: linear-gradient(135deg, var(--bg-card) 0%, #1a0f1e 100%);">
         <h3 style="color: #e84a9c;">The Big Picture</h3>
         <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7;">
-          Your product search engine is live with <strong style="color:var(--gold-light);">143,832 products</strong> from
+          Your product search engine is live with <strong style="color:var(--gold-light);">144,921 products</strong> from
           <strong style="color:var(--gold-light);">62 vendors</strong> and search is working great.
           Here's what's been done since the last update and what's still coming.
         </p>
@@ -224,13 +224,23 @@
         </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 4 (Feb 24)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Enriched 4 vendors with missing descriptions via Firecrawl + AI fallback. Description coverage now 99.5%.</p>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Enriched 4 vendors with missing descriptions via Firecrawl + AI fallback. Description coverage now 99.8%.</p>
         <ul>
           <li><strong style="color:var(--green);">Bernhardt</strong> (Top 10) &mdash; Descriptions: 76% &rarr; <strong>100%</strong>. Images: 78% &rarr; 83%. Enriched 1,418 products via Firecrawl + 56 via AI.</li>
           <li><strong style="color:var(--green);">Regina Andrew</strong> (Top 10) &mdash; Descriptions: 78% &rarr; <strong>100%</strong>. Images: 78% &rarr; 100%. Enriched 402 products via Firecrawl.</li>
           <li><strong style="color:var(--green);">Lexington Home Brands</strong> (Top 5) &mdash; Descriptions: 83% &rarr; <strong>100%</strong>. Images: 94% &rarr; 97%. Enriched 88 via Firecrawl + 93 via AI.</li>
           <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Descriptions: 85% &rarr; <strong>100%</strong>. Images: 98% &rarr; 99%. Enriched 783 via Firecrawl + 138 via AI.</li>
           <li>All 4 vendors fully re-embedded with updated content.</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 5 (Feb 24)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Final data quality sweep. Built custom fabric scraper, enriched 4 vendors. Description coverage now 99.8%.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Sherrill Fabrics</strong> &mdash; Built custom scraper for fabric catalog. <strong>1,090 fabrics</strong> scraped (was 1). AI descriptions + embeddings complete.</li>
+          <li><strong style="color:var(--green);">Interlude Home</strong> &mdash; Descriptions: 80% &rarr; <strong>100%</strong>. Enriched 55 via Firecrawl + AI fallback.</li>
+          <li><strong style="color:var(--green);">Bramble Co</strong> &mdash; Descriptions: 92% &rarr; <strong>100%</strong>. Enriched 10 via Firecrawl + AI fallback.</li>
+          <li><strong style="color:var(--green);">Summer Classics</strong> &mdash; Descriptions: 85% &rarr; <strong>100%</strong>. Images: 87% &rarr; 94%.</li>
+          <li>All vendors fully re-embedded. <strong>No remaining description gaps.</strong></li>
         </ul>
 
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
@@ -254,7 +264,7 @@
         <table>
           <thead><tr><th>Component</th><th>Old MVP</th><th>LuxeScout v2</th></tr></thead>
           <tbody>
-            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">143,832</td></tr>
+            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">144,921</td></tr>
             <tr><td>Vendors</td><td class="num">68</td><td class="num" style="color:var(--green)">62 (removed client-deleted)</td></tr>
             <tr><td>Embeddings</td><td>OpenAI text-embedding-3 (1536d)</td><td style="color:var(--green)">Cohere embed-v4 (1024d)</td></tr>
             <tr><td>Search Method</td><td>Vector-only + attribute rerank</td><td style="color:var(--green)">Hybrid (vector + BM25 + RRF)</td></tr>
@@ -379,7 +389,7 @@
           <tfoot>
             <tr style="background:var(--bg-table-header); font-weight:500;">
               <td colspan="2">Total</td>
-              <td class="num">143,832</td>
+              <td class="num">144,921</td>
               <td class="num">98%</td>
               <td class="num">62%</td>
               <td class="num">98%</td>
@@ -424,7 +434,7 @@
         <span class="section-badge badge-green">Major Gains</span>
       </div>
       <div class="summary-grid">
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">143,832</div><div class="detail">62 vendors (10 client-deleted vendors removed)</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">144,921</div><div class="detail">62 vendors (10 client-deleted vendors removed)</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Embedding Coverage</h4><div class="value">100%</div><div class="detail">All products embedded with Cohere embed-v4</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Search Precision</h4><div class="value">80%</div><div class="detail">Up from 25% on test query</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">3</div><div class="detail">Feedback loop, vendor tiering, category priorities</div></div>
@@ -453,9 +463,16 @@
       <div class="next-steps">
         <h3>Lower-Priority Data Fixes</h3>
         <ol>
-          <li><del>Bernhardt (Top 10)</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions now.</span></li>
+          <li><del>Bernhardt (Top 10)</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions.</span> 17% images still missing.</li>
           <li><del>Regina Andrew (Top 10)</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions, 100% images.</span></li>
-          <li><strong>Sherrill Fabrics</strong> (1 product) &mdash; ~1,091 fabrics on listing page need custom scraping approach</li>
+          <li><del>Theodore Alexander (Top 5)</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions.</span></li>
+          <li><del>Chelsea House</del> &mdash; <span style="color:var(--green)">Done! 100% AI descriptions.</span></li>
+          <li><del>Precedent / EFL images</del> &mdash; <span style="color:var(--green)">Done! 100% / 99%.</span></li>
+          <li><del>Sarreid duplicate</del> &mdash; <span style="color:var(--green)">Merged.</span></li>
+          <li><del>Interlude Home</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions (Firecrawl + AI fallback).</span></li>
+          <li><del>Sherrill Fabrics</del> &mdash; <span style="color:var(--green)">Done! 1,090 fabrics scraped via custom scraper. AI descriptions + embeddings complete.</span></li>
+          <li><del>Bramble Co</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions.</span></li>
+          <li><del>Summer Classics</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions, images improved to 94%.</span></li>
         </ol>
       </div>
       <div class="next-steps" style="margin-top:1rem;">
@@ -469,7 +486,7 @@
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 24, 2026 at 5:00 AM EST</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 24, 2026 at 3:30 PM EST</footer>
 
   <script>
     // All 58 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
@@ -478,7 +495,7 @@
       ["Ambella Home","top5",775,94,0,100,100,22,184,""],
       ["Artistica Home","",648,100,0,100,100,77,261,""],
       ["Bernhardt","top10",5464,100,94,83,100,42,112,"FIXED"],
-      ["Bramble Co","",1866,92,0,100,100,0,81,""],
+      ["Bramble Co","",2095,100,0,100,100,0,81,"FIXED"],
       ["Caracole","",1671,100,100,100,100,90,396,""],
       ["Chelsea House","",2076,100,0,100,100,75,62,"FIXED"],
       ["Currey & Company","",2725,100,100,100,0,88,368,""],
@@ -495,7 +512,7 @@
       ["HVL Group","",5915,100,92,100,100,73,329,""],
       ["Hekman","",691,100,100,100,100,80,391,""],
       ["Horizon Shades","",4,100,0,100,0,0,152,""],
-      ["Interlude Home","",1183,80,99,100,98,99,127,""],
+      ["Interlude Home","",1010,100,99,100,98,99,127,"FIXED"],
       ["Jaipur Living","",2337,100,89,100,100,100,375,""],
       ["James Martin Vanities","",411,99,76,100,93,100,679,""],
       ["Jamie Young Co","",1100,100,100,100,100,0,310,""],
@@ -521,14 +538,14 @@
       ["Savoy House","",1790,100,0,100,100,66,439,""],
       ["Selamat Designs","",277,96,100,96,91,99,353,""],
       ["Shadow Catchers Art","",2720,100,100,100,99,100,166,""],
-      ["Sherrill Fabrics","",1,100,0,100,0,0,50,"NEW"],
+      ["Sherrill Fabrics","",1090,100,0,94,100,0,65,"FIXED"],
       ["Sherrill Furniture","",227,89,0,89,89,0,102,"FIXED"],
       ["Southern Home Inc.","",1063,99,33,100,100,100,133,""],
       ["Style Upholstering","",119,99,0,100,87,0,44,"FIXED"],
-      ["Summer Classics","",417,85,59,87,76,100,289,""],
+      ["Summer Classics","",964,100,59,94,76,100,289,"FIXED"],
       ["Surya","",18598,100,0,100,0,100,190,""],
       ["Swaim Inc.","",1354,100,9,96,99,96,133,""],
-      ["Theodore Alexander","top5",2441,95,0,100,100,61,280,"FIXED"],
+      ["Theodore Alexander","top5",2441,100,0,100,100,61,280,"FIXED"],
       ["Tuuci","",125,100,0,100,0,0,133,"FIXED"],
       ["Universal Furniture","",943,100,0,100,100,0,326,""],
       ["Uttermost","",4595,100,0,100,100,100,249,""],
