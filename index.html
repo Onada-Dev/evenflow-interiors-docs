@@ -161,14 +161,14 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: February 24, 2026 at 3:30 PM EST</span></p>
+    <p class="hero-meta"><span>Last updated: February 24, 2026 at 5:00 PM EST</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-value">144,921</div><div class="stat-label">Total Products</div></div>
-    <div class="stat"><div class="stat-value">62</div><div class="stat-label">Active Vendors</div></div>
+    <div class="stat"><div class="stat-value">145,520</div><div class="stat-label">Total Products</div></div>
+    <div class="stat"><div class="stat-value">64</div><div class="stat-label">Active Vendors</div></div>
     <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Embedded</div></div>
     <div class="stat"><div class="stat-value">99.8%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Images</div></div>
@@ -185,8 +185,8 @@
       <div class="highlights" style="border-color: rgba(232, 74, 156, 0.3); background: linear-gradient(135deg, var(--bg-card) 0%, #1a0f1e 100%);">
         <h3 style="color: #e84a9c;">The Big Picture</h3>
         <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7;">
-          Your product search engine is live with <strong style="color:var(--gold-light);">144,921 products</strong> from
-          <strong style="color:var(--gold-light);">62 vendors</strong> and search is working great.
+          Your product search engine is live with <strong style="color:var(--gold-light);">145,520 products</strong> from
+          <strong style="color:var(--gold-light);">64 vendors</strong> and search is working great.
           Here's what's been done since the last update and what's still coming.
         </p>
 
@@ -243,6 +243,14 @@
           <li>All vendors fully re-embedded. <strong>No remaining description gaps.</strong></li>
         </ul>
 
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 5b: New Vendors (Feb 24)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Re-added Castelle Furniture and Wesley Hall. Both previously removed, now back by request.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Castelle Furniture</strong> &mdash; Luxury outdoor furniture. <strong>489 products</strong> scraped via Firecrawl. 100% descriptions, 87% images. Fully embedded.</li>
+          <li><strong style="color:var(--green);">Wesley Hall</strong> &mdash; Custom upholstered furniture. <strong>110 products</strong> scraped via Firecrawl. 100% descriptions, 95% images. Fully embedded.</li>
+          <li>Total vendor count: 62 &rarr; <strong>64 vendors</strong>, product count: 144,921 &rarr; <strong>145,520 products</strong>.</li>
+        </ul>
+
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
           <h3 style="color: var(--green); font-size: 1rem; margin-bottom: 0.5rem;">Start Using It Now!</h3>
           <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">
@@ -264,8 +272,8 @@
         <table>
           <thead><tr><th>Component</th><th>Old MVP</th><th>LuxeScout v2</th></tr></thead>
           <tbody>
-            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">144,921</td></tr>
-            <tr><td>Vendors</td><td class="num">68</td><td class="num" style="color:var(--green)">62 (removed client-deleted)</td></tr>
+            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">145,520</td></tr>
+            <tr><td>Vendors</td><td class="num">68</td><td class="num" style="color:var(--green)">64 (7 removed, 3 added)</td></tr>
             <tr><td>Embeddings</td><td>OpenAI text-embedding-3 (1536d)</td><td style="color:var(--green)">Cohere embed-v4 (1024d)</td></tr>
             <tr><td>Search Method</td><td>Vector-only + attribute rerank</td><td style="color:var(--green)">Hybrid (vector + BM25 + RRF)</td></tr>
             <tr><td>Reranking</td><td>Basic attribute matching</td><td style="color:var(--green)">Cohere Rerank 3.5</td></tr>
@@ -381,7 +389,7 @@
         <h2>All 62 Vendors &mdash; Data Quality</h2>
         <span class="section-badge badge-green">100% Embedded</span>
       </div>
-      <p class="section-desc">Every product across all 62 vendors has been embedded with Cohere embed-v4 (1024 dimensions) for semantic search.</p>
+      <p class="section-desc">Every product across all 64 vendors has been embedded with Cohere embed-v4 (1024 dimensions) for semantic search.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th class="sortable" data-col="0">Vendor</th><th class="sortable" data-col="1">Tier</th><th class="num sortable" data-col="2">Count</th><th class="num sortable" data-col="3">Desc%</th><th class="num sortable" data-col="4">Price%</th><th class="num sortable" data-col="5">Image%</th><th class="num sortable" data-col="6">Cat%</th><th class="num sortable" data-col="7">Stock%</th><th class="num sortable" data-col="8">Avg Desc</th><th class="sortable" data-col="9">Issues</th></tr></thead>
@@ -389,7 +397,7 @@
           <tfoot>
             <tr style="background:var(--bg-table-header); font-weight:500;">
               <td colspan="2">Total</td>
-              <td class="num">144,921</td>
+              <td class="num">145,520</td>
               <td class="num">98%</td>
               <td class="num">62%</td>
               <td class="num">98%</td>
@@ -434,7 +442,7 @@
         <span class="section-badge badge-green">Major Gains</span>
       </div>
       <div class="summary-grid">
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">144,921</div><div class="detail">62 vendors (10 client-deleted vendors removed)</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">145,520</div><div class="detail">64 vendors (7 client-deleted, 3 new added)</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Embedding Coverage</h4><div class="value">100%</div><div class="detail">All products embedded with Cohere embed-v4</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Search Precision</h4><div class="value">80%</div><div class="detail">Up from 25% on test query</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">3</div><div class="detail">Feedback loop, vendor tiering, category priorities</div></div>
@@ -450,7 +458,8 @@
           <li><strong>Category priority system</strong> &mdash; per-category vendor boost/exclusion across 12 product categories</li>
           <li><strong>Feedback loop</strong> &mdash; thumbs up/down with free-text comments, Laplace-smoothed scoring, precomputed boost</li>
           <li><strong>Vendor diversity filter</strong> &mdash; max 3 products per vendor to ensure variety in results</li>
-          <li><strong>Removed 10 deleted vendors</strong> per client request (Artesia, Christopher Guy, Duralee, Thibaut, Maxwell, Tomlinson, Peyton Webster, Castelle, Wesley Hall, Noir)</li>
+          <li><strong>Removed 7 deleted vendors</strong> per client request (Artesia, Christopher Guy, Duralee, Thibaut, Maxwell, Tomlinson, Peyton Webster)</li>
+          <li><strong>Added 3 new vendors:</strong> Sherrill Fabrics (1,090 fabrics), Castelle Furniture (489 outdoor furniture), Wesley Hall (110 upholstered furniture)</li>
         </ul>
       </div>
     </div>
@@ -486,7 +495,7 @@
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 24, 2026 at 3:30 PM EST</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 24, 2026 at 5:00 PM EST</footer>
 
   <script>
     // All 58 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
@@ -496,6 +505,7 @@
       ["Artistica Home","",648,100,0,100,100,77,261,""],
       ["Bernhardt","top10",5464,100,94,83,100,42,112,"FIXED"],
       ["Bramble Co","",2095,100,0,100,100,0,81,"FIXED"],
+      ["Castelle Furniture","",489,100,0,87,100,0,150,"NEW"],
       ["Caracole","",1671,100,100,100,100,90,396,""],
       ["Chelsea House","",2076,100,0,100,100,75,62,"FIXED"],
       ["Currey & Company","",2725,100,100,100,0,88,368,""],
@@ -550,6 +560,7 @@
       ["Universal Furniture","",943,100,0,100,100,0,326,""],
       ["Uttermost","",4595,100,0,100,100,100,249,""],
       ["Vanguard Furniture","",136,100,0,100,0,0,120,"NEW"],
+      ["Wesley Hall","",110,100,0,95,100,0,120,"NEW"],
       ["Wendover Art Group","opt",9558,100,100,100,100,100,238,""],
       ["Woodbridge Furniture","",1309,100,100,100,100,100,220,""],
       ["Worlds Away","",886,100,0,100,0,0,234,""],
