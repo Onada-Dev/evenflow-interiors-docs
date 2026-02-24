@@ -161,14 +161,14 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>February 23, 2026</span></p>
+    <p class="hero-meta"><span>Last updated: February 23, 2026 at 6:05 PM EST</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-value">~143,000</div><div class="stat-label">Total Products</div></div>
-    <div class="stat"><div class="stat-value">58</div><div class="stat-label">Active Vendors</div></div>
+    <div class="stat"><div class="stat-value">143,832</div><div class="stat-label">Total Products</div></div>
+    <div class="stat"><div class="stat-value">62</div><div class="stat-label">Active Vendors</div></div>
     <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Embedded</div></div>
     <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Images</div></div>
@@ -185,8 +185,8 @@
       <div class="highlights" style="border-color: rgba(232, 74, 156, 0.3); background: linear-gradient(135deg, var(--bg-card) 0%, #1a0f1e 100%);">
         <h3 style="color: #e84a9c;">The Big Picture</h3>
         <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7;">
-          Your product search engine is live with <strong style="color:var(--gold-light);">~143,000 products</strong> from
-          <strong style="color:var(--gold-light);">58 vendors</strong> and search is working great.
+          Your product search engine is live with <strong style="color:var(--gold-light);">143,832 products</strong> from
+          <strong style="color:var(--gold-light);">62 vendors</strong> and search is working great.
           Here's what's been done since the last update and what's still coming.
         </p>
 
@@ -207,6 +207,20 @@
           <li><strong style="color:var(--green);">Precedent Furniture</strong> (Top 5) &amp; <strong style="color:var(--green);">McKinley Leather</strong> &mdash; Already had 100% images (report was stale).</li>
           <li><strong style="color:var(--green);">Sarreid duplicate</strong> &mdash; Merged. All products under "Sarreid Ltd".</li>
           <li>All updated vendors fully re-embedded and searchable.</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 3 (Feb 23, 6:05 PM)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Scraped all vendors that had 0 or critically few products using Firecrawl map+extract pipeline.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Lexington Home Brands</strong> (Top 5) &mdash; 24 &rarr; <strong>936 products</strong> with full descriptions, images, dimensions.</li>
+          <li><strong style="color:var(--green);">Phillips Scott</strong> &mdash; 1 &rarr; <strong>355 products</strong> with full product data.</li>
+          <li><strong style="color:var(--green);">Sherrill Furniture</strong> &mdash; 18 &rarr; <strong>227 products</strong>. Catalog models with descriptions and images.</li>
+          <li><strong style="color:var(--green);">McKinley Leather</strong> &mdash; 9 &rarr; <strong>207 products</strong>. Full leather furniture catalog.</li>
+          <li><strong style="color:var(--green);">Vanguard Furniture</strong> &mdash; 0 &rarr; <strong>136 products</strong>. SKU-based product pages.</li>
+          <li><strong style="color:var(--green);">Style Upholstering</strong> &mdash; 9 &rarr; <strong>119 products</strong>. Upholstery models with specs.</li>
+          <li><strong style="color:var(--green);">Noir Furniture LA</strong> &mdash; 0 &rarr; <strong>65 products</strong> (Cloudflare-protected WooCommerce).</li>
+          <li><strong style="color:var(--green);">Global Views</strong> &mdash; 0 &rarr; <strong>12 products</strong> (trade-only site).</li>
+          <li>All newly scraped products embedded with Cohere embed-v4.</li>
         </ul>
 
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
@@ -230,8 +244,8 @@
         <table>
           <thead><tr><th>Component</th><th>Old MVP</th><th>LuxeScout v2</th></tr></thead>
           <tbody>
-            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">~143,000</td></tr>
-            <tr><td>Vendors</td><td class="num">68</td><td class="num" style="color:var(--green)">58 (removed client-deleted)</td></tr>
+            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">143,832</td></tr>
+            <tr><td>Vendors</td><td class="num">68</td><td class="num" style="color:var(--green)">62 (removed client-deleted)</td></tr>
             <tr><td>Embeddings</td><td>OpenAI text-embedding-3 (1536d)</td><td style="color:var(--green)">Cohere embed-v4 (1024d)</td></tr>
             <tr><td>Search Method</td><td>Vector-only + attribute rerank</td><td style="color:var(--green)">Hybrid (vector + BM25 + RRF)</td></tr>
             <tr><td>Reranking</td><td>Basic attribute matching</td><td style="color:var(--green)">Cohere Rerank 3.5</td></tr>
@@ -344,10 +358,10 @@
     <!-- All 58 Vendors -->
     <div class="section">
       <div class="section-header">
-        <h2>All 58 Vendors &mdash; Data Quality</h2>
+        <h2>All 62 Vendors &mdash; Data Quality</h2>
         <span class="section-badge badge-green">100% Embedded</span>
       </div>
-      <p class="section-desc">Every product across all 58 vendors has been embedded with Cohere embed-v4 (1024 dimensions) for semantic search.</p>
+      <p class="section-desc">Every product across all 62 vendors has been embedded with Cohere embed-v4 (1024 dimensions) for semantic search.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th class="sortable" data-col="0">Vendor</th><th class="sortable" data-col="1">Tier</th><th class="num sortable" data-col="2">Count</th><th class="num sortable" data-col="3">Desc%</th><th class="num sortable" data-col="4">Price%</th><th class="num sortable" data-col="5">Image%</th><th class="num sortable" data-col="6">Cat%</th><th class="num sortable" data-col="7">Stock%</th><th class="num sortable" data-col="8">Avg Desc</th><th class="sortable" data-col="9">Issues</th></tr></thead>
@@ -355,7 +369,7 @@
           <tfoot>
             <tr style="background:var(--bg-table-header); font-weight:500;">
               <td colspan="2">Total</td>
-              <td class="num">~143,000</td>
+              <td class="num">143,832</td>
               <td class="num">98%</td>
               <td class="num">62%</td>
               <td class="num">98%</td>
@@ -382,7 +396,7 @@
           <tbody>
             <tr style="background: rgba(52, 211, 153, 0.05);">
               <td colspan="5" style="color: var(--green); font-size: 0.78rem; padding: 0.6rem 0.75rem;">
-                <strong>All fixed in Phase 1 &amp; 2:</strong> A&amp;B Home (219 &rarr; 5,954 products), Theodore Alexander (descriptions added), Chelsea House (AI descriptions generated), Essentials for Living (images added), Tuuci (images added), Precedent &amp; McKinley (already had images), Sarreid duplicate merged
+                <strong>All fixed in Phases 1&ndash;3:</strong> A&amp;B Home (219 &rarr; 5,954), Theodore Alexander (descriptions added), Chelsea House (AI descriptions), Essentials for Living (images), Tuuci (images), Sarreid duplicate merged, Lexington (24 &rarr; 936), Phillips Scott (1 &rarr; 355), Sherrill Furniture (18 &rarr; 227), McKinley Leather (9 &rarr; 207), Vanguard (0 &rarr; 136), Style Upholstering (9 &rarr; 119), Noir Furniture LA (0 &rarr; 65), Global Views (0 &rarr; 12)
               </td>
             </tr>
             <tr><td>Bernhardt</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">4,876</td><td class="issue-cell">24% missing descriptions, 22% missing images</td><td class="issue-cell pct-mid">Lower priority</td></tr>
@@ -400,7 +414,7 @@
         <span class="section-badge badge-green">Major Gains</span>
       </div>
       <div class="summary-grid">
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">~143,000</div><div class="detail">58 vendors (10 client-deleted vendors removed)</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">143,832</div><div class="detail">62 vendors (10 client-deleted vendors removed)</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Embedding Coverage</h4><div class="value">100%</div><div class="detail">All products embedded with Cohere embed-v4</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Search Precision</h4><div class="value">80%</div><div class="detail">Up from 25% on test query</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">3</div><div class="detail">Feedback loop, vendor tiering, category priorities</div></div>
@@ -431,6 +445,7 @@
         <ol>
           <li><strong>Bernhardt</strong> (Top 10, 4,876 products) &mdash; Enrich missing 24% descriptions/images via Firecrawl</li>
           <li><strong>Regina Andrew</strong> (Top 10, 1,880 products) &mdash; Enrich missing 22% descriptions/images</li>
+          <li><strong>Sherrill Fabrics</strong> (1 product) &mdash; ~1,091 fabrics on listing page need custom scraping approach</li>
         </ol>
       </div>
       <div class="next-steps" style="margin-top:1rem;">
@@ -444,7 +459,7 @@
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; February 2026</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 23, 2026 at 6:05 PM EST</footer>
 
   <script>
     // All 58 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
@@ -475,15 +490,17 @@
       ["James Martin Vanities","",411,99,76,100,93,100,679,""],
       ["Jamie Young Co","",1100,100,100,100,100,0,310,""],
       ["Jonathan Charles","",576,100,99,100,100,71,410,""],
-      ["Lexington Home Brands","top5",603,100,0,100,93,0,213,""],
+      ["Global Views","",12,100,0,100,0,0,200,"NEW"],
+      ["Lexington Home Brands","top5",936,100,0,100,93,0,213,"FIXED"],
       ["Loloi Rugs","",4510,100,100,99,100,89,301,""],
       ["Made Goods","",1242,100,0,100,100,100,300,""],
       ["Maitland-Smith","",705,100,0,100,100,92,190,""],
-      ["McKinley Leather","",66,100,0,100,97,0,58,"FIXED"],
+      ["McKinley Leather","",207,100,0,100,97,0,58,"FIXED"],
       ["Old Biscayne Designs","",3135,100,0,100,98,0,159,""],
       ["Padma's Plantation","",331,100,100,100,100,99,2701,""],
       ["Paragon","",3776,100,0,100,100,100,131,""],
-      ["Phillips Scott","",530,100,0,100,100,0,195,""],
+      ["Noir Furniture LA","",65,100,100,100,0,0,150,"NEW"],
+      ["Phillips Scott","",355,100,0,100,100,0,195,"FIXED"],
       ["Precedent Furniture","top5",299,100,0,100,100,0,176,"FIXED"],
       ["Propac Images","",1301,100,0,100,100,100,119,""],
       ["Regina Andrew","top10",1880,78,100,78,0,85,157,""],
@@ -494,9 +511,10 @@
       ["Savoy House","",1790,100,0,100,100,66,439,""],
       ["Selamat Designs","",277,96,100,96,91,99,353,""],
       ["Shadow Catchers Art","",2720,100,100,100,99,100,166,""],
-      ["Sherrill Furniture","",216,89,0,89,89,0,102,""],
+      ["Sherrill Fabrics","",1,100,0,100,0,0,50,"NEW"],
+      ["Sherrill Furniture","",227,89,0,89,89,0,102,"FIXED"],
       ["Southern Home Inc.","",1063,99,33,100,100,100,133,""],
-      ["Style Upholstering","",83,99,0,100,87,0,44,"SHORT-DESC"],
+      ["Style Upholstering","",119,99,0,100,87,0,44,"FIXED"],
       ["Summer Classics","",417,85,59,87,76,100,289,""],
       ["Surya","",18598,100,0,100,0,100,190,""],
       ["Swaim Inc.","",1354,100,9,96,99,96,133,""],
@@ -504,6 +522,7 @@
       ["Tuuci","",125,100,0,100,0,0,133,"FIXED"],
       ["Universal Furniture","",943,100,0,100,100,0,326,""],
       ["Uttermost","",4595,100,0,100,100,100,249,""],
+      ["Vanguard Furniture","",136,100,0,100,0,0,120,"NEW"],
       ["Wendover Art Group","opt",9558,100,100,100,100,100,238,""],
       ["Woodbridge Furniture","",1309,100,100,100,100,100,220,""],
       ["Worlds Away","",886,100,0,100,0,0,234,""],
