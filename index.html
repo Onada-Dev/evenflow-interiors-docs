@@ -161,7 +161,7 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: February 23, 2026 at 6:05 PM EST</span></p>
+    <p class="hero-meta"><span>Last updated: February 24, 2026 at 5:00 AM EST</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
@@ -170,7 +170,7 @@
     <div class="stat"><div class="stat-value">143,832</div><div class="stat-label">Total Products</div></div>
     <div class="stat"><div class="stat-value">62</div><div class="stat-label">Active Vendors</div></div>
     <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Embedded</div></div>
-    <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Descriptions</div></div>
+    <div class="stat"><div class="stat-value">99.5%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Has Images</div></div>
   </div>
 
@@ -221,6 +221,16 @@
           <li><strong style="color:var(--green);">Noir Furniture LA</strong> &mdash; 0 &rarr; <strong>65 products</strong> (Cloudflare-protected WooCommerce).</li>
           <li><strong style="color:var(--green);">Global Views</strong> &mdash; 0 &rarr; <strong>12 products</strong> (trade-only site).</li>
           <li>All newly scraped products embedded with Cohere embed-v4.</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 4 (Feb 24)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Enriched 4 vendors with missing descriptions via Firecrawl + AI fallback. Description coverage now 99.5%.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Bernhardt</strong> (Top 10) &mdash; Descriptions: 76% &rarr; <strong>100%</strong>. Images: 78% &rarr; 83%. Enriched 1,418 products via Firecrawl + 56 via AI.</li>
+          <li><strong style="color:var(--green);">Regina Andrew</strong> (Top 10) &mdash; Descriptions: 78% &rarr; <strong>100%</strong>. Images: 78% &rarr; 100%. Enriched 402 products via Firecrawl.</li>
+          <li><strong style="color:var(--green);">Lexington Home Brands</strong> (Top 5) &mdash; Descriptions: 83% &rarr; <strong>100%</strong>. Images: 94% &rarr; 97%. Enriched 88 via Firecrawl + 93 via AI.</li>
+          <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Descriptions: 85% &rarr; <strong>100%</strong>. Images: 98% &rarr; 99%. Enriched 783 via Firecrawl + 138 via AI.</li>
+          <li>All 4 vendors fully re-embedded with updated content.</li>
         </ul>
 
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
@@ -396,11 +406,11 @@
           <tbody>
             <tr style="background: rgba(52, 211, 153, 0.05);">
               <td colspan="5" style="color: var(--green); font-size: 0.78rem; padding: 0.6rem 0.75rem;">
-                <strong>All fixed in Phases 1&ndash;3:</strong> A&amp;B Home (219 &rarr; 5,954), Theodore Alexander (descriptions added), Chelsea House (AI descriptions), Essentials for Living (images), Tuuci (images), Sarreid duplicate merged, Lexington (24 &rarr; 936), Phillips Scott (1 &rarr; 355), Sherrill Furniture (18 &rarr; 227), McKinley Leather (9 &rarr; 207), Vanguard (0 &rarr; 136), Style Upholstering (9 &rarr; 119), Noir Furniture LA (0 &rarr; 65), Global Views (0 &rarr; 12)
+                <strong>All fixed in Phases 1&ndash;4:</strong> A&amp;B Home (219 &rarr; 5,954, now 100% descriptions), Theodore Alexander (descriptions added), Chelsea House (AI descriptions), Essentials for Living (images), Tuuci (images), Sarreid duplicate merged, Lexington (24 &rarr; 936, now 100% descriptions), Phillips Scott (1 &rarr; 355), Sherrill Furniture (18 &rarr; 227), McKinley Leather (9 &rarr; 207), Vanguard (0 &rarr; 136), Style Upholstering (9 &rarr; 119), Noir Furniture LA (0 &rarr; 65), Global Views (0 &rarr; 12), Bernhardt (now 100% descriptions), Regina Andrew (now 100% descriptions)
               </td>
             </tr>
-            <tr><td>Bernhardt</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">4,876</td><td class="issue-cell">24% missing descriptions, 22% missing images</td><td class="issue-cell pct-mid">Lower priority</td></tr>
-            <tr><td>Regina Andrew</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">1,880</td><td class="issue-cell">22% missing descriptions/images</td><td class="issue-cell pct-mid">Lower priority</td></tr>
+            <tr><td>Bernhardt</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">5,464</td><td class="issue-cell" style="color:var(--green)">100% descriptions (fixed). 17% missing images.</td><td class="issue-cell pct-good">Fixed in Phase 4</td></tr>
+            <tr><td>Regina Andrew</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">2,040</td><td class="issue-cell" style="color:var(--green)">100% descriptions, 100% images (fixed)</td><td class="issue-cell pct-good">Fixed in Phase 4</td></tr>
             <tr><td>Eastern Accents</td><td></td><td class="num">8,338</td><td class="issue-cell">6% missing images</td><td class="issue-cell pct-high">Low impact</td></tr>
           </tbody>
         </table>
@@ -443,8 +453,8 @@
       <div class="next-steps">
         <h3>Lower-Priority Data Fixes</h3>
         <ol>
-          <li><strong>Bernhardt</strong> (Top 10, 4,876 products) &mdash; Enrich missing 24% descriptions/images via Firecrawl</li>
-          <li><strong>Regina Andrew</strong> (Top 10, 1,880 products) &mdash; Enrich missing 22% descriptions/images</li>
+          <li><del>Bernhardt (Top 10)</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions now.</span></li>
+          <li><del>Regina Andrew (Top 10)</del> &mdash; <span style="color:var(--green)">Done! 100% descriptions, 100% images.</span></li>
           <li><strong>Sherrill Fabrics</strong> (1 product) &mdash; ~1,091 fabrics on listing page need custom scraping approach</li>
         </ol>
       </div>
@@ -459,15 +469,15 @@
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 23, 2026 at 6:05 PM EST</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 24, 2026 at 5:00 AM EST</footer>
 
   <script>
     // All 58 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
     const vendors = [
-      ["A&B Home","",6125,85,95,98,100,50,180,"FIXED"],
+      ["A&B Home","",6125,100,97,99,100,50,180,"FIXED"],
       ["Ambella Home","top5",775,94,0,100,100,22,184,""],
       ["Artistica Home","",648,100,0,100,100,77,261,""],
-      ["Bernhardt","top10",4876,76,94,78,100,42,112,""],
+      ["Bernhardt","top10",5464,100,94,83,100,42,112,"FIXED"],
       ["Bramble Co","",1866,92,0,100,100,0,81,""],
       ["Caracole","",1671,100,100,100,100,90,396,""],
       ["Chelsea House","",2076,100,0,100,100,75,62,"FIXED"],
@@ -491,7 +501,7 @@
       ["Jamie Young Co","",1100,100,100,100,100,0,310,""],
       ["Jonathan Charles","",576,100,99,100,100,71,410,""],
       ["Global Views","",12,100,0,100,0,0,200,"NEW"],
-      ["Lexington Home Brands","top5",936,100,0,100,93,0,213,"FIXED"],
+      ["Lexington Home Brands","top5",936,100,9,97,100,0,213,"FIXED"],
       ["Loloi Rugs","",4510,100,100,99,100,89,301,""],
       ["Made Goods","",1242,100,0,100,100,100,300,""],
       ["Maitland-Smith","",705,100,0,100,100,92,190,""],
@@ -503,7 +513,7 @@
       ["Phillips Scott","",355,100,0,100,100,0,195,"FIXED"],
       ["Precedent Furniture","top5",299,100,0,100,100,0,176,"FIXED"],
       ["Propac Images","",1301,100,0,100,100,100,119,""],
-      ["Regina Andrew","top10",1880,78,100,78,0,85,157,""],
+      ["Regina Andrew","top10",2040,100,100,100,100,85,157,"FIXED"],
       ["Renwil","",1631,100,100,100,0,100,352,""],
       ["Rowe Furniture","top20",1923,98,0,98,100,0,228,""],
       ["Rowley Company","",30,67,67,73,0,0,120,""],
