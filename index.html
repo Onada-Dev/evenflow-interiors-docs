@@ -161,7 +161,7 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: February 24, 2026 at 6:00 PM EST</span></p>
+    <p class="hero-meta"><span>Last updated: February 25, 2026</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
@@ -249,6 +249,16 @@
           <li><strong style="color:var(--green);">Castelle Furniture</strong> &mdash; Luxury outdoor furniture. <strong>489 products</strong> scraped via Firecrawl. 100% descriptions, 87% images. Fully embedded.</li>
           <li><strong style="color:var(--green);">Wesley Hall</strong> &mdash; Custom upholstered furniture. <strong>110 products</strong> scraped via Firecrawl. 100% descriptions, 95% images. Fully embedded.</li>
           <li>Total vendor count: 62 &rarr; <strong>64 vendors</strong>, product count: 144,921 &rarr; <strong>145,520 products</strong>.</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 6: Search Quality (Feb 25)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Five improvements to how search understands queries and learns from feedback.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Category detection activated</strong> &mdash; When you search for "brass pendant light," the system now detects it as "lighting" and boosts results from your preferred lighting vendors. This was built but disconnected &mdash; now fully wired.</li>
+          <li><strong style="color:var(--green);">Smarter query handling</strong> &mdash; Specific queries get one focused search. Vague queries like "statement pieces for a living room" get split into 2&ndash;3 sub-searches by product type (accent chair, lamp, decorative object).</li>
+          <li><strong style="color:var(--green);">Query-aware feedback</strong> &mdash; Thumbs up/down votes are now tied to what you searched for. A thumbs-down on a "console table" search penalizes that product most on similar future searches, not unrelated ones.</li>
+          <li><strong style="color:var(--green);">Conversation memory</strong> &mdash; Products you thumbs-down are automatically excluded from future results in that same conversation.</li>
+          <li><strong style="color:var(--green);">Comment storage fixed</strong> &mdash; "Why was this a poor result?" text now properly saved (was silently dropped before).</li>
         </ul>
 
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
@@ -358,13 +368,16 @@
           </div>
           <div class="flow-step">
             <div class="step-num">3</div>
-            <div class="step-text"><strong>Learn</strong><br>Score recalculated via Laplace smoothing</div>
+            <div class="step-text"><strong>Learn</strong><br>Vote stored with query context &amp; embedding</div>
           </div>
           <div class="flow-step">
             <div class="step-num">4</div>
-            <div class="step-text"><strong>Improve</strong><br>Future searches boosted/penalized (0.85x&ndash;1.2x)</div>
+            <div class="step-text"><strong>Improve</strong><br>Similar searches boosted/penalized, rejected items excluded</div>
           </div>
         </div>
+        <p class="flow-desc" style="margin-top: 1rem; font-size: 0.78rem; color: var(--text-muted);">
+          <strong style="color:var(--text-secondary);">New in Phase 6:</strong> Feedback is now query-aware. A thumbs-down on a "console table" search penalizes that product mainly for similar furniture searches, not for unrelated "throw pillow" searches. Products you reject are also hidden for the rest of that conversation.
+        </p>
       </div>
     </div>
 
@@ -445,7 +458,7 @@
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">145,520</div><div class="detail">64 vendors (7 client-deleted, 3 new added)</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Embedding Coverage</h4><div class="value">100%</div><div class="detail">All products embedded with Cohere embed-v4</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Search Precision</h4><div class="value">80%</div><div class="detail">Up from 25% on test query</div></div>
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">3</div><div class="detail">Feedback loop, vendor tiering, category priorities</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">6</div><div class="detail">Feedback loop, vendor tiering, category priorities, query-aware feedback, conversation memory, smart query routing</div></div>
       </div>
 
       <div class="highlights">
@@ -456,7 +469,7 @@
           <li><strong>Cohere embed-v4</strong> embeddings (1024d) &mdash; higher MTEB score than OpenAI text-embedding-3</li>
           <li><strong>Vendor tier system</strong> &mdash; Top 5 vendors boosted 1.3x, Top 10 boosted 1.2x, Top 20 boosted 1.1x</li>
           <li><strong>Category priority system</strong> &mdash; per-category vendor boost/exclusion across 12 product categories</li>
-          <li><strong>Feedback loop</strong> &mdash; thumbs up/down with free-text comments, Laplace-smoothed scoring, precomputed boost</li>
+          <li><strong>Feedback loop</strong> &mdash; thumbs up/down with free-text comments, query-contextualized scoring, conversation-scoped exclusion</li>
           <li><strong>Vendor diversity filter</strong> &mdash; max 3 products per vendor to ensure variety in results</li>
           <li><strong>Removed 7 deleted vendors</strong> per client request (Artesia, Christopher Guy, Duralee, Thibaut, Maxwell, Tomlinson, Peyton Webster)</li>
           <li><strong>Added 3 new vendors:</strong> Sherrill Fabrics (1,090 fabrics), Castelle Furniture (489 outdoor furniture), Wesley Hall (110 upholstered furniture)</li>
@@ -487,15 +500,17 @@
       <div class="next-steps" style="margin-top:1rem;">
         <h3>Search Quality Improvements</h3>
         <ol>
-          <li><strong>Query intent extraction</strong> &mdash; Have Claude identify primary item type to avoid keyword pollution (e.g. "ottoman" in console table query)</li>
-          <li><strong>Feedback-driven tuning</strong> &mdash; Continue collecting thumbs up/down data to improve result ranking</li>
+          <li><del>Query intent extraction</del> &mdash; <span style="color:var(--green)">Done! Category detection now wired end-to-end. Vendor priority boost activated per product type.</span></li>
+          <li><del>Feedback-driven tuning</del> &mdash; <span style="color:var(--green)">Done! Query-contextualized feedback with similarity weighting. Rejected products excluded per conversation.</span></li>
+          <li><del>Enhanced query strategies</del> &mdash; <span style="color:var(--green)">Done! Structured handling for specific, broad, refinement, and multi-product queries.</span></li>
+          <li><del>Comment storage</del> &mdash; <span style="color:var(--green)">Done! Thumbs-down comment text now saved to database.</span></li>
         </ol>
       </div>
     </div>
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 24, 2026 at 6:00 PM EST</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 25, 2026</footer>
 
   <script>
     // All 58 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
