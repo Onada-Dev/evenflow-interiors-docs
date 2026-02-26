@@ -252,13 +252,14 @@
         </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 6: Search Quality (Feb 25, 6:00 PM)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Five improvements to how search understands queries and learns from feedback.</p>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Six improvements to how search understands queries and learns from feedback.</p>
         <ul>
           <li><strong style="color:var(--green);">Category detection activated</strong> &mdash; When you search for "brass pendant light," the system now detects it as "lighting" and boosts results from your preferred lighting vendors. This was built but disconnected &mdash; now fully wired.</li>
           <li><strong style="color:var(--green);">Smarter query handling</strong> &mdash; Specific queries get one focused search. Vague queries like "statement pieces for a living room" get split into 2&ndash;3 sub-searches by product type (accent chair, lamp, decorative object).</li>
           <li><strong style="color:var(--green);">Query-aware feedback</strong> &mdash; Thumbs up/down votes are now tied to what you searched for. A thumbs-down on a "console table" search penalizes that product most on similar future searches, not unrelated ones.</li>
           <li><strong style="color:var(--green);">Conversation memory</strong> &mdash; Products you thumbs-down are automatically excluded from future results in that same conversation.</li>
           <li><strong style="color:var(--green);">Comment storage fixed</strong> &mdash; "Why was this a poor result?" text now properly saved (was silently dropped before).</li>
+          <li><strong style="color:var(--green);">Reranker sees full intent</strong> &mdash; The Cohere reranker now receives your original message instead of the AI's distilled keywords. For "console table with space for ottomans," it understands you want tables, not ottomans.</li>
         </ul>
 
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
@@ -504,6 +505,7 @@
           <li><del>Feedback-driven tuning</del> &mdash; <span style="color:var(--green)">Done! Query-contextualized feedback with similarity weighting. Rejected products excluded per conversation.</span></li>
           <li><del>Enhanced query strategies</del> &mdash; <span style="color:var(--green)">Done! Structured handling for specific, broad, refinement, and multi-product queries.</span></li>
           <li><del>Comment storage</del> &mdash; <span style="color:var(--green)">Done! Thumbs-down comment text now saved to database.</span></li>
+          <li><del>Reranker intent passthrough</del> &mdash; <span style="color:var(--green)">Done! Reranker receives user's original message for better semantic understanding.</span></li>
         </ol>
       </div>
     </div>
