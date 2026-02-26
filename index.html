@@ -190,23 +190,43 @@
           Here's what's been done since the last update and what's still coming.
         </p>
 
-        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 1 (Feb 21&ndash;22, 5:30 PM)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Re-scraped vendors whose products were missing descriptions or images.</p>
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 6: Search Quality (Feb 25, 6:00 PM)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Six improvements to how search understands queries and learns from feedback.</p>
         <ul>
-          <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Went from 219 products to <strong>5,954 products</strong> with full descriptions, prices, images, dimensions, materials, and categories.</li>
-          <li><strong style="color:var(--green);">Theodore Alexander</strong> (Top 5) &mdash; 2,441 products now have full descriptions, dimensions, materials, and collection info.</li>
-          <li><strong style="color:var(--green);">Chelsea House</strong> &mdash; Re-scraped to 2,076 products with images and categories.</li>
+          <li><strong style="color:var(--green);">Category detection activated</strong> &mdash; When you search for "brass pendant light," the system now detects it as "lighting" and boosts results from your preferred lighting vendors. This was built but disconnected &mdash; now fully wired.</li>
+          <li><strong style="color:var(--green);">Smarter query handling</strong> &mdash; Specific queries get one focused search. Vague queries like "statement pieces for a living room" get split into 2&ndash;3 sub-searches by product type (accent chair, lamp, decorative object).</li>
+          <li><strong style="color:var(--green);">Query-aware feedback</strong> &mdash; Thumbs up/down votes are now tied to what you searched for. A thumbs-down on a "console table" search penalizes that product most on similar future searches, not unrelated ones.</li>
+          <li><strong style="color:var(--green);">Conversation memory</strong> &mdash; Products you thumbs-down are automatically excluded from future results in that same conversation.</li>
+          <li><strong style="color:var(--green);">Comment storage fixed</strong> &mdash; "Why was this a poor result?" text now properly saved (was silently dropped before).</li>
+          <li><strong style="color:var(--green);">Reranker sees full intent</strong> &mdash; The Cohere reranker now receives your original message instead of the AI's distilled keywords. For "console table with space for ottomans," it understands you want tables, not ottomans.</li>
         </ul>
 
-        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 2 (Feb 23, 11:00 AM)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">AI-generated descriptions and image enrichment for remaining problem vendors.</p>
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 5b: New Vendors (Feb 24, 6:00 PM)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Re-added Castelle Furniture and Wesley Hall. Both previously removed, now back by request.</p>
         <ul>
-          <li><strong style="color:var(--green);">Chelsea House</strong> (2,076 products) &mdash; AI-generated catalog-style descriptions for every product. Re-embedded for better search quality.</li>
-          <li><strong style="color:var(--green);">Essentials for Living</strong> (Top 10) &mdash; Images added via direct scraping + Firecrawl. Now 99% image coverage (was 0%).</li>
-          <li><strong style="color:var(--green);">Tuuci</strong> &mdash; Images added via Firecrawl. Now 100% image coverage (was 23%).</li>
-          <li><strong style="color:var(--green);">Precedent Furniture</strong> (Top 5) &amp; <strong style="color:var(--green);">McKinley Leather</strong> &mdash; Already had 100% images (report was stale).</li>
-          <li><strong style="color:var(--green);">Sarreid duplicate</strong> &mdash; Merged. All products under "Sarreid Ltd".</li>
-          <li>All updated vendors fully re-embedded and searchable.</li>
+          <li><strong style="color:var(--green);">Castelle Furniture</strong> &mdash; Luxury outdoor furniture. <strong>489 products</strong> scraped via Firecrawl. 100% descriptions, 87% images. Fully embedded.</li>
+          <li><strong style="color:var(--green);">Wesley Hall</strong> &mdash; Custom upholstered furniture. <strong>110 products</strong> scraped via Firecrawl. 100% descriptions, 95% images. Fully embedded.</li>
+          <li>Total vendor count: 62 &rarr; <strong>64 vendors</strong>, product count: 144,921 &rarr; <strong>145,520 products</strong>.</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 5 (Feb 24, 4:30 PM)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Final data quality sweep. Built custom fabric scraper, enriched 4 vendors. Description coverage now 99.8%.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Sherrill Fabrics</strong> &mdash; Built custom scraper for fabric catalog. <strong>1,090 fabrics</strong> scraped (was 1). AI descriptions + embeddings complete.</li>
+          <li><strong style="color:var(--green);">Interlude Home</strong> &mdash; Descriptions: 80% &rarr; <strong>100%</strong>. Enriched 55 via Firecrawl + AI fallback.</li>
+          <li><strong style="color:var(--green);">Bramble Co</strong> &mdash; Descriptions: 92% &rarr; <strong>100%</strong>. Enriched 10 via Firecrawl + AI fallback.</li>
+          <li><strong style="color:var(--green);">Summer Classics</strong> &mdash; Descriptions: 85% &rarr; <strong>100%</strong>. Images: 87% &rarr; 94%.</li>
+          <li>All vendors fully re-embedded. <strong>No remaining description gaps.</strong></li>
+        </ul>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 4 (Feb 24, 2:30 PM)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Enriched 4 vendors with missing descriptions via Firecrawl + AI fallback. Description coverage now 99.8%.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Bernhardt</strong> (Top 10) &mdash; Descriptions: 76% &rarr; <strong>100%</strong>. Images: 78% &rarr; 83%. Enriched 1,418 products via Firecrawl + 56 via AI.</li>
+          <li><strong style="color:var(--green);">Regina Andrew</strong> (Top 10) &mdash; Descriptions: 78% &rarr; <strong>100%</strong>. Images: 78% &rarr; 100%. Enriched 402 products via Firecrawl.</li>
+          <li><strong style="color:var(--green);">Lexington Home Brands</strong> (Top 5) &mdash; Descriptions: 83% &rarr; <strong>100%</strong>. Images: 94% &rarr; 97%. Enriched 88 via Firecrawl + 93 via AI.</li>
+          <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Descriptions: 85% &rarr; <strong>100%</strong>. Images: 98% &rarr; 99%. Enriched 783 via Firecrawl + 138 via AI.</li>
+          <li>All 4 vendors fully re-embedded with updated content.</li>
         </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 3 (Feb 23, 6:05 PM)</h3>
@@ -223,43 +243,23 @@
           <li>All newly scraped products embedded with Cohere embed-v4.</li>
         </ul>
 
-        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 4 (Feb 24, 2:30 PM)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Enriched 4 vendors with missing descriptions via Firecrawl + AI fallback. Description coverage now 99.8%.</p>
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 2 (Feb 23, 11:00 AM)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">AI-generated descriptions and image enrichment for remaining problem vendors.</p>
         <ul>
-          <li><strong style="color:var(--green);">Bernhardt</strong> (Top 10) &mdash; Descriptions: 76% &rarr; <strong>100%</strong>. Images: 78% &rarr; 83%. Enriched 1,418 products via Firecrawl + 56 via AI.</li>
-          <li><strong style="color:var(--green);">Regina Andrew</strong> (Top 10) &mdash; Descriptions: 78% &rarr; <strong>100%</strong>. Images: 78% &rarr; 100%. Enriched 402 products via Firecrawl.</li>
-          <li><strong style="color:var(--green);">Lexington Home Brands</strong> (Top 5) &mdash; Descriptions: 83% &rarr; <strong>100%</strong>. Images: 94% &rarr; 97%. Enriched 88 via Firecrawl + 93 via AI.</li>
-          <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Descriptions: 85% &rarr; <strong>100%</strong>. Images: 98% &rarr; 99%. Enriched 783 via Firecrawl + 138 via AI.</li>
-          <li>All 4 vendors fully re-embedded with updated content.</li>
+          <li><strong style="color:var(--green);">Chelsea House</strong> (2,076 products) &mdash; AI-generated catalog-style descriptions for every product. Re-embedded for better search quality.</li>
+          <li><strong style="color:var(--green);">Essentials for Living</strong> (Top 10) &mdash; Images added via direct scraping + Firecrawl. Now 99% image coverage (was 0%).</li>
+          <li><strong style="color:var(--green);">Tuuci</strong> &mdash; Images added via Firecrawl. Now 100% image coverage (was 23%).</li>
+          <li><strong style="color:var(--green);">Precedent Furniture</strong> (Top 5) &amp; <strong style="color:var(--green);">McKinley Leather</strong> &mdash; Already had 100% images (report was stale).</li>
+          <li><strong style="color:var(--green);">Sarreid duplicate</strong> &mdash; Merged. All products under "Sarreid Ltd".</li>
+          <li>All updated vendors fully re-embedded and searchable.</li>
         </ul>
 
-        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 5 (Feb 24, 4:30 PM)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Final data quality sweep. Built custom fabric scraper, enriched 4 vendors. Description coverage now 99.8%.</p>
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 1 (Feb 21&ndash;22, 5:30 PM)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Re-scraped vendors whose products were missing descriptions or images.</p>
         <ul>
-          <li><strong style="color:var(--green);">Sherrill Fabrics</strong> &mdash; Built custom scraper for fabric catalog. <strong>1,090 fabrics</strong> scraped (was 1). AI descriptions + embeddings complete.</li>
-          <li><strong style="color:var(--green);">Interlude Home</strong> &mdash; Descriptions: 80% &rarr; <strong>100%</strong>. Enriched 55 via Firecrawl + AI fallback.</li>
-          <li><strong style="color:var(--green);">Bramble Co</strong> &mdash; Descriptions: 92% &rarr; <strong>100%</strong>. Enriched 10 via Firecrawl + AI fallback.</li>
-          <li><strong style="color:var(--green);">Summer Classics</strong> &mdash; Descriptions: 85% &rarr; <strong>100%</strong>. Images: 87% &rarr; 94%.</li>
-          <li>All vendors fully re-embedded. <strong>No remaining description gaps.</strong></li>
-        </ul>
-
-        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 5b: New Vendors (Feb 24, 6:00 PM)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Re-added Castelle Furniture and Wesley Hall. Both previously removed, now back by request.</p>
-        <ul>
-          <li><strong style="color:var(--green);">Castelle Furniture</strong> &mdash; Luxury outdoor furniture. <strong>489 products</strong> scraped via Firecrawl. 100% descriptions, 87% images. Fully embedded.</li>
-          <li><strong style="color:var(--green);">Wesley Hall</strong> &mdash; Custom upholstered furniture. <strong>110 products</strong> scraped via Firecrawl. 100% descriptions, 95% images. Fully embedded.</li>
-          <li>Total vendor count: 62 &rarr; <strong>64 vendors</strong>, product count: 144,921 &rarr; <strong>145,520 products</strong>.</li>
-        </ul>
-
-        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 6: Search Quality (Feb 25, 6:00 PM)</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Six improvements to how search understands queries and learns from feedback.</p>
-        <ul>
-          <li><strong style="color:var(--green);">Category detection activated</strong> &mdash; When you search for "brass pendant light," the system now detects it as "lighting" and boosts results from your preferred lighting vendors. This was built but disconnected &mdash; now fully wired.</li>
-          <li><strong style="color:var(--green);">Smarter query handling</strong> &mdash; Specific queries get one focused search. Vague queries like "statement pieces for a living room" get split into 2&ndash;3 sub-searches by product type (accent chair, lamp, decorative object).</li>
-          <li><strong style="color:var(--green);">Query-aware feedback</strong> &mdash; Thumbs up/down votes are now tied to what you searched for. A thumbs-down on a "console table" search penalizes that product most on similar future searches, not unrelated ones.</li>
-          <li><strong style="color:var(--green);">Conversation memory</strong> &mdash; Products you thumbs-down are automatically excluded from future results in that same conversation.</li>
-          <li><strong style="color:var(--green);">Comment storage fixed</strong> &mdash; "Why was this a poor result?" text now properly saved (was silently dropped before).</li>
-          <li><strong style="color:var(--green);">Reranker sees full intent</strong> &mdash; The Cohere reranker now receives your original message instead of the AI's distilled keywords. For "console table with space for ottomans," it understands you want tables, not ottomans.</li>
+          <li><strong style="color:var(--green);">A&amp;B Home</strong> &mdash; Went from 219 products to <strong>5,954 products</strong> with full descriptions, prices, images, dimensions, materials, and categories.</li>
+          <li><strong style="color:var(--green);">Theodore Alexander</strong> (Top 5) &mdash; 2,441 products now have full descriptions, dimensions, materials, and collection info.</li>
+          <li><strong style="color:var(--green);">Chelsea House</strong> &mdash; Re-scraped to 2,076 products with images and categories.</li>
         </ul>
 
         <div style="margin-top: 1.75rem; padding: 1.25rem; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px;">
