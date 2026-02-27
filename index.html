@@ -161,7 +161,7 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: February 25, 2026</span></p>
+    <p class="hero-meta"><span>Last updated: February 26, 2026</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
@@ -189,6 +189,15 @@
           <strong style="color:var(--gold-light);">64 vendors</strong> and search is working great.
           Here's what's been done since the last update and what's still coming.
         </p>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 7: Dimension Search &amp; Result Accuracy (Feb 26)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Two improvements: you can now search by product size, and unrelated products no longer sneak into results.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Search by dimensions now works</strong> &mdash; Previously, searching "mirrors 48 by 36 inches" only returned 4 results because the search engine couldn't see product dimensions. Now it can &mdash; <strong>over 50,000 products</strong> have searchable size data. You can search by width, height, or depth, and product cards now show dimensions right on them.</li>
+          <li><strong style="color:var(--green);">Size filters</strong> &mdash; The AI now understands size requests like "under 32 inches tall" or "at least 60 inches wide" and automatically filters results to match those constraints.</li>
+          <li><strong style="color:var(--green);">Dimensions on product cards</strong> &mdash; When a product has size data, you'll see it displayed on the card (e.g., "40.0H x 30.0W x 2.5D") so you don't have to click through to the vendor site just to check measurements.</li>
+          <li><strong style="color:var(--green);">Fixed: unrelated products in results</strong> &mdash; Searching "cocktail tables" was returning some trays and accessories mixed in, because the word "cocktail" appeared in their descriptions (e.g., "perfect for serving cocktails"). The system now applies product-type filtering to both search methods, so a search for "cocktail tables" returns tables, not trays.</li>
+        </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 6: Search Quality (Feb 25, 6:00 PM)</h3>
         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Six improvements to how search understands queries and learns from feedback.</p>
