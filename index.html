@@ -161,7 +161,7 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: February 26, 2026</span></p>
+    <p class="hero-meta"><span>Last updated: February 28, 2026</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
@@ -172,7 +172,7 @@
     <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Searchable (Embedded)</div></div>
     <div class="stat"><div class="stat-value">99.8%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98.6%</div><div class="stat-label">Has Images</div></div>
-    <div class="stat"><div class="stat-value" style="color: var(--yellow);">1.4%</div><div class="stat-label">AI-Enriched</div></div>
+    <div class="stat"><div class="stat-value" style="color: var(--green);">100%</div><div class="stat-label">AI-Enriched</div></div>
     <div class="stat"><div class="stat-value">50,305</div><div class="stat-label">Has Dimensions</div></div>
     <div class="stat"><div class="stat-value">60.3%</div><div class="stat-label">Has Pricing</div></div>
     <div class="stat"><div class="stat-value">86.3%</div><div class="stat-label">Stock Status</div></div>
@@ -189,18 +189,42 @@
       <div class="highlights" style="border-color: rgba(232, 74, 156, 0.3); background: linear-gradient(135deg, var(--bg-card) 0%, #1a0f1e 100%);">
         <h3 style="color: #e84a9c;">The Big Picture</h3>
         <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7;">
-          Your product search engine is live with <strong style="color:var(--gold-light);">145,520 products</strong> from
-          <strong style="color:var(--gold-light);">64 vendors</strong> and search is working great.
-          Here's what's been done since the last update and what's still coming.
+          Your product search engine is live with <strong style="color:var(--gold-light);">145,749 products</strong> from
+          <strong style="color:var(--gold-light);">64 vendors</strong>. Every single product has been AI-enriched, properly categorized, and embedded for search.
+          Here's what's been done since the last update.
         </p>
 
-        <h3 style="margin-top: 1.5rem; color: var(--yellow);">Coming Next &mdash; Phase 8: Contextual Enrichment</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">A major upgrade to how well the search engine understands every product in the catalog.</p>
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 9: Category Intelligence &amp; Embedding Fix (Feb 28)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">A major fix that made 83% of the catalog visible to category-filtered searches, plus improved dimension-based search.</p>
         <ul>
-          <li><strong style="color:var(--yellow);">AI-powered product understanding</strong> &mdash; Right now, the search engine matches your words against raw product names and descriptions. We're about to have AI read <strong>every single product listing</strong> (all 145,000+) and write a search-optimized summary for each one &mdash; capturing what type of product it is, what style it fits, where it belongs in a home, and what makes it distinctive.</li>
-          <li><strong style="color:var(--yellow);">Vague searches will work much better</strong> &mdash; Queries like "statement pieces for a living room" or "coastal bedroom furniture" will return more relevant results because the system will understand <em>style and context</em>, not just keywords.</li>
-          <li><strong style="color:var(--yellow);">Every product benefits</strong> &mdash; This is a one-time processing job (~4&ndash;5 hours). Once complete, search quality improves across the entire catalog. You won't need to do anything different &mdash; just search like you normally would.</li>
-          <li><strong style="color:var(--text-secondary);">Status:</strong> Scripts ready, processing begins shortly.</li>
+          <li><strong style="color:var(--green);">99.5% of products now properly categorized</strong> &mdash; Previously, each vendor used their own naming scheme for categories (e.g., "mirrors," "wall mirrors," "mirror," "floor_mirror," "Mirrors" &mdash; all different). The search engine required an exact match on 12 standard category names, so <strong>83% of products were invisible</strong> when you filtered by category. We built a mapping system that translates all 8,260 vendor-specific category names into the 12 standard categories. Now 145,002 of 145,749 products are properly classified.</li>
+          <li><strong style="color:var(--green);">Category filters actually work now</strong> &mdash; Before this fix, filtering by "Lighting" only showed ~2,000 products. Now it correctly shows all ~18,000 lighting products. Same for every other category. This is the single biggest improvement to search coverage since launch.</li>
+          <li><strong style="color:var(--green);">Dimension search fixed</strong> &mdash; The AI-enrichment process was accidentally dropping product dimensions from the search index. A "48 by 36 mirror" search couldn't match on size because the system didn't "see" those numbers. Now dimensions are always included, and searches like "mirrors 48 by 36 inches" return 4,099 results instead of 4.</li>
+          <li><strong style="color:var(--green);">Products without dimensions still appear</strong> &mdash; If you search "console table under 32 inches," products that don't have dimension data won't be excluded &mdash; they'll just rank lower than products that match the size filter exactly. This way you still see the full breadth of options.</li>
+        </ul>
+
+        <div style="margin-top: 1.25rem; padding: 1.25rem; background: rgba(96, 165, 250, 0.08); border: 1px solid rgba(96, 165, 250, 0.2); border-radius: 8px;">
+          <h4 style="color: var(--blue); font-size: 0.95rem; margin-bottom: 0.75rem;">Why This Isn't Just a Regular Searchable Database</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem;">
+            A regular product database (like filtering on Wayfair or Amazon) can only match <strong style="color:var(--text-primary);">exact words</strong>. If you search "coastal bedroom furniture," it will only find products that literally contain those words in their name or description. Most vendor catalogs don't describe their products that way &mdash; a bed might be called "Harbour Cane Poster Bed" with no mention of "coastal" anywhere.
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem;">
+            LuxeScout works differently. AI has read every single product listing (all 145,749) and written a <strong style="color:var(--text-primary);">search-optimized description</strong> that captures what the product is, what style it fits, where it belongs in a home, and what makes it special. That "Harbour Cane Poster Bed" now has context like <em>"coastal-inspired bedroom furniture with natural rattan cane detailing, suited for relaxed beach house or tropical interiors."</em>
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem;">
+            On top of that, every product is converted into a mathematical "fingerprint" (an embedding) that captures its <strong style="color:var(--text-primary);">meaning</strong>, not just its words. So searching "statement pieces for a living room" finds dramatic chandeliers, bold accent chairs, and oversized art &mdash; even though none of those products say "statement piece" in their listing.
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">
+            The result is that you can search the way you naturally think about design &mdash; by style, mood, function, or specific dimensions &mdash; and get relevant results from across all 64 vendors at once. A traditional database simply can't do that.
+          </p>
+        </div>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 8: Contextual Enrichment (Feb 27)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">AI read every single product listing and wrote a search-optimized summary for each one.</p>
+        <ul>
+          <li><strong style="color:var(--green);">100% AI-enriched</strong> &mdash; All 145,749 products now have AI-generated contextual descriptions that capture product type, style, room suitability, and distinctive features. This was a one-time batch processing job using the Anthropic Batch API.</li>
+          <li><strong style="color:var(--green);">Vague searches work much better</strong> &mdash; Queries like "statement pieces for a living room" or "coastal bedroom furniture" now return relevant results because the system understands <em>style and context</em>, not just keywords.</li>
+          <li><strong style="color:var(--green);">Every product benefits</strong> &mdash; Even products with minimal vendor descriptions now have rich, searchable context. The AI fills in gaps that vendors left out.</li>
         </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 7: Dimension Search &amp; Result Accuracy (Feb 26)</h3>
@@ -228,7 +252,7 @@
         <ul>
           <li><strong style="color:var(--green);">Castelle Furniture</strong> &mdash; Luxury outdoor furniture. <strong>489 products</strong> scraped via Firecrawl. 100% descriptions, 87% images. Fully embedded.</li>
           <li><strong style="color:var(--green);">Wesley Hall</strong> &mdash; Custom upholstered furniture. <strong>110 products</strong> scraped via Firecrawl. 100% descriptions, 95% images. Fully embedded.</li>
-          <li>Total vendor count: 62 &rarr; <strong>64 vendors</strong>, product count: 144,921 &rarr; <strong>145,520 products</strong>.</li>
+          <li>Total vendor count: 62 &rarr; <strong>64 vendors</strong>, product count: 144,921 &rarr; <strong>145,749 products</strong>.</li>
         </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 5 (Feb 24, 4:30 PM)</h3>
@@ -305,7 +329,7 @@
         <table>
           <thead><tr><th>Component</th><th>Old MVP</th><th>LuxeScout v2</th></tr></thead>
           <tbody>
-            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">145,520</td></tr>
+            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">145,749 (curated)</td></tr>
             <tr><td>Vendors</td><td class="num">68</td><td class="num" style="color:var(--green)">64 (7 removed, 3 added)</td></tr>
             <tr><td>Embeddings</td><td>OpenAI text-embedding-3 (1536d)</td><td style="color:var(--green)">Cohere embed-v4 (1024d)</td></tr>
             <tr><td>Search Method</td><td>Vector-only + attribute rerank</td><td style="color:var(--green)">Hybrid (vector + BM25 + RRF)</td></tr>
@@ -433,7 +457,7 @@
           <tfoot>
             <tr style="background:var(--bg-table-header); font-weight:500;">
               <td colspan="2">Total</td>
-              <td class="num">145,520</td>
+              <td class="num">145,749</td>
               <td class="num">99.8%</td>
               <td class="num">62%</td>
               <td class="num">98.7%</td>
@@ -478,10 +502,10 @@
         <span class="section-badge badge-green">Major Gains</span>
       </div>
       <div class="summary-grid">
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">145,520</div><div class="detail">64 vendors (7 client-deleted, 3 new added)</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">145,749</div><div class="detail">64 vendors (7 client-deleted, 3 new added)</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Embedding Coverage</h4><div class="value">100%</div><div class="detail">All products embedded with Cohere embed-v4</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Search Precision</h4><div class="value">80%</div><div class="detail">Up from 25% on test query</div></div>
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">6</div><div class="detail">Feedback loop, vendor tiering, category priorities, query-aware feedback, conversation memory, smart query routing</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">9</div><div class="detail">Feedback loop, vendor tiering, category priorities, query-aware feedback, conversation memory, smart query routing, AI contextual enrichment, category normalization, dimension search</div></div>
       </div>
 
       <div class="highlights">
@@ -496,6 +520,9 @@
           <li><strong>Vendor diversity filter</strong> &mdash; max 3 products per vendor to ensure variety in results</li>
           <li><strong>Removed 7 deleted vendors</strong> per client request (Artesia, Christopher Guy, Duralee, Thibaut, Maxwell, Tomlinson, Peyton Webster)</li>
           <li><strong>Added 3 new vendors:</strong> Sherrill Fabrics (1,090 fabrics), Castelle Furniture (489 outdoor furniture), Wesley Hall (110 upholstered furniture)</li>
+          <li><strong>AI contextual enrichment</strong> &mdash; every product has an AI-generated search-optimized description capturing style, room suitability, and distinctive features</li>
+          <li><strong>Category normalization</strong> &mdash; 8,260 vendor-specific category names mapped to 12 standard categories for reliable filtering</li>
+          <li><strong>Dimension search</strong> &mdash; search by product size (height, width, depth) with flexible filtering</li>
         </ul>
       </div>
     </div>
@@ -528,13 +555,16 @@
           <li><del>Enhanced query strategies</del> &mdash; <span style="color:var(--green)">Done! Structured handling for specific, broad, refinement, and multi-product queries.</span></li>
           <li><del>Comment storage</del> &mdash; <span style="color:var(--green)">Done! Thumbs-down comment text now saved to database.</span></li>
           <li><del>Reranker intent passthrough</del> &mdash; <span style="color:var(--green)">Done! Reranker receives user's original message for better semantic understanding.</span></li>
+          <li><del>Contextual enrichment</del> &mdash; <span style="color:var(--green)">Done! 100% AI-enriched via Anthropic Batch API. Every product has contextual descriptions for style, mood, and room suitability.</span></li>
+          <li><del>Category normalization</del> &mdash; <span style="color:var(--green)">Done! 99.5% categorized (145,002/145,749). 8,260 raw vendor categories mapped to 12 canonical categories. Category filters now show full catalog.</span></li>
+          <li><del>Dimension embedding fix</del> &mdash; <span style="color:var(--green)">Done! Product dimensions always included in search index. "Mirrors 48x36" returns 4,099 results (was 4).</span></li>
         </ol>
       </div>
     </div>
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 25, 2026</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 28, 2026</footer>
 
   <script>
     // All 64 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
