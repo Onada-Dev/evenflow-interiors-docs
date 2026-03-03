@@ -161,7 +161,7 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: February 28, 2026</span></p>
+    <p class="hero-meta"><span>Last updated: March 2, 2026</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
@@ -172,10 +172,10 @@
     <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Searchable (Embedded)</div></div>
     <div class="stat"><div class="stat-value">99.8%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98.6%</div><div class="stat-label">Has Images</div></div>
-    <div class="stat"><div class="stat-value" style="color: var(--green);">100%</div><div class="stat-label">AI-Enriched</div></div>
-    <div class="stat"><div class="stat-value">50,305</div><div class="stat-label">Has Dimensions</div></div>
-    <div class="stat"><div class="stat-value">60.3%</div><div class="stat-label">Has Pricing</div></div>
-    <div class="stat"><div class="stat-value">86.3%</div><div class="stat-label">Stock Status</div></div>
+    <div class="stat"><div class="stat-value" style="color: var(--green);">99.9%</div><div class="stat-label">Subcategorized</div></div>
+    <div class="stat"><div class="stat-value">83.8%</div><div class="stat-label">Color Tagged</div></div>
+    <div class="stat"><div class="stat-value">91.0%</div><div class="stat-label">Material Tagged</div></div>
+    <div class="stat"><div class="stat-value">97.4%</div><div class="stat-label">Style Tagged</div></div>
   </div>
 
   <div class="container">
@@ -193,6 +193,17 @@
           <strong style="color:var(--gold-light);">64 vendors</strong>. Every single product has been AI-enriched, properly categorized, and embedded for search.
           Here's what's been done since the last update.
         </p>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 10: Product Data Normalization (Mar 2)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">AI extracted structured attributes for every product &mdash; subcategory, colors, materials, styles, and features. This enables precise filtering that wasn't possible before.</p>
+        <ul>
+          <li><strong style="color:var(--green);">99.9% subcategory coverage</strong> &mdash; Every product is classified into a specific type like "coffee_cocktail_tables," "chandeliers," "sofas_sectionals," etc. (~40 subcategories across 13 categories). Previously, the system matched by name keywords and missed ~42% of products with creative names. Now a search for "cocktail tables" catches ALL cocktail tables, not just ones with "cocktail" in the name.</li>
+          <li><strong style="color:var(--green);">Color filtering works</strong> &mdash; 83.8% of products tagged with standardized colors (Neutral, Black, White, Grey, Brown, Blue, Green, Red, Metallic, etc.). You can now search "blue velvet sofas" or "brass pendant lights" and get color-accurate results. Products are filtered by color structurally, not by keyword guessing.</li>
+          <li><strong style="color:var(--green);">Material families</strong> &mdash; 91.0% tagged with normalized materials (Wood, Metal, Glass, Stone, Fabric, Leather, etc.). "Oak" and "walnut" both map to "Wood," so "wood dining tables" catches everything.</li>
+          <li><strong style="color:var(--green);">Clean style tags</strong> &mdash; 97.4% tagged with curated styles: Modern, Transitional, Traditional, Mid-Century, Coastal, Industrial, etc. The old style_tags field was polluted with junk like "Not In Stock" and vendor codes. These new tags are validated against an approved list.</li>
+          <li><strong style="color:var(--green);">Feature detection</strong> &mdash; 63.6% tagged with functional attributes: Swivel, Dimmable, Performance Fabric, Modular, Storage, Outdoor-Rated, Handmade, etc. Only extracted when explicitly stated in the product description.</li>
+          <li>Done via Anthropic Batch API (Claude Haiku) for ~$5 total. Each product's existing AI-enriched description was read and classified into structured fields.</li>
+        </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 9: Category Intelligence &amp; Embedding Fix (Feb 28)</h3>
         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">A major fix that made 83% of the catalog visible to category-filtered searches, plus improved dimension-based search.</p>
@@ -505,7 +516,7 @@
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">145,749</div><div class="detail">64 vendors (7 client-deleted, 3 new added)</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Embedding Coverage</h4><div class="value">100%</div><div class="detail">All products embedded with Cohere embed-v4</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Search Precision</h4><div class="value">80%</div><div class="detail">Up from 25% on test query</div></div>
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">9</div><div class="detail">Feedback loop, vendor tiering, category priorities, query-aware feedback, conversation memory, smart query routing, AI contextual enrichment, category normalization, dimension search</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">10</div><div class="detail">Feedback loop, vendor tiering, category priorities, query-aware feedback, conversation memory, smart query routing, AI contextual enrichment, category normalization, dimension search, product data normalization</div></div>
       </div>
 
       <div class="highlights">
@@ -523,6 +534,7 @@
           <li><strong>AI contextual enrichment</strong> &mdash; every product has an AI-generated search-optimized description capturing style, room suitability, and distinctive features</li>
           <li><strong>Category normalization</strong> &mdash; 8,260 vendor-specific category names mapped to 12 standard categories for reliable filtering</li>
           <li><strong>Dimension search</strong> &mdash; search by product size (height, width, depth) with flexible filtering</li>
+          <li><strong>Product data normalization</strong> &mdash; AI-extracted subcategories (99.9%), colors (83.8%), materials (91.0%), styles (97.4%), and features (63.6%) enable precise structured filtering</li>
         </ul>
       </div>
     </div>
@@ -558,13 +570,14 @@
           <li><del>Contextual enrichment</del> &mdash; <span style="color:var(--green)">Done! 100% AI-enriched via Anthropic Batch API. Every product has contextual descriptions for style, mood, and room suitability.</span></li>
           <li><del>Category normalization</del> &mdash; <span style="color:var(--green)">Done! 99.5% categorized (145,002/145,749). 8,260 raw vendor categories mapped to 12 canonical categories. Category filters now show full catalog.</span></li>
           <li><del>Dimension embedding fix</del> &mdash; <span style="color:var(--green)">Done! Product dimensions always included in search index. "Mirrors 48x36" returns 4,099 results (was 4).</span></li>
+          <li><del>Product data normalization</del> &mdash; <span style="color:var(--green)">Done! 99.9% subcategorized, 83.8% color-tagged, 91.0% material-tagged, 97.4% style-tagged. Subcategory + color filters wired into search pipeline. "Blue sofas" and "brass pendants" now work as structured filters.</span></li>
         </ol>
       </div>
     </div>
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: February 28, 2026</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: March 2, 2026</footer>
 
   <script>
     // All 64 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
