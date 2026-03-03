@@ -161,7 +161,7 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: March 2, 2026</span></p>
+    <p class="hero-meta"><span>Last updated: March 3, 2026</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
@@ -193,6 +193,14 @@
           <strong style="color:var(--gold-light);">64 vendors</strong>. Every single product has been AI-enriched, properly categorized, and embedded for search.
           Here's what's been done since the last update.
         </p>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 11: Vendor Data Fixes (Mar 3)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Three vendor-specific data issues identified and fixed.</p>
+        <ul>
+          <li><strong style="color:var(--green);">Surya URLs fixed</strong> &mdash; All 18,458 Surya product links were returning 404 errors because they were missing a <code>/Product/</code> segment in the URL path. All 13,152 affected URLs have been corrected and now link directly to the correct product page on Surya's website.</li>
+          <li><strong style="color:var(--green);">Surya names improved</strong> &mdash; 1,766 Surya products that previously showed inventory codes (like "DNH-002") now have proper names with collection and product type (e.g., "Argil Furniture (AGI-004)"). 16,692 still have inventory codes &mdash; fixing the rest requires rendering Surya's JavaScript-heavy pages via Firecrawl (~18K credits, planned as a future improvement).</li>
+          <li><strong style="color:var(--green);">Savoy House images restored</strong> &mdash; All 1,973 Savoy House products were showing "IMAGE COMING SOON" placeholders even though the real photos exist on Savoy House's server. The issue was expired cache tokens in the image URLs. All product photos have been restored.</li>
+        </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 10: Product Data Normalization (Mar 2)</h3>
         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">AI extracted structured attributes for every product &mdash; subcategory, colors, materials, styles, and features. This enables precise filtering that wasn't possible before.</p>
@@ -498,6 +506,8 @@
                 <strong>All fixed in Phases 1&ndash;4:</strong> A&amp;B Home (219 &rarr; 5,954, now 100% descriptions), Theodore Alexander (descriptions added), Chelsea House (AI descriptions), Essentials for Living (images), Tuuci (images), Sarreid duplicate merged, Lexington (24 &rarr; 936, now 100% descriptions), Phillips Scott (1 &rarr; 355), Sherrill Furniture (18 &rarr; 227), McKinley Leather (9 &rarr; 207), Vanguard (0 &rarr; 136), Style Upholstering (9 &rarr; 119), Noir Furniture LA (0 &rarr; 65), Global Views (0 &rarr; 12), Bernhardt (now 100% descriptions), Regina Andrew (now 100% descriptions)
               </td>
             </tr>
+            <tr><td>Surya</td><td></td><td class="num">18,458</td><td class="issue-cell" style="color:var(--yellow)">URLs fixed, 1,766 names fixed. 16,692 still have inventory codes.</td><td class="issue-cell" style="color:var(--yellow)">Partial &mdash; needs Firecrawl</td></tr>
+            <tr><td>Savoy House</td><td></td><td class="num">1,790</td><td class="issue-cell" style="color:var(--green)">1,973 placeholder images restored to real photos.</td><td class="issue-cell" style="color:var(--green)">Fixed in Phase 11</td></tr>
             <tr><td>Bernhardt</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">5,464</td><td class="issue-cell" style="color:var(--green)">100% descriptions (fixed). 17% missing images.</td><td class="issue-cell pct-good">Fixed in Phase 4</td></tr>
             <tr><td>Regina Andrew</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">2,040</td><td class="issue-cell" style="color:var(--green)">100% descriptions, 100% images (fixed)</td><td class="issue-cell pct-good">Fixed in Phase 4</td></tr>
             <tr><td>Eastern Accents</td><td></td><td class="num">8,338</td><td class="issue-cell">6% missing images</td><td class="issue-cell pct-high">Low impact</td></tr>
@@ -571,13 +581,16 @@
           <li><del>Category normalization</del> &mdash; <span style="color:var(--green)">Done! 99.5% categorized (145,002/145,749). 8,260 raw vendor categories mapped to 12 canonical categories. Category filters now show full catalog.</span></li>
           <li><del>Dimension embedding fix</del> &mdash; <span style="color:var(--green)">Done! Product dimensions always included in search index. "Mirrors 48x36" returns 4,099 results (was 4).</span></li>
           <li><del>Product data normalization</del> &mdash; <span style="color:var(--green)">Done! 99.9% subcategorized, 83.8% color-tagged, 91.0% material-tagged, 97.4% style-tagged. Subcategory + color filters wired into search pipeline. "Blue sofas" and "brass pendants" now work as structured filters.</span></li>
+          <li><del>Surya broken URLs</del> &mdash; <span style="color:var(--green)">Done! All 13,152 broken product links fixed (added /Product/ segment).</span></li>
+          <li><del>Surya inventory-code names</del> &mdash; <span style="color:var(--green)">1,766 renamed.</span> 16,692 remaining &mdash; needs Firecrawl JS rendering (~18K credits).</li>
+          <li><del>Savoy House placeholder images</del> &mdash; <span style="color:var(--green)">Done! All 1,973 placeholder images restored to real product photos.</span></li>
         </ol>
       </div>
     </div>
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: March 2, 2026</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: March 3, 2026</footer>
 
   <script>
     // All 64 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
@@ -627,7 +640,7 @@
       ["Rowe Furniture","top20",1923,98,0,98,100,0,228,""],
       ["Rowley Company","",30,67,67,73,0,0,120,""],
       ["Sarreid Ltd","top5",585,100,100,100,100,0,364,""],
-      ["Savoy House","",1790,100,0,100,100,66,439,""],
+      ["Savoy House","",1790,100,0,100,100,66,439,"FIXED"],
       ["Selamat Designs","",277,96,100,96,91,99,353,""],
       ["Shadow Catchers Art","",2720,100,100,100,99,100,166,""],
       ["Sherrill Fabrics","",1090,100,0,94,100,0,65,"FIXED"],
@@ -635,7 +648,7 @@
       ["Southern Home Inc.","",1063,99,33,100,100,100,133,""],
       ["Style Upholstering","",119,99,0,100,87,0,44,"FIXED"],
       ["Summer Classics","",964,100,59,94,76,100,289,"FIXED"],
-      ["Surya","",18598,100,0,100,0,100,190,""],
+      ["Surya","",18458,100,0,100,0,100,190,"FIXED"],
       ["Swaim Inc.","",1354,100,9,96,99,96,133,""],
       ["Theodore Alexander","top5",2441,100,0,100,100,61,280,"FIXED"],
       ["Tuuci","",125,100,0,100,0,0,133,"FIXED"],
