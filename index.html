@@ -161,7 +161,7 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: March 3, 2026</span></p>
+    <p class="hero-meta"><span>Last updated: March 4, 2026</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
@@ -194,11 +194,20 @@
           Here's what's been done since the last update.
         </p>
 
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 12: Surya Names Fix (Mar 4)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">The biggest remaining data quality issue &mdash; 16,692 Surya products showing inventory codes as names &mdash; has been fixed.</p>
+        <ul>
+          <li><strong style="color:var(--green);">17,354 products renamed</strong> &mdash; Products like "FT-70" are now "Frontier Handmade Rug (FT-70)", "AGI-004" is now "Argil Planter (AGI-004)". Names use the format "Collection ProductType (SKU)" based on data scraped from Surya's website.</li>
+          <li><strong style="color:var(--green);">Method: Firecrawl JSON extraction</strong> &mdash; Grouped 18,458 products by SKU prefix (~3,897 unique). Scraped one product per prefix via Firecrawl's AI-powered JSON extraction (5 credits/page). 3,774 prefixes resolved (96.8%), 123 failed (discontinued 404 pages). Total cost: ~$20.</li>
+          <li><strong style="color:var(--green);">All descriptions &amp; embeddings refreshed</strong> &mdash; The old AI-generated descriptions referenced SKU codes ("The FT-70 area rug..."). All 18,458 Surya products have been re-enriched with new names via Anthropic Batch API, then re-embedded with Cohere embed-v4. Search quality for Surya products is now dramatically better.</li>
+          <li><strong style="color:var(--yellow);">1,104 products</strong> still have SKU-only names &mdash; these are discontinued products returning 404 on Surya's website. No data available to extract.</li>
+        </ul>
+
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 11: Vendor Data Fixes (Mar 3)</h3>
         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Three vendor-specific data issues identified and fixed.</p>
         <ul>
           <li><strong style="color:var(--green);">Surya URLs fixed</strong> &mdash; All 18,458 Surya product links were returning 404 errors because they were missing a <code>/Product/</code> segment in the URL path. All 13,152 affected URLs have been corrected and now link directly to the correct product page on Surya's website.</li>
-          <li><strong style="color:var(--green);">Surya names improved</strong> &mdash; 1,766 Surya products that previously showed inventory codes (like "DNH-002") now have proper names with collection and product type (e.g., "Argil Furniture (AGI-004)"). 16,692 still have inventory codes &mdash; fixing the rest requires rendering Surya's JavaScript-heavy pages via Firecrawl (~18K credits, planned as a future improvement).</li>
+          <li><strong style="color:var(--green);">Surya names partially fixed</strong> &mdash; 1,766 products renamed via Surya's catalog API (metaKeywords parsing). This was a partial fix covering only 7% of prefixes &mdash; the remaining 93% were completed in Phase 12 via Firecrawl.</li>
           <li><strong style="color:var(--green);">Savoy House images restored</strong> &mdash; All 1,973 Savoy House products were showing "IMAGE COMING SOON" placeholders even though the real photos exist on Savoy House's server. The issue was expired cache tokens in the image URLs. All product photos have been restored.</li>
         </ul>
 
@@ -506,7 +515,7 @@
                 <strong>All fixed in Phases 1&ndash;4:</strong> A&amp;B Home (219 &rarr; 5,954, now 100% descriptions), Theodore Alexander (descriptions added), Chelsea House (AI descriptions), Essentials for Living (images), Tuuci (images), Sarreid duplicate merged, Lexington (24 &rarr; 936, now 100% descriptions), Phillips Scott (1 &rarr; 355), Sherrill Furniture (18 &rarr; 227), McKinley Leather (9 &rarr; 207), Vanguard (0 &rarr; 136), Style Upholstering (9 &rarr; 119), Noir Furniture LA (0 &rarr; 65), Global Views (0 &rarr; 12), Bernhardt (now 100% descriptions), Regina Andrew (now 100% descriptions)
               </td>
             </tr>
-            <tr><td>Surya</td><td></td><td class="num">18,458</td><td class="issue-cell" style="color:var(--yellow)">URLs fixed, 1,766 names fixed. 16,692 still have inventory codes.</td><td class="issue-cell" style="color:var(--yellow)">Partial &mdash; needs Firecrawl</td></tr>
+            <tr><td>Surya</td><td></td><td class="num">18,458</td><td class="issue-cell" style="color:var(--green)">URLs fixed, 17,354 names fixed via Firecrawl. 1,104 remain (discontinued 404s).</td><td class="issue-cell" style="color:var(--green)">Fixed in Phase 12</td></tr>
             <tr><td>Savoy House</td><td></td><td class="num">1,790</td><td class="issue-cell" style="color:var(--green)">1,973 placeholder images restored to real photos.</td><td class="issue-cell" style="color:var(--green)">Fixed in Phase 11</td></tr>
             <tr><td>Bernhardt</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">5,464</td><td class="issue-cell" style="color:var(--green)">100% descriptions (fixed). 17% missing images.</td><td class="issue-cell pct-good">Fixed in Phase 4</td></tr>
             <tr><td>Regina Andrew</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">2,040</td><td class="issue-cell" style="color:var(--green)">100% descriptions, 100% images (fixed)</td><td class="issue-cell pct-good">Fixed in Phase 4</td></tr>
@@ -582,7 +591,7 @@
           <li><del>Dimension embedding fix</del> &mdash; <span style="color:var(--green)">Done! Product dimensions always included in search index. "Mirrors 48x36" returns 4,099 results (was 4).</span></li>
           <li><del>Product data normalization</del> &mdash; <span style="color:var(--green)">Done! 99.9% subcategorized, 83.8% color-tagged, 91.0% material-tagged, 97.4% style-tagged. Subcategory + color filters wired into search pipeline. "Blue sofas" and "brass pendants" now work as structured filters.</span></li>
           <li><del>Surya broken URLs</del> &mdash; <span style="color:var(--green)">Done! All 13,152 broken product links fixed (added /Product/ segment).</span></li>
-          <li><del>Surya inventory-code names</del> &mdash; <span style="color:var(--green)">1,766 renamed.</span> 16,692 remaining &mdash; needs Firecrawl JS rendering (~18K credits).</li>
+          <li><del>Surya inventory-code names</del> &mdash; <span style="color:var(--green)">Done! 17,354 renamed via Firecrawl JSON extraction ($20). 1,104 remain (discontinued 404 pages).</span></li>
           <li><del>Savoy House placeholder images</del> &mdash; <span style="color:var(--green)">Done! All 1,973 placeholder images restored to real product photos.</span></li>
         </ol>
       </div>
@@ -590,7 +599,7 @@
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: March 3, 2026</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: March 4, 2026</footer>
 
   <script>
     // All 64 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]

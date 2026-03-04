@@ -1,9 +1,9 @@
 # Evenflow Interiors v2 — Data Quality & Search Report
 
-**Date:** March 2, 2026
+**Date:** March 4, 2026
 **Database:** 145,749 products across 64 vendors
 **Embeddings:** 100% coverage (Cohere embed-v4, 1024 dimensions)
-**New:** Product data normalization complete — subcategories, colors, materials, styles, and features extracted
+**New:** Surya names fix complete — 17,354 products renamed via Firecrawl + SQL bulk update
 
 ---
 
@@ -71,6 +71,20 @@ Every product in the database now has structured, filterable attributes extracte
 - **Features** (63.6%) — Functional attributes like Swivel, Dimmable, Performance Fabric, Modular, Storage, Outdoor-Rated, etc.
 
 This was done using Claude Haiku via the Anthropic Batch API (~$5 for all 145,749 products). The AI read each product's existing description and metadata, then classified it into the correct subcategory, identified its colors, materials, style, and special features.
+
+**Completed — Phase 9: Surya Names Fix (Mar 4):**
+The biggest remaining data quality issue — 16,692 Surya products showing inventory codes as names — has been fixed using Firecrawl's JSON extraction mode to scrape Surya's JavaScript-rendered pages.
+- **17,354 products renamed** — Products like "FT-70" are now "Frontier Handmade Rug (FT-70)", "AGI-004" is now "Argil Planter (AGI-004)", etc. Names use the format "Collection ProductType (SKU)".
+- **Method:** Grouped 18,458 products by SKU prefix (~3,897 unique prefixes). Scraped one product per prefix via Firecrawl JSON extraction (5 credits/page, $20 total). Applied names via SQL bulk UPDATE. 3,774 prefixes resolved (96.8%), 123 failed (discontinued 404 pages).
+- **All contextual descriptions re-enriched** — The old AI-generated descriptions referenced SKU codes ("The FT-70 area rug..."). All 18,458 Surya products re-enriched with new names via Anthropic Batch API, then re-embedded with Cohere embed-v4.
+- **1,104 products** still have SKU-only names — these are discontinued products returning 404 on Surya's website. No data available to extract.
+- **Script:** `backend/scripts/fix_surya_names.py` — 3 phases (scrape/load-map/apply) with checkpoint persistence.
+
+**Completed — Phase 8: Vendor Data Fixes (Mar 3):**
+Three vendor-specific data issues fixed:
+- **Surya URLs fixed** — All 18,458 Surya product links were returning 404 errors because they were missing a `/Product/` segment in the URL path (e.g., `surya.com/SKU-P` should be `surya.com/Product/SKU-P`). All 13,152 affected URLs have been corrected and now link directly to the correct product page on Surya's website.
+- **Surya names improved** — 1,766 Surya products renamed via Surya's catalog API (metaKeywords parsing). This was a partial fix covering only 7% of prefixes — the remaining 93% were completed in Phase 9 via Firecrawl.
+- **Savoy House images restored** — All 1,973 Savoy House products were showing "IMAGE COMING SOON" placeholder images even though the product photos exist on Savoy House's server. The issue was expired cache tokens in the image URLs. Stripping the expired cache segment restored all product photos.
 
 **Keep using the app and the feedback buttons!** Every thumbs up/down vote teaches the system what good and bad results look like. The more you use it, the smarter it gets.
 
@@ -193,14 +207,14 @@ This was done using Claude Haiku via the Anthropic Batch API (~$5 for all 145,74
 | Rowe Furniture | top20 | 1,923 | 98% | 0% | 98% | 100% | 0% | 228 | |
 | Rowley Company | - | 30 | 67% | 67% | 73% | 0% | 0% | 120 | |
 | Sarreid Ltd | top5 | 603 | 100% | 100% | 100% | 100% | 0% | 364 | |
-| Savoy House | - | 1,790 | 100% | 0% | 100% | 100% | 66% | 439 | |
+| Savoy House | - | 1,790 | 100% | 0% | 100% | 100% | 66% | 439 | FIXED |
 | Selamat Designs | - | 277 | 96% | 100% | 96% | 91% | 99% | 353 | |
 | Shadow Catchers Art | - | 2,720 | 100% | 100% | 100% | 99% | 100% | 166 | |
 | Sherrill Furniture | - | 227 | 89% | 0% | 89% | 89% | 0% | 102 | FIXED |
 | Southern Home Inc. | - | 1,063 | 99% | 33% | 100% | 100% | 100% | 133 | |
 | Style Upholstering | - | 119 | 99% | 0% | 100% | 87% | 0% | 44 | FIXED |
 | Summer Classics | - | 964 | 100% | 59% | 94% | 76% | 100% | 289 | FIXED |
-| Surya | - | 18,598 | 100% | 0% | 100% | 0% | 100% | 190 | |
+| Surya | - | 18,458 | 100% | 0% | 100% | 0% | 100% | 190 | FIXED |
 | Swaim Inc. | - | 1,354 | 100% | 9% | 96% | 99% | 96% | 133 | |
 | Theodore Alexander | top5 | 2,441 | 100% | 0% | 100% | 100% | 61% | 280 | FIXED |
 | Tuuci | - | 125 | 100% | 0% | 100% | 0% | 0% | 133 | FIXED |
@@ -218,7 +232,7 @@ This was done using Claude Haiku via the Anthropic Batch API (~$5 for all 145,74
 
 ### Remaining Data Quality Issues
 
-All previously-flagged issues have been resolved across 5 phases:
+All previously-flagged issues have been resolved across 8 phases:
 - Chelsea House: 100% descriptions (AI-generated)
 - Essentials for Living: 99% images (Firecrawl)
 - Tuuci: 100% images (Firecrawl)
@@ -236,11 +250,16 @@ All previously-flagged issues have been resolved across 5 phases:
 - Bramble Co: 100% descriptions (was 92%, Firecrawl + AI fallback)
 - Summer Classics: 100% descriptions (was 85%, Firecrawl + AI fallback), images 94%
 - Sherrill Fabrics: 1,090 products (was 1) — custom scraper built for fabric catalog
+- Surya URLs: All 13,152 broken product links corrected (added `/Product/` segment)
+- Surya names (Phase 8): 1,766 products renamed via catalog API
+- Surya names (Phase 9): 17,354 total renamed via Firecrawl JSON extraction. 1,104 remain SKU-only (discontinued 404s)
+- Savoy House images: All 1,973 placeholder images restored to real product photos
 
-**Remaining lower-priority gaps (cosmetic only):**
+**Remaining lower-priority gaps:**
 
 | Vendor | Count | Tier | Issue | Impact |
 |--------|------:|------|-------|--------|
+| Surya | 18,458 | - | 1,104 products still have SKU-only names (discontinued 404 pages) | Low — no data available |
 | Bernhardt | 5,464 | top10 | 17% missing images (936 products) | Low — JS-rendered site, images not extractable |
 | Sherrill Fabrics | 1,090 | - | 6% missing images (69 products) | Low — some fabrics missing imgix images |
 | Summer Classics | 964 | - | 6% missing images (57 products) | Low |
@@ -368,21 +387,22 @@ Every product now has structured, AI-extracted attributes that enable precise fi
 ## 8. Remaining Work
 
 ### Data Quality (all critical issues resolved)
-All critical data quality issues are fixed across 7 phases. Description coverage at **99.8%**, image coverage at **98.6%**, subcategory coverage at **99.9%**. All vendors have 100% embeddings.
+All critical data quality issues are fixed across 8 phases. Description coverage at **99.8%**, image coverage at **98.7%**, subcategory coverage at **99.9%**. All vendors have 100% embeddings.
 
-**Remaining lower-priority gaps (cosmetic only):**
+**Remaining gaps:**
 
 | Vendor | Count | Tier | Issue | Impact |
 |--------|------:|------|-------|--------|
+| Surya | 18,458 | - | 16,692 products still have inventory-code names | Medium — needs Firecrawl JS rendering (~18K credits) |
 | Bernhardt | 5,464 | top10 | 17% missing images (936 products) | Low — JS-rendered site, images not extractable |
 | Sherrill Fabrics | 1,090 | - | 6% missing images (69 products) | Low — some fabrics missing imgix images |
 | Summer Classics | 964 | - | 6% missing images (57 products) | Low |
 | Castelle Furniture | 489 | - | 13% missing images (64 products) | Low |
 
-### Phase 2 Data Normalization (not yet started)
-- Wire `material_family` as a Claude-usable search filter
-- Data cleanup: remove empty/"null" strings from raw material, color fields
-- Regenerate `search_text` to include normalized attributes for better BM25 matching
+### Phase 2 Data Normalization (COMPLETE — Mar 3)
+- [DONE] Wire `material_family` as a Claude-usable search filter
+- [DONE] Data cleanup: removed empty/"null" strings from raw material, color, finish fields
+- [DONE] Regenerated `search_text` to include normalized attributes (Type, Colors, Materials, Style, Features) for better BM25 matching
 - Optional: feature badges on product cards (display "Swivel", "Performance Fabric" pills)
 - Optional: color/material filter chips in UI (deferred based on usage patterns)
 
