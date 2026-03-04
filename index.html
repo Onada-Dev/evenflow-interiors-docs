@@ -169,13 +169,14 @@
   <div class="stats-bar">
     <div class="stat"><div class="stat-value">145,749</div><div class="stat-label">Total Products</div></div>
     <div class="stat"><div class="stat-value">64</div><div class="stat-label">Active Vendors</div></div>
-    <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Searchable (Embedded)</div></div>
-    <div class="stat"><div class="stat-value">99.8%</div><div class="stat-label">Has Descriptions</div></div>
+    <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Embedded &amp; AI-Enriched</div></div>
+    <div class="stat"><div class="stat-value">99.7%</div><div class="stat-label">Has Descriptions</div></div>
     <div class="stat"><div class="stat-value">98.6%</div><div class="stat-label">Has Images</div></div>
     <div class="stat"><div class="stat-value" style="color: var(--green);">99.9%</div><div class="stat-label">Subcategorized</div></div>
-    <div class="stat"><div class="stat-value">83.8%</div><div class="stat-label">Color Tagged</div></div>
     <div class="stat"><div class="stat-value">91.0%</div><div class="stat-label">Material Tagged</div></div>
+    <div class="stat"><div class="stat-value">83.8%</div><div class="stat-label">Color Tagged</div></div>
     <div class="stat"><div class="stat-value">97.4%</div><div class="stat-label">Style Tagged</div></div>
+    <div class="stat"><div class="stat-value">35.9%</div><div class="stat-label">Has Dimensions</div></div>
   </div>
 
   <div class="container">
@@ -357,7 +358,7 @@
         <table>
           <thead><tr><th>Component</th><th>Old MVP</th><th>LuxeScout v2</th></tr></thead>
           <tbody>
-            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">145,749 (curated)</td></tr>
+            <tr><td>Products</td><td class="num">154,804</td><td class="num" style="color:var(--green)">145,749 (64 curated vendors)</td></tr>
             <tr><td>Vendors</td><td class="num">68</td><td class="num" style="color:var(--green)">64 (7 removed, 3 added)</td></tr>
             <tr><td>Embeddings</td><td>OpenAI text-embedding-3 (1536d)</td><td style="color:var(--green)">Cohere embed-v4 (1024d)</td></tr>
             <tr><td>Search Method</td><td>Vector-only + attribute rerank</td><td style="color:var(--green)">Hybrid (vector + BM25 + RRF)</td></tr>
@@ -466,6 +467,7 @@
         <div class="legend-item"><strong>Image%</strong> &mdash; Products with a photo</div>
         <div class="legend-item"><strong>Cat%</strong> &mdash; Products with category tags</div>
         <div class="legend-item"><strong>Stock%</strong> &mdash; Products with availability info</div>
+        <div class="legend-item"><strong>Dim%</strong> &mdash; Products with dimension/size data</div>
         <div class="legend-item"><strong>Tier</strong> &mdash; Client-defined vendor importance (Top 5/10/20)</div>
         <div class="legend-item"><strong>Avg Desc</strong> &mdash; Average description length in characters</div>
       </div>
@@ -480,17 +482,18 @@
       <p class="section-desc">Every product across all 64 vendors has been embedded with Cohere embed-v4 (1024 dimensions) for semantic search.</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th class="sortable" data-col="0">Vendor</th><th class="sortable" data-col="1">Tier</th><th class="num sortable" data-col="2">Count</th><th class="num sortable" data-col="3">Desc%</th><th class="num sortable" data-col="4">Price%</th><th class="num sortable" data-col="5">Image%</th><th class="num sortable" data-col="6">Cat%</th><th class="num sortable" data-col="7">Stock%</th><th class="num sortable" data-col="8">Avg Desc</th><th class="sortable" data-col="9">Issues</th></tr></thead>
+          <thead><tr><th class="sortable" data-col="0">Vendor</th><th class="sortable" data-col="1">Tier</th><th class="num sortable" data-col="2">Count</th><th class="num sortable" data-col="3">Desc%</th><th class="num sortable" data-col="4">Price%</th><th class="num sortable" data-col="5">Image%</th><th class="num sortable" data-col="6">Cat%</th><th class="num sortable" data-col="7">Stock%</th><th class="num sortable" data-col="8">Dim%</th><th class="num sortable" data-col="9">Avg Desc</th><th class="sortable" data-col="10">Issues</th></tr></thead>
           <tbody id="vendor-table"></tbody>
           <tfoot>
             <tr style="background:var(--bg-table-header); font-weight:500;">
               <td colspan="2">Total</td>
               <td class="num">145,749</td>
-              <td class="num">99.8%</td>
-              <td class="num">62%</td>
-              <td class="num">98.7%</td>
-              <td class="num">100%</td>
-              <td class="num">75%</td>
+              <td class="num">99.7%</td>
+              <td class="num">60%</td>
+              <td class="num">98.6%</td>
+              <td class="num">99.5%</td>
+              <td class="num">86%</td>
+              <td class="num">35.9%</td>
               <td class="num">&mdash;</td>
               <td></td>
             </tr>
@@ -602,72 +605,73 @@
   <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: March 4, 2026</footer>
 
   <script>
-    // All 64 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, avgDesc, issues]
+    // All 64 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, dim%, avgDesc, issues]
+    // Data refreshed from database: March 4, 2026
     const vendors = [
-      ["A&B Home","",6125,100,97,99,100,50,180,"FIXED"],
-      ["Ambella Home","top5",775,94,0,100,100,22,184,""],
-      ["Artistica Home","",648,100,0,100,100,77,261,""],
-      ["Bernhardt","top10",5464,100,94,83,100,42,112,"FIXED"],
-      ["Bramble Co","",2095,100,0,100,100,0,81,"FIXED"],
-      ["Castelle Furniture","",489,100,0,87,100,0,150,"NEW"],
-      ["Caracole","",1671,100,100,100,100,90,396,""],
-      ["Chelsea House","",2076,100,0,100,100,75,62,"FIXED"],
-      ["Currey & Company","",2725,100,100,100,0,88,368,""],
-      ["Cyan Design","",1983,97,100,97,87,100,328,""],
-      ["ELK Home","",4575,100,100,100,100,100,176,""],
-      ["Eastern Accents","",8338,100,70,94,78,100,153,""],
-      ["Eloquence","",652,100,100,100,1,99,641,""],
-      ["Essentials for Living","top10",521,99,100,99,0,99,35,"FIXED"],
-      ["Fairfield Chair","top20",5818,100,99,100,99,100,211,""],
-      ["Four Hands","",17144,100,100,100,100,27,291,""],
-      ["Gabriella White","depri",1782,97,80,99,81,100,367,""],
-      ["Gracie Studio","",51,100,100,100,100,96,160,""],
-      ["Greenhouse Fabrics","",70,100,0,100,0,0,187,""],
-      ["HVL Group","",5915,100,92,100,100,73,329,""],
-      ["Hekman","",691,100,100,100,100,80,391,""],
-      ["Horizon Shades","",4,100,0,100,0,0,152,""],
-      ["Interlude Home","",1010,100,99,100,98,99,127,"FIXED"],
-      ["Jaipur Living","",2337,100,89,100,100,100,375,""],
-      ["James Martin Vanities","",411,99,76,100,93,100,679,""],
-      ["Jamie Young Co","",1100,100,100,100,100,0,310,""],
-      ["Jonathan Charles","",576,100,99,100,100,71,410,""],
-      ["Global Views","",12,100,0,100,0,0,200,"NEW"],
-      ["Lexington Home Brands","top5",936,100,9,97,100,0,213,"FIXED"],
-      ["Loloi Rugs","",4510,100,100,99,100,89,301,""],
-      ["Made Goods","",1242,100,0,100,100,100,300,""],
-      ["Maitland-Smith","",705,100,0,100,100,92,190,""],
-      ["McKinley Leather","",207,100,0,100,97,0,58,"FIXED"],
-      ["Old Biscayne Designs","",3135,100,0,100,98,0,159,""],
-      ["Padma's Plantation","",331,100,100,100,100,99,2701,""],
-      ["Paragon","",3776,100,0,100,100,100,131,""],
-      ["Noir Furniture LA","",65,100,100,100,0,0,150,"NEW"],
-      ["Phillips Scott","",355,100,0,100,100,0,195,"FIXED"],
-      ["Precedent Furniture","top5",299,100,0,100,100,0,176,"FIXED"],
-      ["Propac Images","",1301,100,0,100,100,100,119,""],
-      ["Regina Andrew","top10",2040,100,100,100,100,85,157,"FIXED"],
-      ["Renwil","",1631,100,100,100,0,100,352,""],
-      ["Rowe Furniture","top20",1923,98,0,98,100,0,228,""],
-      ["Rowley Company","",30,67,67,73,0,0,120,""],
-      ["Sarreid Ltd","top5",585,100,100,100,100,0,364,""],
-      ["Savoy House","",1790,100,0,100,100,66,439,"FIXED"],
-      ["Selamat Designs","",277,96,100,96,91,99,353,""],
-      ["Shadow Catchers Art","",2720,100,100,100,99,100,166,""],
-      ["Sherrill Fabrics","",1090,100,0,94,100,0,65,"FIXED"],
-      ["Sherrill Furniture","",227,89,0,89,89,0,102,"FIXED"],
-      ["Southern Home Inc.","",1063,99,33,100,100,100,133,""],
-      ["Style Upholstering","",119,99,0,100,87,0,44,"FIXED"],
-      ["Summer Classics","",964,100,59,94,76,100,289,"FIXED"],
-      ["Surya","",18458,100,0,100,0,100,190,"FIXED"],
-      ["Swaim Inc.","",1354,100,9,96,99,96,133,""],
-      ["Theodore Alexander","top5",2441,100,0,100,100,61,280,"FIXED"],
-      ["Tuuci","",125,100,0,100,0,0,133,"FIXED"],
-      ["Universal Furniture","",943,100,0,100,100,0,326,""],
-      ["Uttermost","",4595,100,0,100,100,100,249,""],
-      ["Vanguard Furniture","",136,100,0,100,0,0,120,"NEW"],
-      ["Wesley Hall","",110,100,0,95,100,0,120,"NEW"],
-      ["Wendover Art Group","opt",9558,100,100,100,100,100,238,""],
-      ["Woodbridge Furniture","",1309,100,100,100,100,100,220,""],
-      ["Worlds Away","",886,100,0,100,0,0,234,""],
+      ["A&B Home","",6125,100,97,99,100,81,98,368,"FIXED"],
+      ["Ambella Home","top5",673,95,0,100,100,100,100,200,""],
+      ["Artistica Home","",571,100,0,100,100,76,100,258,""],
+      ["Bernhardt","top10",5464,100,94,83,99,38,68,171,"FIXED"],
+      ["Bramble Co","",2095,100,0,100,100,0,92,80,"FIXED"],
+      ["Caracole","",1055,100,100,100,100,100,100,399,""],
+      ["Castelle Furniture","",489,100,3,87,87,100,68,241,""],
+      ["Chelsea House","",2076,100,0,100,100,90,100,241,"FIXED"],
+      ["Currey & Company","",2874,100,100,100,97,96,91,360,""],
+      ["Cyan Design","",2158,97,100,97,99,100,0,324,""],
+      ["Eastern Accents","",8901,100,71,95,100,100,4,154,""],
+      ["ELK Home","",2271,100,100,100,100,100,0,175,""],
+      ["Eloquence","",373,100,100,100,93,100,0,632,""],
+      ["Essentials for Living","top10",521,99,100,99,98,100,0,36,"FIXED"],
+      ["Fairfield Chair","top20",6114,100,99,100,100,100,0,211,""],
+      ["Four Hands","",16729,100,100,100,100,93,100,283,""],
+      ["Gabriella White","depri",2395,98,73,99,99,100,0,360,""],
+      ["Global Views","",12,92,58,92,100,100,75,430,""],
+      ["Gracie Studio","",45,100,100,100,93,100,0,152,""],
+      ["Greenhouse Fabrics","",80,100,0,100,100,0,0,187,""],
+      ["Hekman","",397,100,100,100,96,100,0,388,""],
+      ["Horizon Shades","",3,100,0,100,100,0,0,141,""],
+      ["HVL Group","",7007,100,93,100,100,84,100,332,""],
+      ["Interlude Home","",1010,100,98,100,98,100,0,146,"FIXED"],
+      ["Jaipur Living","",2577,100,86,100,100,100,0,373,""],
+      ["James Martin Vanities","",472,99,77,100,99,100,0,721,""],
+      ["Jamie Young Co","",812,100,100,100,100,100,0,317,""],
+      ["Jonathan Charles","",401,100,100,100,99,100,100,408,""],
+      ["Lexington Home Brands","top5",936,99,9,97,96,98,81,238,"FIXED"],
+      ["Loloi Rugs","",4752,100,100,99,100,100,0,301,""],
+      ["Made Goods","",1410,100,0,100,98,100,0,307,""],
+      ["Maitland-Smith","",708,100,0,100,100,89,99,196,""],
+      ["McKinley Leather","",207,85,3,78,99,86,68,255,"FIXED"],
+      ["Noir Furniture LA","",65,78,11,97,97,100,97,201,""],
+      ["Old Biscayne Designs","",3091,100,0,100,99,0,68,158,""],
+      ["Padma's Plantation","",202,100,100,100,100,100,0,2794,""],
+      ["Paragon","",3775,100,0,100,100,100,0,131,""],
+      ["Phillips Scott","",355,99,2,99,93,99,91,175,"FIXED"],
+      ["Precedent Furniture","top5",299,100,0,100,100,0,36,170,"FIXED"],
+      ["Propac Images","",1209,100,0,100,100,100,0,118,""],
+      ["Regina Andrew","top10",2040,100,100,100,98,100,0,218,"FIXED"],
+      ["Renwil","",1445,100,100,100,98,100,0,353,""],
+      ["Rowe Furniture","top20",1734,98,0,97,100,0,97,227,""],
+      ["Rowley Company","",15,67,67,73,87,0,0,180,""],
+      ["Sarreid Ltd","top5",585,100,100,100,100,0,74,364,""],
+      ["Savoy House","",1973,100,0,100,100,100,0,441,"FIXED"],
+      ["Selamat Designs","",219,98,100,98,100,100,0,369,""],
+      ["Shadow Catchers Art","",3936,100,100,100,97,100,0,190,""],
+      ["Sherrill Fabrics","",1090,100,0,94,100,0,0,229,"FIXED"],
+      ["Sherrill Occasional","",456,100,0,100,99,0,69,195,"FIXED"],
+      ["Southern Home Inc.","",1111,99,34,100,100,100,0,139,""],
+      ["Style Upholstering","",119,89,1,98,98,28,79,58,"FIXED"],
+      ["Summer Classics","",964,100,69,94,98,100,0,370,"FIXED"],
+      ["Surya","",18458,100,0,100,100,100,0,190,"FIXED"],
+      ["Swaim Inc.","",1220,100,10,94,99,100,0,136,""],
+      ["Theodore Alexander","top5",2441,100,0,100,100,56,1,239,"FIXED"],
+      ["Tuuci","",125,99,0,100,78,0,0,134,"FIXED"],
+      ["Universal Furniture","",1024,100,0,100,100,0,98,328,""],
+      ["Uttermost","",4394,100,0,100,100,100,0,245,""],
+      ["Vanguard Furniture","",136,98,16,99,99,100,97,204,""],
+      ["Wendover Art Group","opt",9391,100,100,100,100,100,0,235,""],
+      ["Wesley Hall","",110,99,4,95,99,100,70,219,""],
+      ["Woodbridge Furniture","",1173,100,100,99,100,100,0,222,""],
+      ["Worlds Away","",881,100,0,100,94,0,99,238,""],
     ];
 
     function pctClass(v) {
@@ -695,7 +699,7 @@
 
     function renderTable(data) {
       document.getElementById("vendor-table").innerHTML = data.map(r => {
-        const [name,tier,count,desc,price,img,cat,stock,avgDesc,issues] = r;
+        const [name,tier,count,desc,price,img,cat,stock,dim,avgDesc,issues] = r;
         return `<tr>
           <td>${name}</td>
           <td>${tierBadge(tier)}</td>
@@ -705,6 +709,7 @@
           <td class="num ${pctClass(img)}">${img}%</td>
           <td class="num ${pctClass(cat)}">${cat}%</td>
           <td class="num ${pctClass(stock)}">${stock}%</td>
+          <td class="num ${pctClass(dim)}">${dim}%</td>
           <td class="num">${fmtNum(avgDesc)}</td>
           <td class="issue-cell">${issueTag(issues)}</td>
         </tr>`;
@@ -713,7 +718,7 @@
 
     function sortTable(col) {
       if (sortCol === col) { sortDir = sortDir === "asc" ? "desc" : "asc"; }
-      else { sortCol = col; sortDir = col === 0 || col === 1 || col === 9 ? "asc" : "desc"; }
+      else { sortCol = col; sortDir = col === 0 || col === 1 || col === 10 ? "asc" : "desc"; }
       document.querySelectorAll("th.sortable").forEach(th => th.classList.remove("asc","desc"));
       document.querySelector(`th[data-col="${col}"]`).classList.add(sortDir);
       const sorted = [...vendors].sort((a,b) => {

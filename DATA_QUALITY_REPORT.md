@@ -162,73 +162,73 @@ Three vendor-specific data issues fixed:
 
 ## 4. Vendor Data Quality (All 64 Vendors)
 
-| Vendor | Tier | Count | Desc% | Price% | Image% | Cat% | Stock% | Avg Desc | Issues |
-|--------|------|------:|------:|-------:|-------:|-----:|-------:|---------:|--------|
-| A&B Home | - | 6,125 | 100% | 97% | 99% | 100% | 50% | 180 | FIXED |
-| Ambella Home | top5 | 775 | 94% | 0% | 100% | 100% | 22% | 184 | |
-| Artistica Home | - | 648 | 100% | 0% | 100% | 100% | 77% | 261 | |
-| Bernhardt | top10 | 5,464 | 100% | 94% | 83% | 100% | 42% | 112 | FIXED |
-| Bramble Co | - | 2,095 | 100% | 0% | 100% | 100% | 0% | 81 | FIXED |
-| Castelle Furniture | - | 489 | 100% | 0% | 87% | 100% | 0% | 150 | NEW |
-| Caracole | - | 1,671 | 100% | 100% | 100% | 100% | 90% | 396 | |
-| Chelsea House | - | 2,076 | 100% | 0% | 100% | 100% | 75% | 62 | FIXED |
-| Currey & Company | - | 2,725 | 100% | 100% | 100% | 0% | 88% | 368 | |
-| Cyan Design | - | 1,983 | 97% | 100% | 97% | 87% | 100% | 328 | |
-| ELK Home | - | 4,575 | 100% | 100% | 100% | 100% | 100% | 176 | |
-| Eastern Accents | - | 8,338 | 100% | 70% | 94% | 78% | 100% | 153 | |
-| Eloquence | - | 652 | 100% | 100% | 100% | 1% | 99% | 641 | |
-| Essentials for Living | top10 | 521 | 99% | 100% | 99% | 0% | 99% | 35 | FIXED |
-| Fairfield Chair | top20 | 5,818 | 100% | 99% | 100% | 99% | 100% | 211 | |
-| Four Hands | - | 17,144 | 100% | 100% | 100% | 100% | 27% | 291 | |
-| Gabriella White | depri | 1,782 | 97% | 80% | 99% | 81% | 100% | 367 | |
-| Gracie Studio | - | 51 | 100% | 100% | 100% | 100% | 96% | 160 | |
-| Greenhouse Fabrics | - | 70 | 100% | 0% | 100% | 0% | 0% | 187 | |
-| HVL Group | - | 5,915 | 100% | 92% | 100% | 100% | 73% | 329 | |
-| Hekman | - | 691 | 100% | 100% | 100% | 100% | 80% | 391 | |
-| Horizon Shades | - | 4 | 100% | 0% | 100% | 0% | 0% | 152 | |
-| Interlude Home | - | 1,010 | 100% | 99% | 100% | 98% | 99% | 127 | FIXED |
-| Jaipur Living | - | 2,337 | 100% | 89% | 100% | 100% | 100% | 375 | |
-| James Martin Vanities | - | 411 | 99% | 76% | 100% | 93% | 100% | 679 | |
-| Jamie Young Co | - | 1,100 | 100% | 100% | 100% | 100% | 0% | 310 | |
-| Jonathan Charles | - | 576 | 100% | 99% | 100% | 100% | 71% | 410 | |
-| Lexington Home Brands | top5 | 936 | 100% | 9% | 97% | 100% | 0% | 213 | FIXED |
-| Loloi Rugs | - | 4,510 | 100% | 100% | 99% | 100% | 89% | 301 | |
-| Made Goods | - | 1,242 | 100% | 0% | 100% | 100% | 100% | 300 | |
-| Maitland-Smith | - | 705 | 100% | 0% | 100% | 100% | 92% | 190 | |
-| McKinley Leather | - | 207 | 100% | 0% | 100% | 97% | 0% | 58 | FIXED |
-| Old Biscayne Designs | - | 3,135 | 100% | 0% | 100% | 98% | 0% | 159 | |
-| Padma's Plantation | - | 331 | 100% | 100% | 100% | 100% | 99% | 2,701 | |
-| Paragon | - | 3,776 | 100% | 0% | 100% | 100% | 100% | 131 | |
-| Phillips Scott | - | 355 | 100% | 0% | 100% | 100% | 0% | 195 | FIXED |
-| Precedent Furniture | top5 | 299 | 100% | 0% | 100% | 100% | 0% | 176 | FIXED |
-| Propac Images | - | 1,301 | 100% | 0% | 100% | 100% | 100% | 119 | |
-| Regina Andrew | top10 | 2,040 | 100% | 100% | 100% | 100% | 85% | 157 | FIXED |
-| Renwil | - | 1,631 | 100% | 100% | 100% | 0% | 100% | 352 | |
-| Rowe Furniture | top20 | 1,923 | 98% | 0% | 98% | 100% | 0% | 228 | |
-| Rowley Company | - | 30 | 67% | 67% | 73% | 0% | 0% | 120 | |
-| Sarreid Ltd | top5 | 603 | 100% | 100% | 100% | 100% | 0% | 364 | |
-| Savoy House | - | 1,790 | 100% | 0% | 100% | 100% | 66% | 439 | FIXED |
-| Selamat Designs | - | 277 | 96% | 100% | 96% | 91% | 99% | 353 | |
-| Shadow Catchers Art | - | 2,720 | 100% | 100% | 100% | 99% | 100% | 166 | |
-| Sherrill Furniture | - | 227 | 89% | 0% | 89% | 89% | 0% | 102 | FIXED |
-| Southern Home Inc. | - | 1,063 | 99% | 33% | 100% | 100% | 100% | 133 | |
-| Style Upholstering | - | 119 | 99% | 0% | 100% | 87% | 0% | 44 | FIXED |
-| Summer Classics | - | 964 | 100% | 59% | 94% | 76% | 100% | 289 | FIXED |
-| Surya | - | 18,458 | 100% | 0% | 100% | 0% | 100% | 190 | FIXED |
-| Swaim Inc. | - | 1,354 | 100% | 9% | 96% | 99% | 96% | 133 | |
-| Theodore Alexander | top5 | 2,441 | 100% | 0% | 100% | 100% | 61% | 280 | FIXED |
-| Tuuci | - | 125 | 100% | 0% | 100% | 0% | 0% | 133 | FIXED |
-| Universal Furniture | - | 943 | 100% | 0% | 100% | 100% | 0% | 326 | |
-| Uttermost | - | 4,595 | 100% | 0% | 100% | 100% | 100% | 249 | |
-| Wendover Art Group | opt | 9,558 | 100% | 100% | 100% | 100% | 100% | 238 | |
-| Woodbridge Furniture | - | 1,309 | 100% | 100% | 100% | 100% | 100% | 220 | |
-| Worlds Away | - | 886 | 100% | 0% | 100% | 0% | 0% | 234 | |
-| Global Views | - | 12 | 100% | 0% | 100% | 0% | 0% | 200 | NEW |
-| Noir Furniture LA | - | 65 | 100% | 100% | 100% | 0% | 0% | 150 | NEW |
-| Sherrill Fabrics | - | 1,090 | 100% | 0% | 94% | 100% | 0% | 65 | FIXED |
-| Vanguard Furniture | - | 136 | 100% | 0% | 100% | 0% | 0% | 120 | NEW |
-| Wesley Hall | - | 110 | 100% | 0% | 95% | 100% | 0% | 120 | NEW |
-| **TOTAL** | | **145,749** | **99.8%** | **61%** | **98.6%** | **99.5%** | **~75%** | | |
+| Vendor | Tier | Count | Desc% | Price% | Image% | Cat% | Stock% | Dim% | Avg Desc |
+|--------|------|------:|------:|-------:|-------:|-----:|-------:|-----:|---------:|
+| A&B Home | - | 6,125 | 100% | 97% | 99% | 100% | 81% | 98% | 368 |
+| Ambella Home | top5 | 673 | 95% | 0% | 100% | 100% | 100% | 100% | 200 |
+| Artistica Home | - | 571 | 100% | 0% | 100% | 100% | 76% | 100% | 258 |
+| Bernhardt | top10 | 5,464 | 100% | 94% | 83% | 99% | 38% | 68% | 171 |
+| Bramble Co | - | 2,095 | 100% | 0% | 100% | 100% | 0% | 92% | 80 |
+| Caracole | - | 1,055 | 100% | 100% | 100% | 100% | 100% | 100% | 399 |
+| Castelle Furniture | - | 489 | 100% | 3% | 87% | 87% | 100% | 68% | 241 |
+| Chelsea House | - | 2,076 | 100% | 0% | 100% | 100% | 90% | 100% | 241 |
+| Currey & Company | - | 2,874 | 100% | 100% | 100% | 97% | 96% | 91% | 360 |
+| Cyan Design | - | 2,158 | 97% | 100% | 97% | 99% | 100% | 0% | 324 |
+| Eastern Accents | - | 8,901 | 100% | 71% | 95% | 100% | 100% | 4% | 154 |
+| ELK Home | - | 2,271 | 100% | 100% | 100% | 100% | 100% | 0% | 175 |
+| Eloquence | - | 373 | 100% | 100% | 100% | 93% | 100% | 0% | 632 |
+| Essentials for Living | top10 | 521 | 99% | 100% | 99% | 98% | 100% | 0% | 36 |
+| Fairfield Chair | top20 | 6,114 | 100% | 99% | 100% | 100% | 100% | 0% | 211 |
+| Four Hands | - | 16,729 | 100% | 100% | 100% | 100% | 93% | 100% | 283 |
+| Gabriella White | depri | 2,395 | 98% | 73% | 99% | 99% | 100% | 0% | 360 |
+| Global Views | - | 12 | 92% | 58% | 92% | 100% | 100% | 75% | 430 |
+| Gracie Studio | - | 45 | 100% | 100% | 100% | 93% | 100% | 0% | 152 |
+| Greenhouse Fabrics | - | 80 | 100% | 0% | 100% | 100% | 0% | 0% | 187 |
+| Hekman | - | 397 | 100% | 100% | 100% | 96% | 100% | 0% | 388 |
+| Horizon Shades | - | 3 | 100% | 0% | 100% | 100% | 0% | 0% | 141 |
+| HVL Group | - | 7,007 | 100% | 93% | 100% | 100% | 84% | 100% | 332 |
+| Interlude Home | - | 1,010 | 100% | 98% | 100% | 98% | 100% | 0% | 146 |
+| Jaipur Living | - | 2,577 | 100% | 86% | 100% | 100% | 100% | 0% | 373 |
+| James Martin Vanities | - | 472 | 99% | 77% | 100% | 99% | 100% | 0% | 721 |
+| Jamie Young Co | - | 812 | 100% | 100% | 100% | 100% | 100% | 0% | 317 |
+| Jonathan Charles | - | 401 | 100% | 100% | 100% | 99% | 100% | 100% | 408 |
+| Lexington Home Brands | top5 | 936 | 99% | 9% | 97% | 96% | 98% | 81% | 238 |
+| Loloi Rugs | - | 4,752 | 100% | 100% | 99% | 100% | 100% | 0% | 301 |
+| Made Goods | - | 1,410 | 100% | 0% | 100% | 98% | 100% | 0% | 307 |
+| Maitland-Smith | - | 708 | 100% | 0% | 100% | 100% | 89% | 99% | 196 |
+| McKinley Leather | - | 207 | 85% | 3% | 78% | 99% | 86% | 68% | 255 |
+| Noir Furniture LA | - | 65 | 78% | 11% | 97% | 97% | 100% | 97% | 201 |
+| Old Biscayne Designs | - | 3,091 | 100% | 0% | 100% | 99% | 0% | 68% | 158 |
+| Padma's Plantation | - | 202 | 100% | 100% | 100% | 100% | 100% | 0% | 2,794 |
+| Paragon | - | 3,775 | 100% | 0% | 100% | 100% | 100% | 0% | 131 |
+| Phillips Scott | - | 355 | 99% | 2% | 99% | 93% | 99% | 91% | 175 |
+| Precedent Furniture | top5 | 299 | 100% | 0% | 100% | 100% | 0% | 36% | 170 |
+| Propac Images | - | 1,209 | 100% | 0% | 100% | 100% | 100% | 0% | 118 |
+| Regina Andrew | top10 | 2,040 | 100% | 100% | 100% | 98% | 100% | 0% | 218 |
+| Renwil | - | 1,445 | 100% | 100% | 100% | 98% | 100% | 0% | 353 |
+| Rowe Furniture | top20 | 1,734 | 98% | 0% | 97% | 100% | 0% | 97% | 227 |
+| Rowley Company | - | 15 | 67% | 67% | 73% | 87% | 0% | 0% | 180 |
+| Sarreid Ltd | top5 | 585 | 100% | 100% | 100% | 100% | 0% | 74% | 364 |
+| Savoy House | - | 1,973 | 100% | 0% | 100% | 100% | 100% | 0% | 441 |
+| Selamat Designs | - | 219 | 98% | 100% | 98% | 100% | 100% | 0% | 369 |
+| Shadow Catchers Art | - | 3,936 | 100% | 100% | 100% | 97% | 100% | 0% | 190 |
+| Sherrill Fabrics | - | 1,090 | 100% | 0% | 94% | 100% | 0% | 0% | 229 |
+| Sherrill Occasional | - | 456 | 100% | 0% | 100% | 99% | 0% | 69% | 195 |
+| Southern Home Inc. | - | 1,111 | 99% | 34% | 100% | 100% | 100% | 0% | 139 |
+| Style Upholstering | - | 119 | 89% | 1% | 98% | 98% | 28% | 79% | 58 |
+| Summer Classics | - | 964 | 100% | 69% | 94% | 98% | 100% | 0% | 370 |
+| Surya | - | 18,458 | 100% | 0% | 100% | 100% | 100% | 0% | 190 |
+| Swaim Inc. | - | 1,220 | 100% | 10% | 94% | 99% | 100% | 0% | 136 |
+| Theodore Alexander | top5 | 2,441 | 100% | 0% | 100% | 100% | 56% | 1% | 239 |
+| Tuuci | - | 125 | 99% | 0% | 100% | 78% | 0% | 0% | 134 |
+| Universal Furniture | - | 1,024 | 100% | 0% | 100% | 100% | 0% | 98% | 328 |
+| Uttermost | - | 4,394 | 100% | 0% | 100% | 100% | 100% | 0% | 245 |
+| Vanguard Furniture | - | 136 | 98% | 16% | 99% | 99% | 100% | 97% | 204 |
+| Wendover Art Group | opt | 9,391 | 100% | 100% | 100% | 100% | 100% | 0% | 235 |
+| Wesley Hall | - | 110 | 99% | 4% | 95% | 99% | 100% | 70% | 219 |
+| Woodbridge Furniture | - | 1,173 | 100% | 100% | 99% | 100% | 100% | 0% | 222 |
+| Worlds Away | - | 881 | 100% | 0% | 100% | 94% | 0% | 99% | 238 |
+| **TOTAL** | | **145,749** | **99.7%** | **60%** | **98.6%** | **99.5%** | **86%** | **35.9%** | |
 
 ### Remaining Data Quality Issues
 
@@ -393,7 +393,7 @@ All critical data quality issues are fixed across 8 phases. Description coverage
 
 | Vendor | Count | Tier | Issue | Impact |
 |--------|------:|------|-------|--------|
-| Surya | 18,458 | - | 16,692 products still have inventory-code names | Medium — needs Firecrawl JS rendering (~18K credits) |
+| Surya | 18,458 | - | 1,104 products still have SKU-only names (discontinued/404 pages) | Low — no data available for these products |
 | Bernhardt | 5,464 | top10 | 17% missing images (936 products) | Low — JS-rendered site, images not extractable |
 | Sherrill Fabrics | 1,090 | - | 6% missing images (69 products) | Low — some fabrics missing imgix images |
 | Summer Classics | 964 | - | 6% missing images (57 products) | Low |
