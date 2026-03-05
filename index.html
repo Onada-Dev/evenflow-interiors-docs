@@ -161,7 +161,7 @@
     <div class="hero-wordmark">Evenflow</div>
     <div class="hero-subtitle">Interiors</div>
     <h2>LuxeScout &mdash; Product Search Documentation</h2>
-    <p class="hero-meta"><span>Last updated: March 4, 2026</span></p>
+    <p class="hero-meta"><span>Last updated: March 5, 2026</span></p>
     <div class="hero-version">LuxeScout v2</div>
     <a href="https://evenflow-interiors-app-production.up.railway.app" target="_blank" class="hero-app-link">Launch App</a>
   </header>
@@ -176,7 +176,7 @@
     <div class="stat"><div class="stat-value">91.0%</div><div class="stat-label">Material Tagged</div></div>
     <div class="stat"><div class="stat-value">83.8%</div><div class="stat-label">Color Tagged</div></div>
     <div class="stat"><div class="stat-value">97.4%</div><div class="stat-label">Style Tagged</div></div>
-    <div class="stat"><div class="stat-value">39.5%</div><div class="stat-label">Has Dimensions</div></div>
+    <div class="stat"><div class="stat-value">50.1%</div><div class="stat-label">Has Dimensions</div></div>
   </div>
 
   <div class="container">
@@ -194,6 +194,15 @@
           <strong style="color:var(--gold-light);">64 vendors</strong>. Every single product has been AI-enriched, properly categorized, and embedded for search.
           Here's what's been done since the last update.
         </p>
+
+        <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 15: Surya Dimensions Scrape (Mar 5)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">18,458 Surya products had zero dimension data because the site is a JS-rendered React SPA. Used Playwright headless browser to render pages and extract dimensions.</p>
+        <ul>
+          <li><strong style="color:var(--green);">15,370 Surya products now have dimensions</strong> &mdash; Coverage jumped from 39.5% to <strong>50.1%</strong> (72,996 products). Grouped 18,458 products into 4,323 SKU prefixes, scraped one product per prefix via headless Chromium, then applied dimensions to all color variants.</li>
+          <li><strong style="color:var(--green);">3,925 prefixes resolved</strong> &mdash; Playwright rendered each product page, extracted dimension text (e.g., &ldquo;32&quot;H x 89&quot;W x 37&quot;D&rdquo;) by scanning all &lt;span&gt; elements for dimension patterns. For rugs, extracted available sizes and pile thickness.</li>
+          <li><strong style="color:var(--green);">All re-embedded</strong> &mdash; All 18,458 Surya products re-embedded with Cohere embed-v4 so dimension data is now in the search vectors. HNSW index rebuilt.</li>
+          <li><strong style="color:var(--yellow);">398 failed prefixes</strong> (3,088 products) &mdash; discontinued products returning 404 on Surya&rsquo;s website. No dimension data available.</li>
+        </ul>
 
         <h3 style="margin-top: 1.5rem; color: var(--green);">Completed &mdash; Phase 14: Dimension Extraction from Descriptions &amp; Names (Mar 4)</h3>
         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Exhaustive analysis found 6,848 products with dimension data buried in descriptions/names that was never captured. Extracted and parsed them all.</p>
@@ -511,7 +520,7 @@
               <td class="num">98.6%</td>
               <td class="num">99.5%</td>
               <td class="num">86%</td>
-              <td class="num">39.5%</td>
+              <td class="num">50.1%</td>
               <td class="num">&mdash;</td>
               <td></td>
             </tr>
@@ -536,7 +545,7 @@
                 <strong>All fixed in Phases 1&ndash;4:</strong> A&amp;B Home (219 &rarr; 5,954, now 100% descriptions), Theodore Alexander (descriptions added), Chelsea House (AI descriptions), Essentials for Living (images), Tuuci (images), Sarreid duplicate merged, Lexington (24 &rarr; 936, now 100% descriptions), Phillips Scott (1 &rarr; 355), Sherrill Furniture (18 &rarr; 227), McKinley Leather (9 &rarr; 207), Vanguard (0 &rarr; 136), Style Upholstering (9 &rarr; 119), Noir Furniture LA (0 &rarr; 65), Global Views (0 &rarr; 12), Bernhardt (now 100% descriptions), Regina Andrew (now 100% descriptions)
               </td>
             </tr>
-            <tr><td>Surya</td><td></td><td class="num">18,458</td><td class="issue-cell" style="color:var(--green)">URLs fixed, 17,354 names fixed via Firecrawl. 1,104 remain (discontinued 404s).</td><td class="issue-cell" style="color:var(--green)">Fixed in Phase 12</td></tr>
+            <tr><td>Surya</td><td></td><td class="num">18,458</td><td class="issue-cell" style="color:var(--green)">URLs fixed, 17,354 names fixed, 15,370 dimensions scraped via Playwright. 1,104 remain (discontinued 404s).</td><td class="issue-cell" style="color:var(--green)">Fixed in Phases 12 &amp; 15</td></tr>
             <tr><td>Savoy House</td><td></td><td class="num">1,790</td><td class="issue-cell" style="color:var(--green)">1,973 placeholder images restored to real photos.</td><td class="issue-cell" style="color:var(--green)">Fixed in Phase 11</td></tr>
             <tr><td>Bernhardt</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">5,464</td><td class="issue-cell" style="color:var(--green)">100% descriptions (fixed). 17% missing images.</td><td class="issue-cell pct-good">Fixed in Phase 4</td></tr>
             <tr><td>Regina Andrew</td><td><span class="tier-badge tier-top10">Top 10</span></td><td class="num">2,040</td><td class="issue-cell" style="color:var(--green)">100% descriptions, 100% images (fixed)</td><td class="issue-cell pct-good">Fixed in Phase 4</td></tr>
@@ -556,7 +565,7 @@
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Products</h4><div class="value">145,749</div><div class="detail">64 vendors (7 client-deleted, 3 new added)</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Embedding Coverage</h4><div class="value">100%</div><div class="detail">All products embedded with Cohere embed-v4</div></div>
         <div class="summary-card" style="border-color:var(--border-gold);"><h4>Search Precision</h4><div class="value">80%</div><div class="detail">Up from 25% on test query</div></div>
-        <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">12</div><div class="detail">Feedback loop, vendor tiering, category priorities, query-aware feedback, conversation memory, smart query routing, AI contextual enrichment, category normalization, dimension search, product data normalization, dimension filter parity, dimension extraction from text</div></div>
+        <div class="summary-card" style="border-color:var(--border-gold);"><h4>New Features</h4><div class="value">13</div><div class="detail">Feedback loop, vendor tiering, category priorities, query-aware feedback, conversation memory, smart query routing, AI contextual enrichment, category normalization, dimension search, product data normalization, dimension filter parity, dimension extraction from text, Surya dimension scraping</div></div>
       </div>
 
       <div class="highlights">
@@ -614,17 +623,18 @@
           <li><del>Surya broken URLs</del> &mdash; <span style="color:var(--green)">Done! All 13,152 broken product links fixed (added /Product/ segment).</span></li>
           <li><del>Surya inventory-code names</del> &mdash; <span style="color:var(--green)">Done! 17,354 renamed via Firecrawl JSON extraction ($20). 1,104 remain (discontinued 404 pages).</span></li>
           <li><del>Savoy House placeholder images</del> &mdash; <span style="color:var(--green)">Done! All 1,973 placeholder images restored to real product photos.</span></li>
+          <li><del>Surya dimensions</del> &mdash; <span style="color:var(--green)">Done! 15,370 Surya products scraped via Playwright headless browser. Dimension coverage 39.5% &rarr; 50.1%.</span></li>
         </ol>
       </div>
     </div>
 
   </div>
 
-  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: March 4, 2026</footer>
+  <footer class="footer"><span>Evenflow Interiors</span> &mdash; LuxeScout v2 &mdash; Last updated: March 5, 2026</footer>
 
   <script>
     // All 64 vendors: [name, tier, count, desc%, price%, image%, cat%, stock%, dim%, avgDesc, issues]
-    // Data refreshed from database: March 4, 2026
+    // Data refreshed from database: March 5, 2026
     const vendors = [
       ["A&B Home","",6125,100,97,100,100,81,99,368,"FIXED"],
       ["Ambella Home","top5",673,95,0,100,100,100,100,191,""],
@@ -679,7 +689,7 @@
       ["Southern Home Inc.","",1111,99,34,100,100,100,1,137,""],
       ["Style Upholstering","",119,91,1,98,98,28,78,52,"FIXED"],
       ["Summer Classics","",964,100,69,94,98,100,8,368,"FIXED"],
-      ["Surya","",18458,100,0,100,100,100,0,190,"FIXED"],
+      ["Surya","",18458,100,0,100,100,100,83,190,"FIXED"],
       ["Swaim Inc.","",1220,100,10,94,99,100,0,136,""],
       ["Theodore Alexander","top5",2441,100,0,100,100,56,1,238,"FIXED"],
       ["Tuuci","",125,99,0,100,78,0,0,133,"FIXED"],
