@@ -3,7 +3,7 @@
 **Date:** March 4, 2026
 **Database:** 145,749 products across 64 vendors
 **Embeddings:** 100% coverage (Cohere embed-v4, 1024 dimensions)
-**New:** Dimension search gaps fixed — text search RPC now has dimension filters, system prompt guides Claude on size queries
+**New:** Dimension coverage increased from 35.9% to 39.5% by extracting 5,336 buried dimensions from descriptions/names. Dimension search filters added to both search RPCs
 
 ---
 
@@ -92,31 +92,33 @@ Three vendor-specific data issues fixed:
 
 ## 1. Database Overview
 
-| Metric | Old MVP | LuxeScout v2 (Feb 21) | LuxeScout v2 (Mar 2) |
+| Metric | Old MVP | LuxeScout v2 (Feb 21) | LuxeScout v2 (Mar 4) |
 |--------|---------|----------------------|----------------------|
 | Total products | 154,804 | 136,916 | 145,749 |
 | Vendors | 68 | 58 | 64 |
 | Descriptions | ~90% | 95% | 99.8% |
+| Dimensions | ~35% | ~35% | 39.5% |
 | Subcategory classified | 0% | 0% | 99.9% |
 | Color family tagged | 0% | 0% | 83.8% |
 | Embedding model | OpenAI text-embedding-3 (1536d) | Cohere embed-v4 (1024d) | Cohere embed-v4 (1024d) |
-| Search method | Vector-only + attribute rerank | Hybrid search + Cohere Rerank 3.5 | Same + subcategory & color filters |
+| Search method | Vector-only + attribute rerank | Hybrid search + Cohere Rerank 3.5 | Same + subcategory, color & dimension filters |
 | Feedback loop | None | Thumbs up/down + comments | Same |
 
 ## 2. Overall Data Quality
 
-| Metric | Feb 21 | Feb 24 | Mar 2 | Change |
-|--------|--------|--------|-------|--------|
-| Has description (>10 chars) | 95% | 99.8% | 99.8% | Same |
-| Has price | 60% | 61.9% | 61.1% | Same |
-| Has image | 98% | 98.7% | 98.6% | Same |
-| Has categories | 78% | 100% | 99.5% | Same |
-| Has embedding | 100% | 100% | 100% | Same |
-| **Has subcategory** | — | — | **99.9%** | **NEW** |
-| **Has color family** | — | — | **83.8%** | **NEW** |
-| **Has material family** | — | — | **91.0%** | **NEW** |
-| **Has style tags (clean)** | — | — | **97.4%** | **NEW** |
-| **Has features** | — | — | **63.6%** | **NEW** |
+| Metric | Feb 21 | Feb 24 | Mar 2 | Mar 4 | Change |
+|--------|--------|--------|-------|-------|--------|
+| Has description (>10 chars) | 95% | 99.8% | 99.8% | 99.8% | Same |
+| Has price | 60% | 61.9% | 61.1% | 60.3% | Same |
+| Has image | 98% | 98.7% | 98.6% | 98.6% | Same |
+| Has categories | 78% | 100% | 99.5% | 99.5% | Same |
+| Has embedding | 100% | 100% | 100% | 100% | Same |
+| Has dimensions | — | — | 35.9% | **39.5%** | **+3.6pp** |
+| Has subcategory | — | — | 99.9% | 99.9% | Same |
+| Has color family | — | — | 83.8% | 83.8% | Same |
+| Has material family | — | — | 91.0% | 91.0% | Same |
+| Has style tags (clean) | — | — | 97.4% | 97.4% | Same |
+| Has features | — | — | 63.6% | 63.6% | Same |
 
 ## 3. What Changed Since Last Report
 
@@ -164,71 +166,71 @@ Three vendor-specific data issues fixed:
 
 | Vendor | Tier | Count | Desc% | Price% | Image% | Cat% | Stock% | Dim% | Avg Desc |
 |--------|------|------:|------:|-------:|-------:|-----:|-------:|-----:|---------:|
-| A&B Home | - | 6,125 | 100% | 97% | 99% | 100% | 81% | 98% | 368 |
-| Ambella Home | top5 | 673 | 95% | 0% | 100% | 100% | 26% | 100% | 191 |
+| A&B Home | - | 6,125 | 100% | 97% | 100% | 100% | 81% | 99% | 368 |
+| Ambella Home | top5 | 673 | 95% | 0% | 100% | 100% | 100% | 100% | 191 |
 | Artistica Home | - | 571 | 100% | 0% | 100% | 100% | 76% | 100% | 258 |
 | Bernhardt | top10 | 5,464 | 100% | 94% | 83% | 99% | 38% | 68% | 171 |
 | Bramble Co | - | 2,095 | 100% | 0% | 100% | 100% | 0% | 92% | 80 |
-| Caracole | - | 1,055 | 100% | 100% | 100% | 100% | 79% | 100% | 399 |
-| Castelle Furniture | - | 489 | 100% | 3% | 87% | 87% | 53% | 68% | 241 |
-| Chelsea House | - | 2,076 | 100% | 0% | 100% | 100% | 75% | 100% | 241 |
-| Currey & Company | - | 2,874 | 100% | 100% | 100% | 97% | 87% | 91% | 360 |
-| Cyan Design | - | 2,158 | 97% | 100% | 97% | 99% | 100% | 0% | 316 |
-| Eastern Accents | - | 8,901 | 100% | 71% | 95% | 100% | 100% | 4% | 154 |
-| ELK Home | - | 2,271 | 100% | 100% | 100% | 100% | 100% | 0% | 175 |
-| Eloquence | - | 373 | 100% | 100% | 100% | 93% | 99% | 0% | 632 |
-| Essentials for Living | top10 | 521 | 99% | 100% | 99% | 98% | 98% | 0% | 36 |
-| Fairfield Chair | top20 | 6,114 | 100% | 99% | 100% | 100% | 100% | 0% | 211 |
-| Four Hands | - | 16,729 | 100% | 100% | 100% | 100% | 27% | 100% | 283 |
-| Gabriella White | depri | 2,395 | 99% | 73% | 99% | 99% | 100% | 0% | 354 |
-| Global Views | - | 12 | 92% | 58% | 92% | 100% | 50% | 75% | 395 |
-| Gracie Studio | - | 45 | 100% | 100% | 100% | 93% | 96% | 0% | 152 |
+| Caracole | - | 1,055 | 100% | 100% | 100% | 100% | 100% | 100% | 399 |
+| Castelle Furniture | - | 489 | 100% | 4% | 87% | 87% | 100% | 69% | 241 |
+| Chelsea House | - | 2,076 | 100% | 0% | 100% | 100% | 90% | 100% | 241 |
+| Currey & Company | - | 2,874 | 100% | 100% | 100% | 97% | 96% | 95% | 360 |
+| Cyan Design | - | 2,158 | 97% | 100% | 97% | 99% | 100% | 2% | 316 |
+| Eastern Accents | - | 8,901 | 100% | 71% | 95% | 100% | 100% | 5% | 154 |
+| ELK Home | - | 2,271 | 100% | 100% | 100% | 100% | 100% | 10% | 175 |
+| Eloquence | - | 373 | 100% | 100% | 100% | 93% | 100% | 6% | 632 |
+| Essentials for Living | top10 | 521 | 99% | 100% | 99% | 98% | 100% | 14% | 36 |
+| Fairfield Chair | top20 | 6,114 | 100% | 99% | 100% | 100% | 100% | 6% | 211 |
+| Four Hands | - | 16,729 | 100% | 100% | 100% | 100% | 93% | 100% | 283 |
+| Gabriella White | depri | 2,395 | 99% | 73% | 99% | 99% | 100% | 4% | 354 |
+| Global Views | - | 12 | 92% | 58% | 92% | 100% | 100% | 75% | 395 |
+| Gracie Studio | - | 45 | 100% | 100% | 100% | 93% | 100% | 0% | 152 |
 | Greenhouse Fabrics | - | 80 | 100% | 0% | 100% | 100% | 0% | 0% | 187 |
-| Hekman | - | 397 | 100% | 100% | 100% | 96% | 81% | 0% | 388 |
+| Hekman | - | 397 | 100% | 100% | 100% | 96% | 100% | 29% | 388 |
 | Horizon Shades | - | 3 | 100% | 0% | 100% | 100% | 0% | 0% | 141 |
-| HVL Group | - | 7,007 | 100% | 93% | 100% | 100% | 72% | 100% | 332 |
-| Interlude Home | - | 1,010 | 100% | 98% | 100% | 98% | 99% | 0% | 146 |
-| Jaipur Living | - | 2,577 | 100% | 86% | 100% | 100% | 99% | 0% | 373 |
-| James Martin Vanities | - | 472 | 100% | 77% | 100% | 99% | 100% | 0% | 716 |
-| Jamie Young Co | - | 812 | 100% | 100% | 100% | 100% | 0% | 0% | 317 |
-| Jonathan Charles | - | 401 | 100% | 100% | 100% | 99% | 79% | 100% | 408 |
-| Lexington Home Brands | top5 | 936 | 100% | 9% | 97% | 96% | 47% | 81% | 235 |
-| Loloi Rugs | - | 4,752 | 100% | 100% | 99% | 100% | 87% | 0% | 300 |
-| Made Goods | - | 1,410 | 100% | 0% | 100% | 98% | 100% | 0% | 307 |
-| Maitland-Smith | - | 708 | 100% | 0% | 100% | 100% | 89% | 99% | 196 |
-| McKinley Leather | - | 207 | 85% | 3% | 78% | 99% | 29% | 68% | 215 |
-| Noir Furniture LA | - | 65 | 83% | 11% | 97% | 97% | 68% | 97% | 158 |
+| HVL Group | - | 7,007 | 100% | 93% | 100% | 100% | 84% | 100% | 332 |
+| Interlude Home | - | 1,010 | 100% | 98% | 100% | 98% | 100% | 3% | 146 |
+| Jaipur Living | - | 2,577 | 100% | 86% | 100% | 100% | 100% | 6% | 373 |
+| James Martin Vanities | - | 472 | 100% | 77% | 100% | 99% | 100% | 80% | 716 |
+| Jamie Young Co | - | 812 | 100% | 100% | 100% | 100% | 100% | 0% | 317 |
+| Jonathan Charles | - | 401 | 100% | 100% | 100% | 99% | 100% | 100% | 408 |
+| Lexington Home Brands | top5 | 936 | 100% | 9% | 97% | 96% | 98% | 81% | 235 |
+| Loloi Rugs | - | 4,752 | 100% | 100% | 99% | 100% | 100% | 0% | 300 |
+| Made Goods | - | 1,410 | 100% | 0% | 100% | 98% | 100% | 93% | 307 |
+| Maitland-Smith | - | 708 | 100% | 0% | 100% | 100% | 89% | 100% | 196 |
+| McKinley Leather | - | 207 | 85% | 3% | 78% | 99% | 86% | 67% | 215 |
+| Noir Furniture LA | - | 65 | 83% | 11% | 97% | 97% | 100% | 97% | 158 |
 | Old Biscayne Designs | - | 3,091 | 100% | 0% | 100% | 99% | 0% | 68% | 157 |
-| Padma's Plantation | - | 202 | 100% | 100% | 100% | 100% | 100% | 0% | 2,794 |
+| Padma's Plantation | - | 202 | 100% | 100% | 100% | 100% | 100% | 76% | 2,794 |
 | Paragon | - | 3,775 | 100% | 0% | 100% | 100% | 100% | 0% | 131 |
-| Phillips Scott | - | 355 | 99% | 2% | 99% | 93% | 20% | 91% | 173 |
-| Precedent Furniture | top5 | 299 | 100% | 0% | 100% | 100% | 0% | 36% | 170 |
+| Phillips Scott | - | 355 | 99% | 2% | 99% | 93% | 99% | 91% | 173 |
+| Precedent Furniture | top5 | 299 | 100% | 0% | 100% | 100% | 0% | 96% | 170 |
 | Propac Images | - | 1,209 | 100% | 0% | 100% | 100% | 100% | 0% | 118 |
-| Regina Andrew | top10 | 2,040 | 100% | 100% | 100% | 98% | 82% | 0% | 218 |
+| Regina Andrew | top10 | 2,040 | 100% | 100% | 100% | 98% | 100% | 0% | 218 |
 | Renwil | - | 1,445 | 100% | 100% | 100% | 98% | 100% | 0% | 352 |
 | Rowe Furniture | top20 | 1,734 | 98% | 0% | 97% | 100% | 0% | 97% | 223 |
-| Rowley Company | - | 15 | 73% | 67% | 73% | 87% | 0% | 0% | 120 |
-| Sarreid Ltd | top5 | 585 | 100% | 100% | 100% | 100% | 0% | 74% | 364 |
-| Savoy House | - | 1,973 | 100% | 0% | 100% | 100% | 71% | 0% | 441 |
-| Selamat Designs | - | 219 | 98% | 100% | 98% | 100% | 98% | 0% | 360 |
-| Shadow Catchers Art | - | 3,936 | 100% | 100% | 100% | 97% | 100% | 0% | 190 |
+| Rowley Company | - | 15 | 73% | 67% | 73% | 87% | 0% | 13% | 120 |
+| Sarreid Ltd | top5 | 585 | 100% | 100% | 100% | 100% | 0% | 75% | 364 |
+| Savoy House | - | 1,973 | 100% | 0% | 100% | 100% | 100% | 10% | 441 |
+| Selamat Designs | - | 219 | 98% | 100% | 98% | 100% | 100% | 1% | 360 |
+| Shadow Catchers Art | - | 3,936 | 100% | 100% | 100% | 97% | 100% | 32% | 190 |
 | Sherrill Fabrics | - | 1,090 | 100% | 0% | 94% | 100% | 0% | 0% | 229 |
-| Sherrill Occasional | - | 456 | 100% | 0% | 100% | 99% | 0% | 69% | 195 |
-| Southern Home Inc. | - | 1,111 | 99% | 34% | 100% | 100% | 100% | 0% | 137 |
-| Style Upholstering | - | 119 | 91% | 1% | 98% | 98% | 8% | 79% | 52 |
-| Summer Classics | - | 964 | 100% | 69% | 94% | 98% | 100% | 0% | 368 |
+| Sherrill Occasional | - | 456 | 100% | 0% | 100% | 99% | 0% | 74% | 195 |
+| Southern Home Inc. | - | 1,111 | 99% | 34% | 100% | 100% | 100% | 1% | 137 |
+| Style Upholstering | - | 119 | 91% | 1% | 98% | 98% | 28% | 78% | 52 |
+| Summer Classics | - | 964 | 100% | 69% | 94% | 98% | 100% | 8% | 368 |
 | Surya | - | 18,458 | 100% | 0% | 100% | 100% | 100% | 0% | 190 |
-| Swaim Inc. | - | 1,220 | 100% | 10% | 94% | 99% | 97% | 0% | 136 |
+| Swaim Inc. | - | 1,220 | 100% | 10% | 94% | 99% | 100% | 0% | 136 |
 | Theodore Alexander | top5 | 2,441 | 100% | 0% | 100% | 100% | 56% | 1% | 238 |
 | Tuuci | - | 125 | 99% | 0% | 100% | 78% | 0% | 0% | 133 |
 | Universal Furniture | - | 1,024 | 100% | 0% | 100% | 100% | 0% | 98% | 328 |
-| Uttermost | - | 4,394 | 100% | 0% | 100% | 100% | 100% | 0% | 245 |
-| Vanguard Furniture | - | 136 | 98% | 16% | 99% | 99% | 93% | 97% | 200 |
+| Uttermost | - | 4,394 | 100% | 0% | 100% | 100% | 100% | 7% | 245 |
+| Vanguard Furniture | - | 136 | 98% | 16% | 99% | 99% | 100% | 97% | 200 |
 | Wendover Art Group | opt | 9,391 | 100% | 100% | 100% | 100% | 100% | 0% | 235 |
-| Wesley Hall | - | 110 | 100% | 4% | 95% | 99% | 20% | 70% | 217 |
-| Woodbridge Furniture | - | 1,173 | 100% | 100% | 99% | 100% | 100% | 0% | 222 |
+| Wesley Hall | - | 110 | 100% | 4% | 95% | 99% | 100% | 69% | 217 |
+| Woodbridge Furniture | - | 1,173 | 100% | 100% | 99% | 100% | 100% | 3% | 222 |
 | Worlds Away | - | 881 | 100% | 0% | 100% | 94% | 0% | 99% | 238 |
-| **TOTAL** | | **145,749** | **99.8%** | **60%** | **98.6%** | **99.5%** | **75%** | **35.9%** | |
+| **TOTAL** | | **145,749** | **99.8%** | **60%** | **98.6%** | **99.5%** | **86%** | **39.5%** | |
 
 ### Remaining Data Quality Issues
 
@@ -387,7 +389,7 @@ Every product now has structured, AI-extracted attributes that enable precise fi
 ## 8. Remaining Work
 
 ### Data Quality (all critical issues resolved)
-All critical data quality issues are fixed across 9 phases. Description coverage at **99.8%**, image coverage at **98.6%**, subcategory coverage at **99.9%**, dimension coverage at **35.9%**. All vendors have 100% embeddings.
+All critical data quality issues are fixed across 10 phases. Description coverage at **99.8%**, image coverage at **98.6%**, subcategory coverage at **99.9%**, dimension coverage at **39.5%**. All vendors have 100% embeddings.
 
 **Remaining gaps:**
 
@@ -405,6 +407,13 @@ All critical data quality issues are fixed across 9 phases. Description coverage
 - [DONE] Regenerated `search_text` to include normalized attributes (Type, Colors, Materials, Style, Features) for better BM25 matching
 - Optional: feature badges on product cards (display "Swivel", "Performance Fabric" pills)
 - Optional: color/material filter chips in UI (deferred based on usage patterns)
+
+### Dimension Extraction from Descriptions & Names (Phase 10b — COMPLETE, Mar 4)
+- [DONE] Built `extract_dims_from_text.py` that scans product descriptions and names for buried dimension data
+- [DONE] Extracted dimensions for **5,336 products** across 30+ vendors — increased dimension coverage from 35.9% to **39.5%** (57,610 products)
+- [DONE] Sources: 3,300 from descriptions (Made Goods 1,314, Shadow Catchers 1,256, Wendover 228, etc.), 2,036 from names (James Martin 379, Fairfield Chair 348, Uttermost 306, etc.)
+- [DONE] Updated search_text for all newly-dimensioned products
+- [DONE] Re-embedded ~18,000 affected products with Cohere embed-v4
 
 ### Dimension Search Gaps (Phase 10 — COMPLETE, Mar 4)
 - [DONE] Text search RPC (`v2_text_search_products`) now has dimension filter parameters (width/height/depth min/max), matching the vector search RPC
