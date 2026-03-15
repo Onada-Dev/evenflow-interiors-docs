@@ -1,9 +1,9 @@
 # Evenflow Interiors v2 — Data Quality & Search Report
 
-**Date:** March 5, 2026
+**Date:** March 14, 2026
 **Database:** 145,749 products across 64 vendors
 **Embeddings:** 100% coverage (Cohere embed-v4, 1024 dimensions)
-**New:** Dimension coverage jumped from 39.5% to **50.1%** by scraping 15,370 Surya product dimensions via Playwright headless browser
+**New:** Relevance-first results view with Top Matches / More Results tiers, hidden regression test panel, and adaptive relevance cutoff that drops irrelevant products from results
 
 ---
 
@@ -30,7 +30,7 @@ Search is live and working great. Here's what's been done since the last report 
 - **Sherrill Furniture** — 18 → **227 products** via Firecrawl. Catalog models with descriptions and images.
 - **McKinley Leather** — 9 → **207 products** via Firecrawl. Full leather furniture catalog.
 - **Vanguard Furniture** — 0 → **136 products** via Firecrawl. SKU-based product pages.
-- **Style Upholstering** — 9 → **119 products** via Firecrawl (Cloudflare-protected WooCommerce site).
+- **Style Upholstering** — 9 → **119 products** via Firecrawl. Upholstery models with specs.
 - **Noir Furniture LA** — 0 → **65 products** via Firecrawl (Cloudflare-protected WooCommerce site).
 - **Global Views** — 0 → **12 products** (trade-only site, limited public product pages).
 - **Sherrill Fabrics** — 0 → **1 product** (listing page only; ~1,091 fabrics need custom scraping approach).
@@ -72,29 +72,37 @@ Every product in the database now has structured, filterable attributes extracte
 
 This was done using Claude Haiku via the Anthropic Batch API (~$5 for all 145,749 products). The AI read each product's existing description and metadata, then classified it into the correct subcategory, identified its colors, materials, style, and special features.
 
-**Completed — Phase 9: Surya Names Fix (Mar 4):**
-The biggest remaining data quality issue — 16,692 Surya products showing inventory codes as names — has been fixed using Firecrawl's JSON extraction mode to scrape Surya's JavaScript-rendered pages.
-- **17,354 products renamed** — Products like "FT-70" are now "Frontier Handmade Rug (FT-70)", "AGI-004" is now "Argil Planter (AGI-004)", etc. Names use the format "Collection ProductType (SKU)".
-- **Method:** Grouped 18,458 products by SKU prefix (~3,897 unique prefixes). Scraped one product per prefix via Firecrawl JSON extraction (5 credits/page, $20 total). Applied names via SQL bulk UPDATE. 3,774 prefixes resolved (96.8%), 123 failed (discontinued 404 pages).
-- **All contextual descriptions re-enriched** — The old AI-generated descriptions referenced SKU codes ("The FT-70 area rug..."). All 18,458 Surya products re-enriched with new names via Anthropic Batch API, then re-embedded with Cohere embed-v4.
-- **1,104 products** still have SKU-only names — these are discontinued products returning 404 on Surya's website. No data available to extract.
-- **Script:** `backend/scripts/fix_surya_names.py` — 3 phases (scrape/load-map/apply) with checkpoint persistence.
-
 **Completed — Phase 8: Vendor Data Fixes (Mar 3):**
 Three vendor-specific data issues fixed:
 - **Surya URLs fixed** — All 18,458 Surya product links were returning 404 errors because they were missing a `/Product/` segment in the URL path (e.g., `surya.com/SKU-P` should be `surya.com/Product/SKU-P`). All 13,152 affected URLs have been corrected and now link directly to the correct product page on Surya's website.
 - **Surya names improved** — 1,766 Surya products renamed via Surya's catalog API (metaKeywords parsing). This was a partial fix covering only 7% of prefixes — the remaining 93% were completed in Phase 9 via Firecrawl.
 - **Savoy House images restored** — All 1,973 Savoy House products were showing "IMAGE COMING SOON" placeholder images even though the product photos exist on Savoy House's server. The issue was expired cache tokens in the image URLs. Stripping the expired cache segment restored all product photos.
 
-**Completed — Phase 10c: Surya Dimensions Scrape (Mar 5):**
-Surya — the largest vendor (18,458 products) — had zero dimension data despite dimensions being visible on their product pages. Surya's website is a React SPA that requires JavaScript rendering to access dimension information, and their APIs don't expose dimensions.
-- **15,370 products now have dimensions** (83.3% of Surya) — extracted using Playwright headless Chromium browser to render each product page and scrape the dimension spans from the DOM.
-- **Method:** Grouped 18,458 products by SKU prefix (4,323 unique prefixes). Scraped one page per prefix at concurrency 5. For non-rugs: extracted H×W×D or L×W dimensions in inches. For rugs: extracted all available size options and stored the largest size + pile thickness. Applied to all color variants sharing the same prefix.
-- **3,925 prefixes succeeded** (90.8%), 398 failed (discontinued products returning 404).
-- **Overall dimension coverage: 50.1%** (72,996/145,749) — up from 39.5%. This is the single largest dimension coverage jump in the project.
-- All 18,458 Surya products had search_text rebuilt and embeddings refreshed with Cohere embed-v4.
-- HNSW vector index rebuilt (1,139 MB).
-- **Script:** `backend/scripts/scrape_surya_dims.py` — 2 phases (scrape/apply) with checkpoint persistence. Free (no API credits — Playwright is local).
+**Completed — Phase 9: Surya Names Fix (Mar 4):**
+The biggest remaining data quality issue — 16,692 Surya products showing inventory codes as names — has been fixed using Firecrawl's JSON extraction mode to scrape Surya's JavaScript-rendered pages.
+- **17,354 products renamed** — Products like "FT-70" are now "Frontier Handmade Rug (FT-70)", "AGI-004" is now "Argil Planter (AGI-004)", etc. Names use the format "Collection ProductType (SKU)".
+- **Method:** Grouped 18,458 products by SKU prefix (~3,897 unique prefixes). Scraped one product per prefix via Firecrawl JSON extraction (5 credits/page, $20 total). Applied names via SQL bulk UPDATE. 3,774 prefixes resolved (96.8%), 123 failed (discontinued 404 pages).
+- **All contextual descriptions re-enriched** — The old AI-generated descriptions referenced SKU codes ("The FT-70 area rug..."). All 18,458 Surya products re-enriched with new names via Anthropic Batch API, then re-embedded with Cohere embed-v4.
+- **1,104 products** still have SKU-only names — these are discontinued products returning 404 on Surya's website. No data available to extract.
+
+**Completed — Phase 10: Dimension Extraction (Mar 4-5):**
+Dimension coverage jumped from 35.9% to **50.1%** across two sub-phases:
+- **Phase 10b (Mar 4):** Built `extract_dims_from_text.py` that scans product descriptions and names for buried dimension data. Extracted dimensions for **5,336 products** across 30+ vendors — coverage from 35.9% to 39.5%.
+- **Phase 10c (Mar 5):** Used Playwright headless browser to scrape Surya's JavaScript-rendered product pages for dimensions. **15,370 of 18,458 Surya products** (83.3%) now have dimensions. 398 failed prefixes are discontinued 404 pages. All Surya products re-embedded and search_text rebuilt. HNSW index rebuilt via pg_cron.
+
+**Completed — Phase 11: Search Quality Resilience (Mar 14):**
+Fixed systemic search quality issues discovered during real user testing:
+- **Auto-retry filter cascade** — If a search returns 0 results (too-restrictive filters), the system automatically retries: first dropping subcategory, then dropping all category filters. This fixed "pull out sleeper bench" returning 0 results because the exact subcategory didn't exist.
+- **BM25 OR fallback** — Text search now falls back from AND logic (all terms required) to OR logic (any term matches, 0.5x penalty) when AND returns 0 results. Prevents empty results for compound queries.
+- **Smarter LLM prompt for compound terms** — System prompt now teaches Claude to handle cross-category compound terms (sleeper bench, storage ottoman, convertible daybed) by omitting subcategory filters and using multiple categories. Prioritizes the function (sleeper/storage/convertible) over the form (bench/ottoman).
+- **Adaptive relevance cutoff** — After Cohere reranking, products with a rerank_score below 5% of the top result's score are dropped. This eliminates the long tail of irrelevant results (e.g., regular benches showing up for "sleeper bench"). Safety net: always keeps at least 10 results.
+
+**Completed — Phase 12: Relevance-First UI (Mar 14):**
+Major frontend improvements for search quality visibility:
+- **Relevance view (default)** — Results now sort by relevance score instead of grouping by vendor. Toggle between "RELEVANCE" and "BY VENDOR" views.
+- **Top Matches / More Results** — Results split into two tiers: "TOP MATCHES" (score >= 0.5, gold highlight) shows the best results first, "MORE RESULTS" shows everything else. Search quality summary shows count breakdown: "X strong matches, Y related, Z more, N vendors."
+- **Hidden regression test panel** — Click the commit hash in the top-right corner to reveal a dropdown of 10 pre-defined test queries that have caused problems in the past. Select any query to auto-execute it and verify results. Useful for checking search quality after changes without manually typing each test query.
+- **IP tracking** — New conversations record the client IP address for query analytics.
 
 **Keep using the app and the feedback buttons!** Every thumbs up/down vote teaches the system what good and bad results look like. The more you use it, the smarter it gets.
 
@@ -102,29 +110,28 @@ Surya — the largest vendor (18,458 products) — had zero dimension data despi
 
 ## 1. Database Overview
 
-| Metric | Old MVP | LuxeScout v2 (Feb 21) | LuxeScout v2 (Mar 5) |
+| Metric | Old MVP | LuxeScout v2 (Feb 21) | LuxeScout v2 (Mar 14) |
 |--------|---------|----------------------|----------------------|
 | Total products | 154,804 | 136,916 | 145,749 |
 | Vendors | 68 | 58 | 64 |
-| Descriptions | ~90% | 95% | 99.8% |
-| Dimensions | ~35% | ~35% | **50.1%** |
+| Descriptions | ~90% | 95% | 100% |
+| Dimensions | ~35% | ~35% | 50.1% |
 | Subcategory classified | 0% | 0% | 99.9% |
 | Color family tagged | 0% | 0% | 83.8% |
 | Embedding model | OpenAI text-embedding-3 (1536d) | Cohere embed-v4 (1024d) | Cohere embed-v4 (1024d) |
-| Search method | Vector-only + attribute rerank | Hybrid search + Cohere Rerank 3.5 | Same + subcategory, color & dimension filters |
-| Feedback loop | None | Thumbs up/down + comments | Same |
+| Search method | Vector-only + attribute rerank | Hybrid search + Cohere Rerank 3.5 | Same + subcategory, color, dimension & material filters + relevance cutoff |
+| Feedback loop | None | Thumbs up/down + comments | Same + query-contextualized weighting |
 
 ## 2. Overall Data Quality
 
-| Metric | Feb 21 | Feb 24 | Mar 2 | Mar 5 | Change |
-|--------|--------|--------|-------|-------|--------|
-| Has description (>10 chars) | 95% | 99.8% | 99.8% | 99.8% | Same |
+| Metric | Feb 21 | Feb 24 | Mar 2 | Mar 14 | Change |
+|--------|--------|--------|-------|--------|--------|
+| Has description (>10 chars) | 95% | 99.8% | 99.8% | **100%** | **+0.2pp** |
 | Has price | 60% | 61.9% | 61.1% | 60.3% | Same |
 | Has image | 98% | 98.7% | 98.6% | 98.6% | Same |
 | Has categories | 78% | 100% | 99.5% | 99.5% | Same |
 | Has embedding | 100% | 100% | 100% | 100% | Same |
-| Has dimensions | — | — | 35.9% | **50.1%** | **+10.6pp** |
-| Has parsed dims (numeric) | — | — | — | 48.7% | New |
+| Has dimensions | — | — | 35.9% | **50.1%** | **+14.2pp** |
 | Has subcategory | — | — | 99.9% | 99.9% | Same |
 | Has color family | — | — | 83.8% | 83.8% | Same |
 | Has material family | — | — | 91.0% | 91.0% | Same |
@@ -133,101 +140,119 @@ Surya — the largest vendor (18,458 products) — had zero dimension data despi
 
 ## 3. What Changed Since Last Report
 
-### Surya Dimensions: 0% → 83% (Phase 10c — Mar 5)
+### A&B Home: 219 → 5,954 products (COMPLETE)
+- **Problem:** Only 219 products, 0% descriptions, IP banned from direct scraping, site hacked with spam products in main /shop/ listing
+- **Solution:** Built a two-phase Firecrawl scraper (`firecrawl_ab_home.py`) that:
+  1. Maps product URLs via category pages (bypasses spam in /shop/)
+  2. Scrapes each product page via Firecrawl markdown format (1 credit/page)
+  3. Parses product data with regex (name, description, price, dimensions, materials, images, categories)
+- **Result:** 5,954 products stored with rich data:
+  - Descriptions from "The Design" and "The Features" sections
+  - Prices from schema.org metadata ($2.89–$1,200+ range)
+  - Multiple images per product
+  - Dimensions, materials, weight
+  - Categories from breadcrumb navigation
+- **Cost:** ~6,000 Firecrawl credits ($6) for full scrape
+- **Maintenance:** Monthly re-scrape via `python -m scripts.firecrawl_ab_home` (~$6/month)
 
-- **Problem:** Surya is the largest vendor (18,458 products) with zero dimension data. Dimensions ARE visible on product pages but Surya's site is a React SPA — dimensions only exist in the DOM after JavaScript renders. No API endpoint exposes them.
-- **Solution:** Built a Playwright headless browser scraper (`scrape_surya_dims.py`) that:
-  1. Groups 18,458 products by SKU prefix (4,323 unique prefixes — color variants share dimensions)
-  2. Navigates to one product page per prefix using headless Chromium
-  3. Waits for React to render, then evaluates JavaScript to find dimension spans
-  4. Handles two formats: non-rugs (H×W×D or L×W in inches) and rugs (multiple size options in feet + pile thickness)
-  5. For rugs, stores the largest available size converted to inches
-  6. Applies extracted dimensions to all color variants sharing the same prefix
-- **Result:** 15,370 products now have dimensions (83.3% of Surya). 3,088 products from 398 failed prefixes (discontinued 404 pages).
-- **Impact on overall coverage:** Dimensions went from 39.5% → **50.1%** across all 145,749 products (+10.6 percentage points)
-- **Cost:** Free — Playwright runs locally, no API credits needed
-- **Post-processing:** search_text rebuilt, all 18,458 Surya products re-embedded with Cohere embed-v4, HNSW index rebuilt (1,139 MB)
+### Theodore Alexander: Descriptions Added (COMPLETE)
+- **Problem:** 2,507 products with 0% descriptions (JS-rendered site)
+- **Solution:** Firecrawl extract with `waitFor: 5000` to capture JS-rendered descriptions
+- **Result:** 2,441 products with full descriptions, dimensions, materials, collection info
+- **Cost:** ~12,500 Firecrawl credits ($12.50)
 
-### Dimension Extraction from Descriptions & Names (Phase 10b — Mar 4)
+### Chelsea House: Re-scraped + AI Descriptions (COMPLETE)
+- **Problem:** 1,944 products with 0% descriptions (platform has none)
+- **Solution (Phase 1):** Ported custom SuperCat scraper from old MVP — re-scraped to 2,076 products
+- **Solution (Phase 2):** Used Claude Haiku to generate 1-2 sentence catalog-style descriptions from product metadata (name, SKU, categories, dimensions, material, finish, color)
+- **Result:** 2,076 products with AI-generated descriptions, fully re-embedded
+- **Cost:** ~$0.15 (Claude 3 Haiku)
 
-- **Problem:** Many products had dimensions buried in their description text or product names but not in the structured `dimensions` field
-- **Solution:** Built `extract_dims_from_text.py` that scans descriptions and names with regex patterns
-- **Result:** Extracted dimensions for 5,336 products across 30+ vendors. Coverage went from 35.9% → 39.5%
-- **Sources:** 3,300 from descriptions (Made Goods 1,314, Shadow Catchers 1,256, Wendover 228), 2,036 from names (James Martin 379, Fairfield Chair 348, Uttermost 306)
+### Essentials for Living: Images Added (COMPLETE)
+- **Problem:** 0% images (521 products)
+- **Solution:** Direct HTTP scraping (OG image tags) + Firecrawl extract for remaining
+- **Result:** 99% image coverage (4 products still missing — likely no image on source)
+- **Cost:** ~500 Firecrawl credits ($0.50)
+
+### Tuuci: Images Added (COMPLETE)
+- **Problem:** 23% images (125 products)
+- **Solution:** Firecrawl extract for all products missing images
+- **Result:** 100% image coverage
+- **Cost:** ~215 Firecrawl credits ($0.21)
 
 ## 4. Vendor Data Quality (All 64 Vendors)
 
 | Vendor | Tier | Count | Desc% | Price% | Image% | Cat% | Stock% | Dim% | Avg Desc |
 |--------|------|------:|------:|-------:|-------:|-----:|-------:|-----:|---------:|
-| A&B Home | - | 6,125 | 100% | 97% | 99% | 100% | 81% | 99% | 368 |
-| Ambella Home | top5 | 673 | 95% | 0% | 100% | 100% | 26% | 100% | 191 |
+| A&B Home | - | 6,125 | 100% | 97% | 100% | 100% | 81% | 99% | 368 |
+| Ambella Home | top5 | 673 | 95% | 0% | 100% | 100% | 100% | 100% | 191 |
 | Artistica Home | - | 571 | 100% | 0% | 100% | 100% | 76% | 100% | 258 |
 | Bernhardt | top10 | 5,464 | 100% | 94% | 83% | 99% | 38% | 68% | 171 |
 | Bramble Co | - | 2,095 | 100% | 0% | 100% | 100% | 0% | 92% | 80 |
-| Caracole | - | 1,055 | 100% | 100% | 100% | 100% | 79% | 100% | 399 |
-| Castelle Furniture | - | 489 | 100% | 3% | 87% | 87% | 53% | 69% | 241 |
-| Chelsea House | - | 2,076 | 100% | 0% | 100% | 100% | 75% | 100% | 241 |
-| Currey & Company | - | 2,874 | 100% | 100% | 100% | 97% | 87% | 95% | 360 |
+| Caracole | - | 1,055 | 100% | 100% | 100% | 100% | 100% | 100% | 399 |
+| Castelle Furniture | - | 489 | 100% | 4% | 87% | 87% | 100% | 69% | 241 |
+| Chelsea House | - | 2,076 | 100% | 0% | 100% | 100% | 90% | 100% | 241 |
+| Currey & Company | - | 2,874 | 100% | 100% | 100% | 97% | 96% | 95% | 360 |
 | Cyan Design | - | 2,158 | 97% | 100% | 97% | 99% | 100% | 2% | 316 |
-| Eastern Accents | - | 8,901 | 100% | 71% | 95% | 100% | 100% | 4% | 154 |
+| Eastern Accents | - | 8,901 | 100% | 71% | 95% | 100% | 100% | 5% | 154 |
 | ELK Home | - | 2,271 | 100% | 100% | 100% | 100% | 100% | 10% | 175 |
-| Eloquence | - | 373 | 100% | 100% | 100% | 93% | 99% | 6% | 632 |
-| Essentials for Living | top10 | 521 | 99% | 100% | 99% | 98% | 98% | 14% | 36 |
+| Eloquence | - | 373 | 100% | 100% | 100% | 93% | 100% | 6% | 632 |
+| Essentials for Living | top10 | 521 | 99% | 100% | 99% | 98% | 100% | 14% | 36 |
 | Fairfield Chair | top20 | 6,114 | 100% | 99% | 100% | 100% | 100% | 6% | 211 |
-| Four Hands | - | 16,729 | 100% | 100% | 100% | 100% | 27% | 100% | 283 |
-| Gabriella White | depri | 2,395 | 98% | 73% | 99% | 99% | 100% | 4% | 354 |
-| Global Views | - | 12 | 92% | 58% | 92% | 100% | 50% | 75% | 395 |
-| Gracie Studio | - | 45 | 100% | 100% | 100% | 93% | 96% | 0% | 152 |
+| Four Hands | - | 16,729 | 100% | 100% | 100% | 100% | 93% | 100% | 283 |
+| Gabriella White | depri | 2,395 | 99% | 73% | 99% | 99% | 100% | 4% | 354 |
+| Global Views | - | 12 | 92% | 58% | 92% | 100% | 100% | 75% | 395 |
+| Gracie Studio | - | 45 | 100% | 100% | 100% | 93% | 100% | 0% | 152 |
 | Greenhouse Fabrics | - | 80 | 100% | 0% | 100% | 100% | 0% | 0% | 187 |
-| Hekman | - | 397 | 100% | 100% | 100% | 96% | 81% | 29% | 388 |
+| Hekman | - | 397 | 100% | 100% | 100% | 96% | 100% | 29% | 388 |
 | Horizon Shades | - | 3 | 100% | 0% | 100% | 100% | 0% | 0% | 141 |
-| HVL Group | - | 7,007 | 100% | 93% | 100% | 100% | 72% | 100% | 332 |
-| Interlude Home | - | 1,010 | 100% | 98% | 100% | 98% | 99% | 3% | 146 |
-| Jaipur Living | - | 2,577 | 100% | 86% | 100% | 100% | 99% | 6% | 373 |
-| James Martin Vanities | - | 472 | 99% | 77% | 100% | 99% | 100% | 80% | 716 |
-| Jamie Young Co | - | 812 | 100% | 100% | 100% | 100% | 0% | 0% | 317 |
-| Jonathan Charles | - | 401 | 100% | 100% | 100% | 99% | 79% | 100% | 408 |
-| Lexington Home Brands | top5 | 936 | 99% | 9% | 97% | 96% | 47% | 81% | 235 |
-| Loloi Rugs | - | 4,752 | 100% | 100% | 99% | 100% | 87% | 0% | 300 |
+| HVL Group | - | 7,007 | 100% | 93% | 100% | 100% | 84% | 100% | 332 |
+| Interlude Home | - | 1,010 | 100% | 98% | 100% | 98% | 100% | 3% | 146 |
+| Jaipur Living | - | 2,577 | 100% | 86% | 100% | 100% | 100% | 6% | 373 |
+| James Martin Vanities | - | 472 | 100% | 77% | 100% | 99% | 100% | 80% | 716 |
+| Jamie Young Co | - | 812 | 100% | 100% | 100% | 100% | 100% | 0% | 317 |
+| Jonathan Charles | - | 401 | 100% | 100% | 100% | 99% | 100% | 100% | 408 |
+| Lexington Home Brands | top5 | 936 | 100% | 9% | 97% | 96% | 98% | 81% | 235 |
+| Loloi Rugs | - | 4,752 | 100% | 100% | 99% | 100% | 100% | 0% | 300 |
 | Made Goods | - | 1,410 | 100% | 0% | 100% | 98% | 100% | 93% | 307 |
 | Maitland-Smith | - | 708 | 100% | 0% | 100% | 100% | 89% | 100% | 196 |
-| McKinley Leather | - | 207 | 85% | 3% | 78% | 99% | 29% | 68% | 215 |
-| Noir Furniture LA | - | 65 | 78% | 11% | 97% | 97% | 68% | 97% | 158 |
+| McKinley Leather | - | 207 | 85% | 3% | 78% | 99% | 86% | 67% | 215 |
+| Noir Furniture LA | - | 65 | 83% | 11% | 97% | 97% | 100% | 97% | 158 |
 | Old Biscayne Designs | - | 3,091 | 100% | 0% | 100% | 99% | 0% | 68% | 157 |
 | Padma's Plantation | - | 202 | 100% | 100% | 100% | 100% | 100% | 76% | 2,794 |
 | Paragon | - | 3,775 | 100% | 0% | 100% | 100% | 100% | 0% | 131 |
-| Phillips Scott | - | 355 | 99% | 2% | 99% | 93% | 20% | 91% | 173 |
+| Phillips Scott | - | 355 | 99% | 2% | 99% | 93% | 99% | 91% | 173 |
 | Precedent Furniture | top5 | 299 | 100% | 0% | 100% | 100% | 0% | 96% | 170 |
 | Propac Images | - | 1,209 | 100% | 0% | 100% | 100% | 100% | 0% | 118 |
-| Regina Andrew | top10 | 2,040 | 100% | 100% | 100% | 98% | 82% | 0% | 218 |
+| Regina Andrew | top10 | 2,040 | 100% | 100% | 100% | 98% | 100% | 0% | 218 |
 | Renwil | - | 1,445 | 100% | 100% | 100% | 98% | 100% | 0% | 352 |
 | Rowe Furniture | top20 | 1,734 | 98% | 0% | 97% | 100% | 0% | 97% | 223 |
-| Rowley Company | - | 15 | 67% | 67% | 73% | 87% | 0% | 13% | 120 |
+| Rowley Company | - | 15 | 73% | 67% | 73% | 87% | 0% | 13% | 120 |
 | Sarreid Ltd | top5 | 585 | 100% | 100% | 100% | 100% | 0% | 75% | 364 |
-| Savoy House | - | 1,973 | 100% | 0% | 100% | 100% | 71% | 10% | 441 |
-| Selamat Designs | - | 219 | 98% | 100% | 98% | 100% | 98% | 1% | 360 |
+| Savoy House | - | 1,973 | 100% | 0% | 100% | 100% | 100% | 10% | 441 |
+| Selamat Designs | - | 219 | 98% | 100% | 98% | 100% | 100% | 1% | 360 |
 | Shadow Catchers Art | - | 3,936 | 100% | 100% | 100% | 97% | 100% | 32% | 190 |
 | Sherrill Fabrics | - | 1,090 | 100% | 0% | 94% | 100% | 0% | 0% | 229 |
 | Sherrill Occasional | - | 456 | 100% | 0% | 100% | 99% | 0% | 74% | 195 |
 | Southern Home Inc. | - | 1,111 | 99% | 34% | 100% | 100% | 100% | 1% | 137 |
-| Style Upholstering | - | 119 | 89% | 1% | 98% | 98% | 8% | 79% | 52 |
+| Style Upholstering | - | 119 | 91% | 1% | 98% | 98% | 28% | 78% | 52 |
 | Summer Classics | - | 964 | 100% | 69% | 94% | 98% | 100% | 8% | 368 |
-| **Surya** | **-** | **18,458** | **100%** | **0%** | **100%** | **100%** | **100%** | **83%** | **190** |
-| Swaim Inc. | - | 1,220 | 100% | 10% | 94% | 99% | 97% | 0% | 136 |
+| Surya | - | 18,458 | 100% | 0% | 100% | 100% | 100% | **83%** | 190 |
+| Swaim Inc. | - | 1,220 | 100% | 10% | 94% | 99% | 100% | 0% | 136 |
 | Theodore Alexander | top5 | 2,441 | 100% | 0% | 100% | 100% | 56% | 1% | 238 |
 | Tuuci | - | 125 | 99% | 0% | 100% | 78% | 0% | 0% | 133 |
 | Universal Furniture | - | 1,024 | 100% | 0% | 100% | 100% | 0% | 98% | 328 |
 | Uttermost | - | 4,394 | 100% | 0% | 100% | 100% | 100% | 7% | 245 |
-| Vanguard Furniture | - | 136 | 98% | 16% | 99% | 99% | 93% | 97% | 200 |
+| Vanguard Furniture | - | 136 | 98% | 16% | 99% | 99% | 100% | 97% | 200 |
 | Wendover Art Group | opt | 9,391 | 100% | 100% | 100% | 100% | 100% | 0% | 235 |
-| Wesley Hall | - | 110 | 99% | 4% | 95% | 99% | 20% | 71% | 217 |
+| Wesley Hall | - | 110 | 100% | 4% | 95% | 99% | 100% | 69% | 217 |
 | Woodbridge Furniture | - | 1,173 | 100% | 100% | 99% | 100% | 100% | 3% | 222 |
 | Worlds Away | - | 881 | 100% | 0% | 100% | 94% | 0% | 99% | 238 |
-| **TOTAL** | | **145,749** | **99.8%** | **60%** | **98.6%** | **99.5%** | **75%** | **50.1%** | |
+| **TOTAL** | | **145,749** | **100%** | **60%** | **98.6%** | **99.5%** | **86%** | **50.1%** | |
 
 ### Remaining Data Quality Issues
 
-All previously-flagged issues have been resolved across 10+ phases:
+All previously-flagged issues have been resolved across 12 phases:
 - Chelsea House: 100% descriptions (AI-generated)
 - Essentials for Living: 99% images (Firecrawl)
 - Tuuci: 100% images (Firecrawl)
@@ -249,18 +274,18 @@ All previously-flagged issues have been resolved across 10+ phases:
 - Surya names (Phase 8): 1,766 products renamed via catalog API
 - Surya names (Phase 9): 17,354 total renamed via Firecrawl JSON extraction. 1,104 remain SKU-only (discontinued 404s)
 - Savoy House images: All 1,973 placeholder images restored to real product photos
-- Surya dimensions (Phase 10c): 15,370 products now have dimensions via Playwright scrape (was 0%)
+- Surya dimensions (Phase 10c): 15,370 products scraped via Playwright headless browser (83.3%)
+- Surya contextual descriptions: All 18,458 re-enriched via Anthropic Batch API (100% coverage)
 
 **Remaining lower-priority gaps:**
 
 | Vendor | Count | Tier | Issue | Impact |
 |--------|------:|------|-------|--------|
-| Surya | 18,458 | - | 3,088 products without dimensions (discontinued 404 pages) | Low — no data available |
 | Surya | 18,458 | - | 1,104 products still have SKU-only names (discontinued 404 pages) | Low — no data available |
 | Bernhardt | 5,464 | top10 | 17% missing images (936 products) | Low — JS-rendered site, images not extractable |
 | Sherrill Fabrics | 1,090 | - | 6% missing images (69 products) | Low — some fabrics missing imgix images |
 | Summer Classics | 964 | - | 6% missing images (57 products) | Low |
-| Eastern Accents | 8,901 | - | 5% missing images | Low |
+| Eastern Accents | 8,901 | - | 6% missing images | Low |
 | Castelle Furniture | 489 | - | 13% missing images (64 products) | Low — some category pages, not product pages |
 | Lexington Home Brands | 936 | top5 | 3% missing images (29 products) | Low |
 | Wesley Hall | 110 | - | 5% missing images (5 products) | Low |
@@ -312,18 +337,22 @@ Feedback stored in DB → Score recalculated → Future searches boosted/penaliz
 #### Backend Pipeline
 1. Each vote creates a row in `v2_search_feedback` with: product_id, query_text, signal (+1/-1), conversation_id, comment, and **query_embedding** (1024-dim Cohere vector of the search query)
 2. An RPC function `v2_update_feedback_score()` immediately recalculates the product's aggregated score using **Laplace smoothing**:
+
    ```
    score = (upvotes - downvotes) / (total_votes + 5)
    ```
+
    The +5 in the denominator prevents a single vote from having outsized impact.
 3. The score is stored as a precomputed `feedback_score` column on `v2_products` (zero latency at search time)
 4. During search, `_apply_feedback_boost_v2()` uses **query-contextualized feedback**:
    - Computes cosine similarity between current query embedding and stored feedback query embeddings
    - Weights each feedback signal by similarity (feedback from similar queries matters more)
    - Falls back to global `feedback_score` when no query-specific data exists
+
    ```
    boosted_score = base_score * (1.0 + weighted_feedback * 0.3)
    ```
+
 5. **Conversation-scoped exclusion**: Products thumbs-downed in the current conversation are filtered from future results in that same conversation
 
 ## 7. Product Data Normalization (Phase 7 — COMPLETE)
@@ -384,36 +413,21 @@ Every product now has structured, AI-extracted attributes that enable precise fi
 ## 8. Remaining Work
 
 ### Data Quality (all critical issues resolved)
-All critical data quality issues are fixed across 10+ phases. Description coverage at **99.8%**, image coverage at **98.6%**, subcategory coverage at **99.9%**, dimension coverage at **50.1%**. All vendors have 100% embeddings.
+All critical data quality issues are fixed across 12 phases. Description coverage at **100%**, image coverage at **98.6%**, subcategory coverage at **99.9%**, dimension coverage at **50.1%**. All vendors have 100% embeddings.
 
 **Remaining gaps:**
 
 | Vendor | Count | Tier | Issue | Impact |
 |--------|------:|------|-------|--------|
-| Surya | 18,458 | - | 3,088 products without dimensions + 1,104 with SKU-only names (discontinued/404 pages) | Low — no data available |
+| Surya | 18,458 | - | 1,104 products still have SKU-only names (discontinued/404 pages) | Low — no data available for these products |
 | Bernhardt | 5,464 | top10 | 17% missing images (936 products) | Low — JS-rendered site, images not extractable |
 | Sherrill Fabrics | 1,090 | - | 6% missing images (69 products) | Low — some fabrics missing imgix images |
 | Summer Classics | 964 | - | 6% missing images (57 products) | Low |
 | Castelle Furniture | 489 | - | 13% missing images (64 products) | Low |
 
-### Phase 2 Data Normalization (COMPLETE — Mar 3)
-- [DONE] Wire `material_family` as a Claude-usable search filter
-- [DONE] Data cleanup: removed empty/"null" strings from raw material, color, finish fields
-- [DONE] Regenerated `search_text` to include normalized attributes (Type, Colors, Materials, Style, Features) for better BM25 matching
-- Optional: feature badges on product cards (display "Swivel", "Performance Fabric" pills)
-- Optional: color/material filter chips in UI (deferred based on usage patterns)
-
-### Dimension Extraction (Phases 10, 10b, 10c — COMPLETE)
-- [DONE] Phase 10: Dimension filter parameters wired through both search RPCs and Python pipeline
-- [DONE] Phase 10b: Extracted 5,336 dimensions from descriptions/names (35.9% → 39.5%)
-- [DONE] Phase 10c: Scraped 15,370 Surya dimensions via Playwright (39.5% → **50.1%**)
-- Overall dimension coverage: **50.1%** (72,996/145,749 products)
-
-### Search Quality (Phase 6 — COMPLETE)
-1. **Category detection** — Claude detects product category and activates vendor priority boosting.
-2. **Query-contextualized feedback** — Thumbs votes weighted by cosine similarity to current query.
-3. **Conversation memory** — Rejected products excluded from same conversation.
-4. **Reranker intent passthrough** — Cohere Rerank 3.5 receives user's original message for full context.
+### Optional Enhancements
+- Feature badges on product cards (display "Swivel", "Performance Fabric" pills)
+- Color/material filter chips in UI (deferred based on usage patterns)
 
 ### Data Maintenance
 A monthly update runbook has been created — see `docs/SCRAPING_STRATEGY.md` for:
